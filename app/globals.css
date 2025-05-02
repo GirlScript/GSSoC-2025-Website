@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .animate-float-slow {
+    animation: float 20s ease-in-out infinite;
+  }
+  .animate-float-medium {
+    animation: float 25s ease-in-out infinite;
+  }
+  .animate-float-fast {
+    animation: float 15s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
