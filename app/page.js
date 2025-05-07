@@ -7,6 +7,7 @@ import React from "react";
 import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 import { Cover } from "@/components/ui/cover";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 const World = dynamic(
   () => import("../components/ui/globe").then((m) => m.World),
@@ -406,7 +407,8 @@ export default function Home() {
     <div className="flex flex-row items-center justify-center py-20 min-h-full relative w-full">
       <StarsBackground />
       <ShootingStars />
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-[40rem] md:h-[60rem] px-4">
+      <SmoothCursor />
+      <div className="mx-auto w-full relative overflow-hidden h-[40rem] md:h-[60rem]">
         <motion.div
           initial={{
             opacity: 0,
@@ -421,9 +423,8 @@ export default function Home() {
           }}
           className="div"
         >
-          <h1 className="text-2xl md:text-5xl lg:text-7xl font-semibold max-w-7xl mx-auto text-center mt-6 relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
-            Summer Of Code 2025 <br /> is{" "}
-            <Cover className="cursor-pointer">starting soon</Cover>
+          <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
+            Summer Of Code 2025 <br /> is <Cover>stating soon</Cover>
           </h1>
         </motion.div>
         <div className="absolute w-full bottom-0 inset-x-0 h-20 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
