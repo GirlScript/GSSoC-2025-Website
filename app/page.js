@@ -402,7 +402,7 @@ export default function Home() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
-
+ 
   return (
     <div className="flex flex-row items-center justify-center py-20 min-h-full relative w-full">
       <StarsBackground />
@@ -424,7 +424,7 @@ export default function Home() {
           className="div"
         >
           <h1 className="text-2xl md:text-4xl lg:text-6xl font-semibold max-w-7xl mx-auto text-center relative z-20 py-6 bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 dark:from-neutral-800 dark:via-white dark:to-white">
-            Summer Of Code 2025 <br /> is <Cover>stating soon</Cover>
+            Summer Of Code 2025 <br /> is <Cover>starting soon</Cover>
           </h1>
         </motion.div>
         <div className="absolute w-full bottom-0 inset-x-0 h-20 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
