@@ -66,7 +66,7 @@ export default function Home() {
       </div>
 
       <header className="fixed top-0 left-0 w-full bg-transparent flex items-center justify-between p-8 z-80">
-        <div className="text-white text-2xl">GSSoC '25</div>
+        <div className="text-white text-2xl">GSSoC &apos;25</div>
 
         <nav className="flex space-x-2 bg-[#0E122E] p-[4px] px-2 rounded-full border border-[#232D6B]">
           <a
@@ -133,7 +133,7 @@ export default function Home() {
 
         <div className="text-center text-white">
           <p className="text-lg mb-8 mt-44 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
-            India's prominent open source program with 50,000+ annual
+            India&apos;s prominent open source program with 50,000+ annual
             applicants.
           </p>
           <h1 className="text-6xl font-bold mb-4">
@@ -420,7 +420,9 @@ export default function Home() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="w-1/4 bg-gradient-to-r from-transparent to-[#171D45] h-[2px]" />
-          <span className="text-[#C4C8D4] mx-4">See What's New This Year</span>
+          <span className="text-[#C4C8D4] mx-4">
+            See What&apos;s New This Year
+          </span>
           <div className="w-1/4 bg-gradient-to-l from-transparent to-[#171D45] h-[2px]" />
         </motion.div>
 
@@ -833,15 +835,15 @@ export default function Home() {
           </div>
 
           <div className="text-xl text-[#A7ADBE] mt-12 text-balance text-center z-10 leading-[1.2] font-semibold px-8">
-            As a Campus Ambassador for GSSoC'24, I’ve had an incredible
-            experience working with a dedicated team and a vibrant community of
-            developers. The program's organization, clear communication, and
-            supportive environment have made my role both enjoyable and
-            impactful. The diverse projects and the collaborative spirit among
-            participants and mentors have been truly inspiring, helping me grow
-            both technically and personally. I am grateful for this opportunity
-            and look forward to contributing to the continued success of GSSoC
-            in the future.
+            As a Campus Ambassador for GSSoC&apos;24, I&apos;ve had an
+            incredible experience working with a dedicated team and a vibrant
+            community of developers. The program&apos;s organization, clear
+            communication, and supportive environment have made my role both
+            enjoyable and impactful. The diverse projects and the collaborative
+            spirit among participants and mentors have been truly inspiring,
+            helping me grow both technically and personally. I am grateful for
+            this opportunity and look forward to contributing to the continued
+            success of GSSoC in the future.
           </div>
 
           <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />

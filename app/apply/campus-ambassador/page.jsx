@@ -32,7 +32,7 @@ const CA = () => {
   return (
     <div className="relative w-full min-h-screen font-sans">
       <header className="fixed top-0 left-0 w-full bg-transparent flex items-center justify-between p-8 z-80">
-        <div className="text-white text-2xl">GSSoC '25</div>
+        <div className="text-white text-2xl">GSSoC &apos;25</div>
 
         <a
           href="/"
