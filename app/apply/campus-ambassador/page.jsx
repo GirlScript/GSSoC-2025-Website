@@ -184,11 +184,11 @@ const CA = () => {
           {!user ? (
             <form
               onSubmit={handleSubmitAuth}
-              className="mb-8 bg-[#00041F] w-full px-4 py-2 rounded-full border border-[#0E122E] flex items-center justify-center shadow-2xl shadow-blue-500/20"
+              className="mb-8 bg-[#00041F] w-full md:w-3/5 px-4 py-2 rounded-full border border-[#0E122E] flex items-center justify-center shadow-2xl shadow-blue-500/20"
             >
               {step === "email" ? (
                 <input
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full md:w-[300px] placeholder:text-[#A7ADBE]"
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
                   placeholder="Enter Your Email"
                   type="email"
                   required
@@ -197,7 +197,7 @@ const CA = () => {
                 />
               ) : (
                 <input
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full md:w-[300px] placeholder:text-[#A7ADBE]"
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
                   placeholder="Enter OTP"
                   type="text"
                   required
