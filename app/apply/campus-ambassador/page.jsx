@@ -184,7 +184,7 @@ const CA = () => {
           {!user ? (
             <form
               onSubmit={handleSubmitAuth}
-              className="mb-8 bg-[#00041F] w-full md:w-3/5 px-4 py-2 rounded-full border border-[#0E122E] flex items-center justify-center shadow-2xl shadow-blue-500/20"
+              className="mb-8 bg-[#00041F] w-full md:w-[300px] px-4 py-2 rounded-full border border-[#0E122E] flex items-center justify-center shadow-2xl shadow-blue-500/20"
             >
               {step === "email" ? (
                 <input
