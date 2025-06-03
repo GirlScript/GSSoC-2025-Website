@@ -37,6 +37,8 @@ const CA = () => {
           .from("events")
           .select("application_id, status")
           .eq("participant_id", currentUser.id)
+          .eq("role", "campus_ambassador")
+          .eq("event_name", "GirlScript Summer of Code 2025")
           .maybeSingle();
         if (appError) {
           console.error("Error checking application:", appError.message);
@@ -58,6 +60,8 @@ const CA = () => {
             .from("events")
             .select("application_id, status")
             .eq("participant_id", currentUser.id)
+            .eq("role", "campus_ambassador")
+            .eq("event_name", "GirlScript Summer of Code 2025")
             .maybeSingle();
           if (appError) {
             console.error("Error checking application:", appError.message);
@@ -112,7 +116,7 @@ const CA = () => {
     try {
       const { error } = await supabase.from("events").insert({
         full_name: name,
-        email,
+        email: user.email,
         about,
         gender,
         phone,
@@ -377,8 +381,7 @@ const CA = () => {
               />
 
               <label className="block text-[10px] md:text-sm mb-1">
-                How will you promote GSSoC'25 and open-source literacy on
-                campus?
+                How will you promote GSSoC'25 on your campus and other places?
               </label>
               <textarea
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
