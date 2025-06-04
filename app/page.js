@@ -42,9 +42,37 @@ import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+// import all icons from assets/sponsers
+
 import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
+
+import filecoinLogo from "@/assets/sponsors/filecoin.svg";
+import moralisLogo from "@/assets/sponsors/moralis.svg";
+import postmanLogo from "@/assets/sponsors/postman.svg";
+import pricelineLogo from "@/assets/sponsors/priceline.svg";
+import taskadeLogo from "@/assets/sponsors/taskade.svg";
+import vercelLogo from "@/assets/sponsors/vercel.svg";
+import bluelearnLogo from "@/assets/sponsors/bluelearn.jpg";
+import quineLogo from "@/assets/sponsors/quine.png";
+import xyzLogo from "@/assets/sponsors/xyz.svg";
+import mentroLogo from "@/assets/sponsors/mentro.png";
+
+const DataBlock = ({ title, desc, iconIdx }) => {
+  return (
+    <motion.div
+      className="relative w-full h-[220px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center py-4 px-4 shadow-2xl shadow-blue-500/20"
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      <div className="text-[16px] my-1 font-semibold text-white text-center">{title}</div>
+      <div className="text-[#A7ADBE] text-xs text-center">{desc}</div>
+    </motion.div>
+  );
+};
 
 const containerVariants = {
   hidden: {},
@@ -230,6 +258,87 @@ const Testimonials = () => {
   );
 };
 
+const timelineData = [
+  {
+    date: '1st-2nd June',
+    color: 'text-blue-400',
+    dot: 'bg-blue-500',
+    title: 'Project Assignment to Mentors',
+    desc: 'Mentors are assigned to projects and begin preparing to guide contributors throughout the program.',
+  },
+  {
+    date: '13th June',
+    color: 'text-yellow-400',
+    dot: 'bg-yellow-400',
+    title: 'Coding Period Starts',
+    desc: 'Contributors officially start working on their assigned open source projects under mentor supervision.',
+  },
+  {
+    date: '8th June',
+    color: 'text-green-400',
+    dot: 'bg-green-400',
+    title: 'Community Bonding Period Starts',
+    desc: 'Contributors and mentors interact, discuss project goals, and get familiar with the community.',
+  },
+  {
+    date: '26th July',
+    color: 'text-blue-400',
+    dot: 'bg-blue-500',
+    title: 'Result will be declared',
+    desc: 'Final results are announced, recognizing top contributors and successful projects.',
+  },
+  {
+    date: '13th July',
+    color: 'text-yellow-400',
+    dot: 'bg-yellow-400',
+    title: 'Coding Period Ends',
+    desc: 'The official coding phase concludes; contributors submit their final work for evaluation.',
+  },
+  {
+    date: '11th June',
+    color: 'text-green-400',
+    dot: 'bg-green-400',
+    title: 'Leaderboard Opens',
+    desc: 'The leaderboard is made public, allowing participants to track their progress and contributions.',
+  },
+];
+
+const Timeline = () => {
+  return (
+    <div className="w-full flex mt-20 flex-col items-center py-16 bg-[#00020f]">
+      <div className="relative w-full max-w-[2000px] px-10 mx-auto">
+        {/* Timeline line */}
+        <div className="absolute left-0 right-0 top-1/2 h-1 bg-[#232D6B] z-0 opacity-60 w-full" style={{transform: 'translateY(-50%)'}} />
+        <div className="flex justify-between relative z-10">
+          {timelineData.map((item, idx) => (
+            <div key={item.date} className="flex flex-col items-center w-1/7 min-w-[90px]">
+              {idx % 2 === 0 ? (
+                <div className="mb-8 flex flex-col items-center w-full">
+                  <DataBlock title={item.title} desc={item.desc} iconIdx={idx} />
+                </div>
+              ) : <div className="mb-8" style={{height: '180px'}}></div>}
+              {/* Dot and year */}
+              <div className="flex flex-col items-center">
+                {idx % 2 !== 0 && (
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>{item.date}</div>
+                )}
+                <div className={`w-4 h-4 rounded-full border-4 border-[#00020f] shadow ${item.dot}`}></div>
+                {idx % 2 === 0 && (
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>{item.date}</div>
+                )}              </div>
+              {idx % 2 === 1 ? (
+                <div className="mt-8 flex flex-col items-center w-full">
+                  <DataBlock title={item.title} desc={item.desc} iconIdx={idx} />
+                </div>
+              ) : <div className="mt-8" style={{height: '180px'}}></div>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   return (
     <div className="relative w-full min-h-screen font-sans">
@@ -369,13 +478,13 @@ export default function Home() {
               Founded in 2017 by Anubha Maheshwari, Girlscript is a
               not-for-profit organization dedicated to making quality education
               accessible for all. With a mission to empower individuals through
-              learning, we've built a vibrant community of over 500,000
+              learning, we&apos;ve built a vibrant community of over 500,000
               learners. Our programs focus on skill development, mentorship, and
               career guidance, bridging the gap between education and the
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner's growth is a shared success. Join us in
+              Girlscript, every learner&apos;s growth is a shared success. Join us in
               shaping a future where education is a right—not a privilege—and
               where everyone can thrive.
             </p>
@@ -749,7 +858,7 @@ export default function Home() {
             maxSize={0.8}
             particleDensity={80}
             particleSpeed={0.2}
-            className="absolute top-20 w-full h-[300px]"
+            className="absolute top-20 w-1/3 h-[300px]"
             particleColor="#FFFFFF"
           />
           <Image
@@ -775,7 +884,9 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div
+        <Timeline />
+
+        {/* <motion.div
           className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-2 gap-4 mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
@@ -816,7 +927,7 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       {/* <motion.section
@@ -954,6 +1065,51 @@ export default function Home() {
         <Testimonials />
 
       </motion.section>
+
+      <motion.section
+        id="sponsors"
+        className="w-screen my-20 relative flex flex-col items-center bg-[#00020f] text-white py-16"
+      >
+        <h1 className="text-6xl font-bold mb-12">Our Past Sponsors</h1>
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
+          <div className="flex shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] items-center justify-center bg-white rounded-xl p-4 h-32">
+            <Image src={postmanLogo} alt="Postman" className="scale-220 object-contain min-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={vercelLogo} alt="Vercel" className="scale-200 object-contain max-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={filecoinLogo} alt="Filecoin" className="scale-260 object-contain max-h-16 w-auto" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={moralisLogo} alt="Moralis" className="scale-200 object-contain max-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={taskadeLogo} alt="Taskade" className="object-contain max-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={pricelineLogo} alt="Priceline" className="object-contain max-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={bluelearnLogo} alt="Bluelearn" className="scale-200 object-contain max-h-16 w-auto" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={quineLogo} alt="Quine" className="scale-85 object-contain max-h-16 w-auto" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={xyzLogo} alt="XYZ" className="object-contain max-h-16 w-auto filter-bluegrey" />
+          </div>
+          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+            <Image src={mentroLogo} alt="Mentro" className="scale-160 object-contain max-h-16 w-auto" />
+          </div>
+        </div>
+      </motion.section>
+
+      <style jsx global>{`
+        .filter-bluegrey {
+          filter: grayscale(1) brightness(0.8) sepia(1) hue-rotate(180deg) saturate(2);
+        }
+      `}</style>
 
       <motion.section
         id="contact"
