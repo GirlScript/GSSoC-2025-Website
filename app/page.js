@@ -30,9 +30,10 @@ import linkedin from "@/assets/linkedin.svg";
 import instagram from "@/assets/instagram.svg";
 import banner from "@/assets/banner.jpg";
 import bannerAbout from "@/assets/banner-about.png";
-import profile from "@/assets/profile.png";
+import profile from "@/assets/profile.jpeg";
 import commas from "@/assets/commas.svg";
 import stars from "@/assets/stars.svg";
+import fourStars from "@/assets/four_stars.svg";
 
 import { ShootingStars } from "@/components/shooting-stars";
 import { StarsBackground } from "@/components/stars-background";
@@ -97,48 +98,49 @@ const Testimonials = () => {
     {
       name: "Anshika Saini",
       imgUrl: "https://drive.google.com/uc?id=1xYc7IfxBA3bdI61MMl6HGPsDXCXYN1xB",
-      feedback: `Being part of the GSSoC core team has been an epic adventure, filled with challenges and fun. Mastering the art of handling surprise tasks and last-minute deadlines like a pro has been my biggest takeaway. These past three months have been a masterclass in teamwork. I’ve had the pleasure of working with a bunch of absolute rockstars—each one bringing their own superpower to the team. Whether it was swooping in to save the day when someone was unavailable or coming up with brilliant ideas, we boldly went where no one had gone before, receiving the highest number of registrations for the program.
-  
-  A special shoutout to our program managers for always having our backs. Their support made all the difference. And to my incredible teammates, you were the best co-pilots on this wild ride. It has been a great learning opportunity, and I couldn’t be more grateful for the journey we shared.`,
+      numOfStars: 5,
+      feedback: `Being part of the GSSoC core team has been an epic adventure, filled with challenges and fun.`,
+      role: "GSSoC Contributor"
+    },
+    {
+      name: "Deepesh Gupta",
+      imgUrl:
+        "https://drive.google.com/uc?id=1sWqxgvYFINZOrupHvT_fxmtvQ7VJbidM",
+      numOfStars: 5,
+      feedback: `Mentoring in GSSOC'24 was a great experience.`,
+      role: "GSSoC'24 Mentor"
     },
     {
       name: "Jeevana Maradana",
       imgUrl:
         "https://drive.google.com/uc?id=1HJYiiz--2ILG_MueuwdflGxlcxyeAfE1",
-      feedback: `As a Core team member of GSSoC'24 has been an incredibly enriching experience. The collaborative environment allowed me to work alongside some of the brightest minds in the open-source community. This experience has undoubtedly been a significant milestone in my tech career, and I'm grateful for the opportunity to contribute to meaningful programs that have a real-world impact.`,
+      numOfStars: 4,
+      feedback: `As a Core team member of GSSoC'24 has been an incredibly enriching experience.`,
+      role: "GSSoC'24 Core Team"
     },
     {
       name: "Payal Kumari",
       imgUrl:
         "https://drive.google.com/uc?id=1_HsL2GXcT18hReJphjwjvsq4QZwxx3uc",
-      feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience. Over the past three months, I have had the privilege to guide and collaborate with passionate contributors, watching them grow and succeed in their open-source journeys. The determination, creativity, and enthusiasm of every participant have inspired me deeply.
-  
-  The program's structure, resources, and community support made it easy to stay committed and contribute consistently. GSSoC not only provided a platform for learning and development but also fostered a sense of community and shared purpose. I'm proud to have been part of such an impactful initiative and look forward to seeing how future iterations will continue to empower more developers.And I want to take part in it every year.
-  
-  Thank you, GSSoC, for this incredible opportunity to give back and grow alongside such a talented group of individuals. Here's to many more successful editions!`,
+      numOfStars: 4,
+      feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience.`,
+      role: "GSSoC'24 Contributor"
     },
     {
       name: "Rishi Mondal",
       imgUrl:
         "https://drive.google.com/uc?id=1PoNDKA9SNnJCJtcPlO8iNSV0Mow-PpAO",
-      feedback: `Serving as a Project Admin for GirlScript Summer of Code (GSSoC) was an incredibly fulfilling experience. I had the opportunity to mentor a diverse group of contributors, guiding them through their open-source journey. Achieving the 2nd rank among Project Admins was a proud moment for me, reflecting the dedication and passion I brought to the role.
-  
-  GSSoC is a vibrant and supportive community, and being a part of it helped me grow both professionally and personally. I highly recommend this program to anyone looking to make a meaningful impact in tech.`,
+      numOfStars: 5,
+      feedback: `Serving as a Project Admin for GirlScript Summer of Code (GSSoC) was an incredibly fulfilling experience.`,
+      role: "GSSoC Project Admin"
     },
     {
-      name: "Vuppala Sai Srija",
+      name: "Payal Kumari",
       imgUrl:
-        "https://drive.google.com/file/d/1ZV2bJWGGquPMK_NYBFSqVucHinNjArkp/view?usp=sharing",
-      feedback: `My journey through GSSoC'24 has been an exciting blend of learning and achievement. Although I started late due to exams, I was able to quickly immerse myself, learning GitHub from scratch and adapting to the world of open source. By working across various projects and collaborating with diverse teams, I was thrilled to achieve the 8th position overall and secure the 1st among female participants.
-
-GSSoC provided an excellent platform for growth, equipping me with technical skills and the confidence to tackle new challenges. This experience has been invaluable, and I’m looking forward to applying these skills in future projects.
-`,
-    },
-    {
-      name: "Tina Borundia",
-      imgUrl:
-        "https://drive.google.com/file/d/1LAMOYY4S3PP0hvSJSC0u-ym9THWvXdvn/view",
-      feedback: `Participating in GSSOC 2024 has been an incredibly rewarding journey. As a contributor and campus ambassador, I had the opportunity to work on projects that challenged me to grow my skills in UI/UX design and web development. The support from mentors and the community was invaluable, and it was inspiring to be part of such a vibrant group of developers and innovators. This program not only enhanced my technical skills but also taught me the importance of collaboration in open-source. I’m grateful for the experience and look forward to contributing to more projects in the future!`,
+        "https://drive.google.com/uc?id=1LAMOYY4S3PP0hvSJSC0u-ym9THWvXdvn",
+      numOfStars: 4,
+      feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience.`,
+      role: "GSSoC'24 Mentor"
     },
   ];
 
@@ -148,7 +150,7 @@ GSSoC provided an excellent platform for growth, equipping me with technical ski
 
   useEffect(() => {
     let controls;
-    let finalPosition = -width / 2 - 12 * testimonials.length;
+    let finalPosition = (-width / 2 - 12 * testimonials.length);
 
     if (mustFinish) {
       controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
@@ -173,7 +175,7 @@ GSSoC provided an excellent platform for growth, equipping me with technical ski
   }, [rerender, xTranslation, duration, width]);
 
   return (
-    <div className="w-full flex gap-3" ref={ref}>
+    <div className="w-full flex gap-3 overflow-hidden" ref={ref}>
       {[...testimonials, ...testimonials].map((item, idx) => <motion.div
         key={idx}
         style={{ x: xTranslation }}
@@ -200,7 +202,11 @@ GSSoC provided an excellent platform for growth, equipping me with technical ski
           {item.feedback}
         </div>
 
-        <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
+        {item.numOfStars === 4 ? (
+          <Image src={fourStars} alt="Icon" className="z-10 mt-8 w-[100px]" />
+        ) : (
+          <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
+        )}
 
         <div className="flex flex-row items-center justify-between mt-12 z-10">
           <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
@@ -215,7 +221,7 @@ GSSoC provided an excellent platform for growth, equipping me with technical ski
           <div className="ml-4">
             <div className="text-[18px] w-full text-left">{item.name}</div>
             <div className="text-[#A7ADBE] w-full text-left">
-              Founder And CEO
+              {item.role}
             </div>
           </div>
         </div>
@@ -332,7 +338,7 @@ export default function Home() {
         variants={containerVariants}
         className="w-screen h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
       >
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -344,7 +350,7 @@ export default function Home() {
             alt="Background"
             className="absolute left-0 top-0 h-full w-full object-cover"
           />
-        </motion.div>
+        </motion.div> */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
@@ -504,11 +510,11 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                42k+
               </div>
               <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+                Registered Participants
               </div>
             </div>
           </motion.div>
@@ -532,11 +538,11 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                35k+
               </div>
               <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+                Campus Ambassadors
               </div>
             </div>
           </motion.div>
@@ -560,11 +566,11 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                21k+
               </div>
               <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+                Pull Requests
               </div>
             </div>
           </motion.div>
@@ -813,7 +819,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         id="blogs"
         initial="hidden"
         whileInView="show"
@@ -899,7 +905,7 @@ export default function Home() {
             );
           })}
         </motion.div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         id="testimonials"
