@@ -710,6 +710,107 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
+
+      <motion.section
+        id="about"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-screen h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
+      >
+        {/* <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-5/6 mb-24 overflow-hidden aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32"
+        >
+          <Image
+            src={bannerAbout}
+            alt="Background"
+            className="absolute left-0 top-0 h-full w-full object-cover"
+          />
+        </motion.div> */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white my-80"
+        >
+          <div className="text-center text-white z-20 flex flex-col items-center">
+            {/* <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+              About Us
+            </p> */}
+            <h1 className="text-6xl font-bold mb-4">
+              What is GirlScript<br /> Summer Of Code
+            </h1>
+            <p className="w-3/5 text-lg mb-8 text-[14px] text-[#A7ADBE] text-balance">
+            GirlScript Summer of Code (GSSoC) is a three-month-long open-source program organized annually by the GirlScript Foundation. Each summer, this initiative empowers students to engage with real-world software projects while working remotely. Guided by experienced mentors, participants contribute meaningfully to a wide range of open-source repositories, gaining invaluable hands-on experience in the development process. Over the years, GSSoC has seen enthusiastic participation and remarkable contributions from the developer community. The 2025 edition aspires to uphold this legacy and make an even greater impact by fostering innovation, collaboration, and inclusivity in tech.
+            </p>
+          </div>
+        </motion.div>
+        {/* <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-row items-center justify-center bg-[#00020f] text-white mb-8"
+        >
+          <a
+            href="mailto:gssoc@girlscript.tech"
+            target="_blank"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer mr-4"
+          >
+            Get In Touch
+          </a>
+          <a
+            href="https://girlscript.tech"
+            target="_blank"
+            className="bg-transparent bg-[radial-gradient(100%_100%_at_50%_100%,_rgb(16,_22,_54)_14.38%,_rgb(12,_16,_39)_100%)] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+          >
+            Visit Our Website
+          </a>
+        </motion.div> */}
+
+        {/* <motion.div
+          className="relative max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-row justify-between items-center p-4 shadow-2xl shadow-blue-500/20 mb-16"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+            <Image
+              src={profile}
+              alt="Icon"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="w-3/5">
+            <div className="text-[18px] w-full text-left">Anubha Maneshwar</div>
+            <div className="text-[#A7ADBE] w-full text-left">
+              Founder And CEO
+            </div>
+          </div>
+
+          <a className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={twitter}
+              alt="Icon"
+              className="absolute w-3/5 object-cover"
+            />
+          </a>
+        </motion.div> */}
+      </motion.section>
+
       <motion.section
         id="why-gssoc"
         initial="hidden"
@@ -855,7 +956,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* <motion.div
+        <motion.div
           className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-1 mb-12 gap-4 mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
@@ -882,10 +983,10 @@ export default function Home() {
 
             <div className="absolute bottom-8 left-0 w-full">
               <div className="text-[22px] font-bold my-1 w-full text-center">
-                42k+
+                Collaboration & Community
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
-                Registered Participants
+              <div className="text-[#A7ADBE] text-balance w-full text-center">
+                Open source creates communities where developers, designers, writers work together.
               </div>
             </div>
           </motion.div>
@@ -910,10 +1011,10 @@ export default function Home() {
 
             <div className="absolute bottom-8 left-0 w-full">
               <div className="text-[22px] font-bold my-1 w-full text-center">
-                35k+
+                Learning and Skill Building
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
-                Campus Ambassadors
+              <div className="text-[#A7ADBE] text-balance w-full text-center">
+                Reading and contributing to real-world projects improves coding, design, and collaboration skills.
               </div>
             </div>
           </motion.div>
@@ -938,14 +1039,14 @@ export default function Home() {
 
             <div className="absolute bottom-8 left-0 w-full">
               <div className="text-[22px] font-bold my-1 w-full text-center">
-                21k+
+              Boost Your Career
               </div>
               <div className="text-[#A7ADBE] w-full text-center">
-                Pull Requests
+                Contributions can lead to job offers, freelance work, or recognition in the tech community.
               </div>
             </div>
           </motion.div>
-        </motion.div> */}
+        </motion.div>
       </motion.section>
 
       <motion.section
@@ -1072,7 +1173,7 @@ export default function Home() {
           </motion.div>
         </motion.div> */}
 
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -1095,7 +1196,7 @@ export default function Home() {
           <div className="text-[#A7ADBE] text-lg mt-8">
             However, we approach things a bit differently around here.
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
@@ -1355,7 +1456,7 @@ export default function Home() {
           </a>
         </div>
         <div className="flex flex-row justify-center items-center mt-12">
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+          <a href="https://www.linkedin.com/company/girlscriptsoc" target="_blank" className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
             <Image
               src={iconbg}
               alt="Background"
@@ -1367,7 +1468,7 @@ export default function Home() {
               className="absolute w-3/5 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
+          <a href="https://x.com/girlscriptsoc" target="_blank" className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
             <Image
               src={iconbg}
               alt="Background"
@@ -1379,7 +1480,7 @@ export default function Home() {
               className="absolute w-3/5 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+          <a href="https://www.instagram.com/girlscriptsummerofcode" target="_blank" className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
             <Image
               src={iconbg}
               alt="Background"
