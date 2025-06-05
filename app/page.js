@@ -58,6 +58,48 @@ import bluelearnLogo from "@/assets/sponsors/bluelearn.jpg";
 import quineLogo from "@/assets/sponsors/quine.png";
 import xyzLogo from "@/assets/sponsors/xyz.svg";
 import mentroLogo from "@/assets/sponsors/mentro.png";
+import { ResponsiveBar } from "@nivo/bar";
+
+const demographicsData = [
+  {
+    metric: "Registrations from contributors",
+    "GSSoC 24 Extended": 48000,
+    "GSSoC 2024": 40000,
+    "GSSoC 2023": 32000,
+  },
+  {
+    metric: "Contributers making it onto the leaderboard",
+    "GSSoC 24 Extended": 34000,
+    "GSSoC 2024": 28000,
+    "GSSoC 2023": 22000,
+  },
+  {
+    metric: "Project Admins Registrations",
+    "GSSoC 24 Extended": 27000,
+    "GSSoC 2024": 18000,
+    "GSSoC 2023": 12000,
+  },
+  {
+    metric: "Campus Ambassadors",
+    "GSSoC 24 Extended": 22000,
+    "GSSoC 2024": 32000,
+    "GSSoC 2023": 17000,
+  },
+  {
+    metric: "Pull requests",
+    "GSSoC 24 Extended": 31000,
+    "GSSoC 2024": 21000,
+    "GSSoC 2023": 15000,
+  },
+  {
+    metric: "Linkedin Followers",
+    "GSSoC 24 Extended": 48000,
+    "GSSoC 2024": 32000,
+    "GSSoC 2023": 20000,
+  },
+];
+
+const demographicsKeys = ["GSSoC 24 Extended", "GSSoC 2024", "GSSoC 2023"];
 
 const DataBlock = ({ title, desc, iconIdx }) => {
   return (
@@ -711,7 +753,109 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div
+        <div className="w-5/6 mx-auto my-16 aspect-video bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20">
+          <div className="w-full h-full min-h-[400px] relative">
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover opacity-20"
+            />
+            <ResponsiveBar
+              data={demographicsData}
+              keys={demographicsKeys}
+              indexBy="metric"
+              margin={{ top: 40, right: 40, bottom: 80, left: 80 }}
+              padding={0.3}
+              groupMode="grouped"
+              layout="vertical"
+              colors={["#4C75FF", "#FF7F2A", "#1A4FFF"]}
+              borderRadius={[6, 6, 0, 0]}
+              theme={{
+                background: "transparent",
+                textColor: "#fff",
+                axis: {
+                  domain: { line: { stroke: "#232D6B", strokeWidth: 1 } },
+                  legend: { text: { fill: "#A7ADBE" } },
+                  ticks: {
+                    line: { stroke: "#232D6B", strokeWidth: 1 },
+                    text: { fill: "#A7ADBE" },
+                  },
+                },
+                grid: { line: { stroke: "#232D6B", strokeWidth: 0.5, strokeDasharray: "4 4" } },
+                legends: { text: { fill: "#A7ADBE" } },
+                tooltip: {
+                  container: { 
+                    background: "#00041f",
+                    color: "#fff",
+                    border: "1px solid #232D6B",
+                    borderRadius: "8px",
+                    padding: "12px",
+                    boxShadow: "0 20px 50px rgba(8, 112, 184, 0.7)"
+                  },
+                },
+              }}
+              axisBottom={{
+                tickSize: 0,
+                tickPadding: 12,
+                tickRotation: 0,
+                legend: "Metrics",
+                legendPosition: "middle",
+                legendOffset: 48,
+                truncateTickAt: 0,
+                renderTick: (tick) => (
+                  <tspan
+                    style={{ fontSize: 14, fill: "#A7ADBE", fontWeight: 500 }}
+                  >
+                    {tick.value}
+                  </tspan>
+                ),
+              }}
+              axisLeft={{
+                tickSize: 0,
+                tickPadding: 8,
+                legend: "",
+                legendPosition: "middle",
+                legendOffset: -56,
+                format: (v) => v.toLocaleString(),
+              }}
+              labelSkipWidth={16}
+              labelSkipHeight={16}
+              labelTextColor="#fff"
+              legends={[
+                {
+                  dataFrom: "keys",
+                  anchor: "top-right",
+                  direction: "row",
+                  justify: false,
+                  translateX: 0,
+                  translateY: -32,
+                  itemsSpacing: 24,
+                  itemWidth: 120,
+                  itemHeight: 24,
+                  itemDirection: "left-to-right",
+                  itemOpacity: 1,
+                  symbolSize: 18,
+                  symbolShape: "circle",
+                  effects: [
+                    {
+                      on: "hover",
+                      style: {
+                        itemTextColor: "#4C75FF",
+                      },
+                    },
+                  ],
+                  textColor: "#A7ADBE",
+                },
+              ]}
+              animate={true}
+              motionConfig="wobbly"
+              role="application"
+              ariaLabel="GSSoC Demographics Bar Chart"
+            />
+          </div>
+        </div>
+
+        {/* <motion.div
           className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-1 mb-12 gap-4 mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
@@ -801,7 +945,7 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
@@ -874,7 +1018,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Access India’s Largest Tech Talent Pool</div>
+            <div className="text-[18px] my-2">Access India's Largest Tech Talent Pool</div>
             <div className="text-[#A7ADBE]">Partner with a community of 100,000+ emerging
             developers.</div>
           </motion.div>
@@ -1183,7 +1327,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* TODO: Add testimonials carousel */}
         <Testimonials />
       </motion.section>
 
