@@ -29,15 +29,177 @@ import twitter from "@/assets/twitter.svg";
 import linkedin from "@/assets/linkedin.svg";
 import instagram from "@/assets/instagram.svg";
 import banner from "@/assets/banner.jpg";
-import profile from "@/assets/profile.png";
+import bannerAbout from "@/assets/banner_image.jpeg";
+import profile from "@/assets/profile.jpeg";
 import commas from "@/assets/commas.svg";
 import stars from "@/assets/stars.svg";
+import fourStars from "@/assets/four_stars.svg";
 
 import { ShootingStars } from "@/components/shooting-stars";
 import { StarsBackground } from "@/components/stars-background";
 import { SparklesCore } from "@/components/sparkles";
 import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
+import Link from "next/link";
+
+// import all icons from assets/sponsers
+
+import { animate, useMotionValue } from "framer-motion";
+import { useEffect, useState } from "react";
+import useMeasure from "react-use-measure";
+
+import filecoinLogo from "@/assets/sponsors/filecoin.svg";
+import moralisLogo from "@/assets/sponsors/moralis.svg";
+import postmanLogo from "@/assets/sponsors/postman.svg";
+import pricelineLogo from "@/assets/sponsors/priceline.svg";
+import taskadeLogo from "@/assets/sponsors/taskade.svg";
+import vercelLogo from "@/assets/sponsors/vercel.svg";
+import bluelearnLogo from "@/assets/sponsors/bluelearn.jpg";
+import quineLogo from "@/assets/sponsors/quine.png";
+import xyzLogo from "@/assets/sponsors/xyz.svg";
+import mentroLogo from "@/assets/sponsors/mentro.png";
+import { ResponsiveBar } from "@nivo/bar";
+
+const demographicsData = [
+  {
+    metric: "Registrations from contributors",
+    "GSSoC 24 Extended": 48000,
+    "GSSoC 2024": 40000,
+    "GSSoC 2023": 32000,
+  },
+  {
+    metric: "Contributers making it onto the leaderboard",
+    "GSSoC 24 Extended": 34000,
+    "GSSoC 2024": 28000,
+    "GSSoC 2023": 22000,
+  },
+  {
+    metric: "Project Admins Registrations",
+    "GSSoC 24 Extended": 27000,
+    "GSSoC 2024": 18000,
+    "GSSoC 2023": 12000,
+  },
+  {
+    metric: "Campus Ambassadors",
+    "GSSoC 24 Extended": 22000,
+    "GSSoC 2024": 32000,
+    "GSSoC 2023": 17000,
+  },
+  {
+    metric: "Pull requests",
+    "GSSoC 24 Extended": 31000,
+    "GSSoC 2024": 21000,
+    "GSSoC 2023": 15000,
+  },
+  {
+    metric: "Linkedin Followers",
+    "GSSoC 24 Extended": 48000,
+    "GSSoC 2024": 32000,
+    "GSSoC 2023": 20000,
+  },
+];
+
+const demographicsKeys = ["GSSoC 24 Extended", "GSSoC 2024", "GSSoC 2023"];
+
+const DataBlock = ({ title, desc, iconIdx }) => {
+  return (
+    <motion.div
+      className="relative w-full h-[220px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center py-4 px-4 shadow-2xl shadow-blue-500/20"
+      variants={itemVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      <div className="text-[16px] my-1 font-semibold text-white text-center">
+        {title}
+      </div>
+      <div className="text-[#A7ADBE] text-xs text-center">{desc}</div>
+    </motion.div>
+  );
+};
+
+const Sponsors = () => {
+  return (
+    <motion.section
+      id="sponsors"
+      className="w-screen pt-52 pb-64 relative flex flex-col items-center bg-[#00020f] text-white"
+    >
+      <h1 className="text-6xl font-bold mb-12">Our Past Sponsors</h1>
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
+        <div className="flex shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] items-center justify-center bg-white rounded-xl p-4 h-32">
+          <Image
+            src={postmanLogo}
+            alt="Postman"
+            className="scale-220 object-contain min-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={vercelLogo}
+            alt="Vercel"
+            className="scale-200 object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={filecoinLogo}
+            alt="Filecoin"
+            className="scale-260 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={moralisLogo}
+            alt="Moralis"
+            className="scale-200 object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={taskadeLogo}
+            alt="Taskade"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={pricelineLogo}
+            alt="Priceline"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={bluelearnLogo}
+            alt="Bluelearn"
+            className="scale-200 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={quineLogo}
+            alt="Quine"
+            className="scale-85 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={xyzLogo}
+            alt="XYZ"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={mentroLogo}
+            alt="Mentro"
+            className="scale-160 object-contain max-h-16 w-auto"
+          />
+        </div>
+      </div>
+    </motion.section>
+  );
+};
 
 const containerVariants = {
   hidden: {},
@@ -55,6 +217,286 @@ const itemVariants = {
     scale: 1,
     transition: { type: "spring", stiffness: 300, damping: 20 },
   },
+};
+
+const homePageBlogs = [
+  {
+    title: "GSSoC'20 -A remarkable end to a heuristic journey!",
+    description: "Sometimes, struggles are exactly what we need in our life.",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/0*GFQal8gMY08uDlQd.png",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/gssoc20-a-remarkable-end-to-a-heuristic-journey-79b8f309f89a",
+  },
+  {
+    title: "404 Not Found",
+    description:
+      "A journey of finding series of events along the way of open source contribution to reach in top 10 contestants.",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/1*mls1ez3obbDUyKY2Q_NyDQ.png",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/404-not-found-9d0ca178bdbf",
+  },
+  {
+    title: "Importance of Growing Together as a Tech Community",
+    description: "Summer is coming to an end but the journey continues.",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/1*-nGbxmVGeh2PMCAv48ikqg.jpeg",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/importance-of-growing-together-as-a-tech-community-e25efc1fda6d",
+  },
+];
+
+const Testimonials = () => {
+  const duration = 20;
+  let [ref, { width }] = useMeasure();
+
+  const xTranslation = useMotionValue(0);
+
+  const [mustFinish, setMustFinish] = useState(false);
+  const [rerender, setRerender] = useState(false);
+
+  const testimonials = [
+    {
+      name: "Anshika Saini",
+      imgUrl:
+        "https://drive.google.com/uc?id=1xYc7IfxBA3bdI61MMl6HGPsDXCXYN1xB",
+      numOfStars: 5,
+      feedback: `Being part of the GSSoC core team has been an epic adventure, filled with challenges and fun.`,
+      role: "GSSoC Contributor",
+    },
+    {
+      name: "Deepesh Gupta",
+      imgUrl:
+        "https://drive.google.com/uc?id=1sWqxgvYFINZOrupHvT_fxmtvQ7VJbidM",
+      numOfStars: 5,
+      feedback: `Mentoring in GSSOC'24 was a great experience.`,
+      role: "GSSoC'24 Mentor",
+    },
+    {
+      name: "Jeevana Maradana",
+      imgUrl:
+        "https://drive.google.com/uc?id=1HJYiiz--2ILG_MueuwdflGxlcxyeAfE1",
+      numOfStars: 4,
+      feedback: `As a Core team member of GSSoC'24 has been an incredibly enriching experience.`,
+      role: "GSSoC'24 Core Team",
+    },
+    {
+      name: "Payal Kumari",
+      imgUrl:
+        "https://drive.google.com/uc?id=1_HsL2GXcT18hReJphjwjvsq4QZwxx3uc",
+      numOfStars: 4,
+      feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience.`,
+      role: "GSSoC'24 Contributor",
+    },
+    {
+      name: "Tina Borundia",
+      imgUrl:
+        "https://drive.google.com/uc?id=1LAMOYY4S3PP0hvSJSC0u-ym9THWvXdvn",
+      numOfStars: 5,
+      feedback: `Participating in GSSoC'24 has been an incredibly rewarding journey as a contributor and campus ambassador.`,
+      role: "GSSoC'24 Contributor, CA",
+    },
+    {
+      name: "Rishi Mondal",
+      imgUrl:
+        "https://drive.google.com/uc?id=1PoNDKA9SNnJCJtcPlO8iNSV0Mow-PpAO",
+      numOfStars: 5,
+      feedback: `Serving as a Project Admin for GirlScript Summer of Code (GSSoC) was an incredibly fulfilling experience.`,
+      role: "GSSoC Project Admin",
+    },
+  ];
+
+  useEffect(() => {
+    setMustFinish(true);
+  }, []);
+
+  useEffect(() => {
+    let controls;
+    let finalPosition = -width / 2 - 12 * testimonials.length;
+
+    if (mustFinish) {
+      controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
+        ease: "linear",
+        duration: duration * (1 - xTranslation.get() / finalPosition),
+        onComplete: () => {
+          setMustFinish(false);
+          setRerender(!rerender);
+        },
+      });
+    } else {
+      controls = animate(xTranslation, [0, finalPosition], {
+        ease: "linear",
+        duration: duration,
+        repeat: Infinity,
+        repeatType: "loop",
+        repeatDelay: 0,
+      });
+    }
+
+    return controls?.stop;
+  }, [rerender, xTranslation, duration, width]);
+
+  return (
+    <div className="w-full flex gap-3 overflow-hidden" ref={ref}>
+      {[...testimonials, ...testimonials].map((item, idx) => (
+        <motion.div
+          key={idx}
+          style={{ x: xTranslation }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="relative w-full aspect-5/3 min-w-[500px] border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44 py-10"
+        >
+          <Image
+            src={cardbg9}
+            alt="Background"
+            className="absolute w-full h-full top-0 object-cover rounded-3xl"
+          />
+
+          <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+            <Image
+              src={commas}
+              alt="Icon"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="text-xl text-[#A7ADBE] mt-12 max-h-30 overflow-hidden text-balance text-center z-10 leading-[1.2] font-semibold px-8">
+            {item.feedback}
+          </div>
+
+          {item.numOfStars === 4 ? (
+            <Image src={fourStars} alt="Icon" className="z-10 mt-8 w-[100px]" />
+          ) : (
+            <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
+          )}
+
+          <div className="flex flex-row items-center justify-between mt-12 z-10">
+            <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+              <Image
+                src={item.imgUrl}
+                alt="Icon"
+                className="w-full h-full object-cover"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="ml-4">
+              <div className="text-[18px] w-full text-left">{item.name}</div>
+              <div className="text-[#A7ADBE] w-full text-left">{item.role}</div>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
+const timelineData = [
+  {
+    date: "20th June",
+    color: "text-blue-400",
+    dot: "bg-blue-500",
+    title: "Project Assignment to Mentors",
+    desc: "Mentors are assigned to projects and begin preparing to guide contributors throughout the program.",
+  },
+  {
+    date: "23rd June",
+    color: "text-green-400",
+    dot: "bg-green-400",
+    title: "Community Bonding Period Starts",
+    desc: "Contributors and mentors interact, discuss project goals, and get familiar with the community.",
+  },
+  {
+    date: "25th June",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+    title: "Coding Period Starts",
+    desc: "Contributors officially start working on their assigned open source projects under mentor supervision.",
+  },
+  {
+    date: "30th June",
+    color: "text-green-400",
+    dot: "bg-green-400",
+    title: "Leaderboard Opens",
+    desc: "The leaderboard is made public, allowing participants to track their progress and contributions.",
+  },
+  {
+    date: "25th September",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+    title: "Coding Period Ends",
+    desc: "The official coding phase concludes; contributors submit their final work for evaluation.",
+  },
+  {
+    date: "2nd October",
+    color: "text-blue-400",
+    dot: "bg-blue-500",
+    title: "Result will be declared",
+    desc: "Final results are announced, recognizing top contributors and successful projects.",
+  },
+];
+
+const Timeline = () => {
+  return (
+    <div className="w-full flex mt-20 flex-col items-center py-16 bg-[#00020f]">
+      <div className="relative w-full max-w-[2000px] px-10 mx-auto">
+        {/* Timeline line */}
+        <div
+          className="absolute left-0 right-0 top-1/2 h-1 bg-[#232D6B] z-0 opacity-60 w-full"
+          style={{ transform: "translateY(-50%)" }}
+        />
+        <div className="flex justify-between relative z-10">
+          {timelineData.map((item, idx) => (
+            <div
+              key={item.date}
+              className="flex flex-col items-center w-1/7 min-w-[90px]"
+            >
+              {idx % 2 === 0 ? (
+                <div className="mb-8 flex flex-col items-center w-full">
+                  <DataBlock
+                    title={item.title}
+                    desc={item.desc}
+                    iconIdx={idx}
+                  />
+                </div>
+              ) : (
+                <div className="mb-8" style={{ height: "180px" }}></div>
+              )}
+              {/* Dot and year */}
+              <div className="flex flex-col items-center">
+                {idx % 2 !== 0 && (
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>
+                    {item.date}
+                  </div>
+                )}
+                <div
+                  className={`w-4 h-4 rounded-full border-4 border-[#00020f] shadow ${item.dot}`}
+                ></div>
+                {idx % 2 === 0 && (
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>
+                    {item.date}
+                  </div>
+                )}{" "}
+              </div>
+              {idx % 2 === 1 ? (
+                <div className="mt-8 flex flex-col items-center w-full">
+                  <DataBlock
+                    title={item.title}
+                    desc={item.desc}
+                    iconIdx={idx}
+                  />
+                </div>
+              ) : (
+                <div className="mt-8" style={{ height: "180px" }}></div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default function Home() {
@@ -88,10 +530,10 @@ export default function Home() {
             Timeline
           </a>
           <a
-            href="#blogs"
+            href="#sponsors"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
-            Blogs
+            Sponsors
           </a>
           <a
             href="#contact"
@@ -165,7 +607,7 @@ export default function Home() {
         variants={containerVariants}
         className="w-screen h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
       >
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -173,17 +615,17 @@ export default function Home() {
           className="w-5/6 mb-24 overflow-hidden aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32"
         >
           <Image
-            src={about}
+            src={bannerAbout}
             alt="Background"
             className="absolute left-0 top-0 h-full w-full object-cover"
           />
-        </motion.div>
+        </motion.div> */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white pt-36"
         >
           <div className="text-center text-white z-20 flex flex-col items-center">
             <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
@@ -196,15 +638,15 @@ export default function Home() {
               Founded in 2017 by Anubha Maheshwari, Girlscript is a
               not-for-profit organization dedicated to making quality education
               accessible for all. With a mission to empower individuals through
-              learning, we’ve built a vibrant community of over 500,000
+              learning, we&apos;ve built a vibrant community of over 500,000
               learners. Our programs focus on skill development, mentorship, and
               career guidance, bridging the gap between education and the
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner’s growth is a shared success. Join us in
-              shaping a future where education is a right—not a privilege—and
-              where everyone can thrive.
+              Girlscript, every learner&apos;s growth is a shared success. Join
+              us in shaping a future where education is a right—not a
+              privilege—and where everyone can thrive.
             </p>
           </div>
         </motion.div>
@@ -266,6 +708,228 @@ export default function Home() {
             />
           </a>
         </motion.div>
+      </motion.section>
+
+      <motion.section
+        id="about"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-screen h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
+      >
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-5/6 mb-24 overflow-hidden aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32"
+        >
+          <Image
+            src={bannerAbout}
+            alt="Background"
+            className="absolute left-0 top-0 h-full w-full object-cover"
+          />
+        </motion.div>
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
+        >
+          {/* <div className="text-center text-white z-20 flex flex-col items-center">
+            <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+              About Us
+            </p>
+            <h1 className="text-6xl font-bold mb-4">
+              What is GirlScript
+              <br /> Summer Of Code
+            </h1>
+            <p className="w-3/5 text-lg mb-8 text-[14px] text-[#A7ADBE] text-balance">
+              GirlScript Summer of Code (GSSoC) is a three-month-long
+              open-source program organized annually by the GirlScript
+              Foundation. Each summer, this initiative empowers students to
+              engage with real-world software projects while working remotely.
+              Guided by experienced mentors, participants contribute
+              meaningfully to a wide range of open-source repositories, gaining
+              invaluable hands-on experience in the development process. Over
+              the years, GSSoC has seen enthusiastic participation and
+              remarkable contributions from the developer community. The 2025
+              edition aspires to uphold this legacy and make an even greater
+              impact by fostering innovation, collaboration, and inclusivity in
+              tech.
+            </p>
+          </div> */}
+
+          {/* TODO: add increasing numbers data here */}
+
+          {/* <div className="w-2/3 mx-auto my-16 aspect-video bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20">
+            <div className="w-full h-full min-h-[400px] relative">
+              <Image
+                src={cardbg1}
+                alt="Background"
+                className="absolute right-0 top-0 w-full h-full object-cover opacity-20"
+              />
+              <ResponsiveBar
+                data={demographicsData}
+                keys={demographicsKeys}
+                indexBy="metric"
+                margin={{ top: 40, right: 40, bottom: 80, left: 80 }}
+                padding={0.3}
+                groupMode="grouped"
+                layout="vertical"
+                colors={["#4C75FF", "#FF7F2A", "#1A4FFF"]}
+                borderRadius={[6, 6, 0, 0]}
+                theme={{
+                  background: "transparent",
+                  textColor: "#fff",
+                  axis: {
+                    domain: { line: { stroke: "#232D6B", strokeWidth: 1 } },
+                    legend: { text: { fill: "#A7ADBE" } },
+                    ticks: {
+                      line: { stroke: "#232D6B", strokeWidth: 1 },
+                      text: { fill: "#A7ADBE" },
+                    },
+                  },
+                  grid: {
+                    line: {
+                      stroke: "#232D6B",
+                      strokeWidth: 0.5,
+                      strokeDasharray: "4 4",
+                    },
+                  },
+                  legends: { text: { fill: "#A7ADBE" } },
+                  tooltip: {
+                    container: {
+                      background: "#00041f",
+                      color: "#fff",
+                      border: "1px solid #232D6B",
+                      borderRadius: "8px",
+                      padding: "12px",
+                      boxShadow: "0 20px 50px rgba(8, 112, 184, 0.7)",
+                    },
+                  },
+                }}
+                axisBottom={{
+                  tickSize: 0,
+                  tickPadding: 12,
+                  tickRotation: 0,
+                  legend: "Metrics",
+                  legendPosition: "middle",
+                  legendOffset: 48,
+                  truncateTickAt: 0,
+                  renderTick: (tick) => (
+                    <tspan
+                      style={{ fontSize: 14, fill: "#A7ADBE", fontWeight: 500 }}
+                    >
+                      {tick.value}
+                    </tspan>
+                  ),
+                }}
+                axisLeft={{
+                  tickSize: 0,
+                  tickPadding: 8,
+                  legend: "",
+                  legendPosition: "middle",
+                  legendOffset: -56,
+                  format: (v) => v.toLocaleString(),
+                }}
+                labelSkipWidth={16}
+                labelSkipHeight={16}
+                labelTextColor="#fff"
+                legends={[
+                  {
+                    dataFrom: "keys",
+                    anchor: "top-right",
+                    direction: "row",
+                    justify: false,
+                    translateX: 0,
+                    translateY: -32,
+                    itemsSpacing: 24,
+                    itemWidth: 120,
+                    itemHeight: 24,
+                    itemDirection: "left-to-right",
+                    itemOpacity: 1,
+                    symbolSize: 18,
+                    symbolShape: "circle",
+                    effects: [
+                      {
+                        on: "hover",
+                        style: {
+                          itemTextColor: "#4C75FF",
+                        },
+                      },
+                    ],
+                    textColor: "#A7ADBE",
+                  },
+                ]}
+                animate={true}
+                motionConfig="wobbly"
+                role="application"
+                ariaLabel="GSSoC Demographics Bar Chart"
+              />
+            </div>
+          </div> */}
+        </motion.div>
+        {/* <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-row items-center justify-center bg-[#00020f] text-white mb-8"
+        >
+          <a
+            href="mailto:gssoc@girlscript.tech"
+            target="_blank"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer mr-4"
+          >
+            Get In Touch
+          </a>
+          <a
+            href="https://girlscript.tech"
+            target="_blank"
+            className="bg-transparent bg-[radial-gradient(100%_100%_at_50%_100%,_rgb(16,_22,_54)_14.38%,_rgb(12,_16,_39)_100%)] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+          >
+            Visit Our Website
+          </a>
+        </motion.div> */}
+
+        {/* <motion.div
+          className="relative max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-row justify-between items-center p-4 shadow-2xl shadow-blue-500/20 mb-16"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+            <Image
+              src={profile}
+              alt="Icon"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="w-3/5">
+            <div className="text-[18px] w-full text-left">Anubha Maneshwar</div>
+            <div className="text-[#A7ADBE] w-full text-left">
+              Founder And CEO
+            </div>
+          </div>
+
+          <a className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={twitter}
+              alt="Icon"
+              className="absolute w-3/5 object-cover"
+            />
+          </a>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
@@ -337,11 +1001,12 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                Collaboration & Community
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] text-balance w-full text-center">
+                Open source creates communities where developers, designers,
+                writers work together.
               </div>
             </div>
           </motion.div>
@@ -365,11 +1030,12 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                Learning and Skill Building
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] text-balance w-full text-center">
+                Reading and contributing to real-world projects improves coding,
+                design, and collaboration skills.
               </div>
             </div>
           </motion.div>
@@ -393,11 +1059,12 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[22px] font-bold my-1 w-full text-center">
+                Boost Your Career
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] w-full text-center text-balance">
+                Contributions can lead to job offers, freelance work, or
+                recognition in the tech community.
               </div>
             </div>
           </motion.div>
@@ -436,7 +1103,7 @@ export default function Home() {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/LVap_wOjWMI?si=wu-cUhZZKGfgxMOS&amp;controls=0&amp;start=0&amp;loop=1&amp;playlist=LVap_wOjWMI&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;origin=https://gssoc.girlscript.tech&amp;iv_load_policy=3&amp;modestbranding=1"
+            src="https://www.youtube.com/embed/yi_LounnOk0"
             title="YouTube Video Player"
             frameBorder="0"
             allow="none"
@@ -446,14 +1113,15 @@ export default function Home() {
           ></iframe>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
           className="w-5/6 flex flex-row items-center mt-12 space-x-8"
         >
-          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
+          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
+          >
             <Image
               src={cardbg1}
               alt="Background"
@@ -473,8 +1141,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Access India's Largest Tech Talent Pool</div>
+            <div className="text-[#A7ADBE]">Partner with a community of 100,000+ emerging
+            developers.</div>
           </motion.div>
           <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -496,8 +1165,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Boost Recruitment & R&D</div>
+            <div className="text-[#A7ADBE]">Leverage real project contributions to identify top
+            talent and accelerate innovation.</div>
           </motion.div>
           <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -519,12 +1189,13 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Engage Early-Career Coders</div>
+            <div className="text-[#A7ADBE]">Connect with students and professionals contributing
+            to open source, startups, and tech giants.</div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -547,7 +1218,7 @@ export default function Home() {
           <div className="text-[#A7ADBE] text-lg mt-8">
             However, we approach things a bit differently around here.
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
@@ -576,7 +1247,7 @@ export default function Home() {
             maxSize={0.8}
             particleDensity={80}
             particleSpeed={0.2}
-            className="absolute top-20 w-full h-[300px]"
+            className="absolute top-20 w-1/3 h-[300px]"
             particleColor="#FFFFFF"
           />
           <Image
@@ -602,7 +1273,9 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div
+        <Timeline />
+
+        {/* <motion.div
           className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-2 gap-4 mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
@@ -643,10 +1316,10 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         id="blogs"
         initial="hidden"
         whileInView="show"
@@ -696,79 +1369,43 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <motion.div
-            className="group relative aspect-3/4 max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={banner}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-3/4 object-cover"
-            />
-            <div className="absolute right-0 top-0 w-full h-3/4 bg-[linear-gradient(rgb(0,4,31,0)_72.36%,rgba(0,4,31,0.98)_99.99%,rgba(0,4,31)_100%)]"></div>
+          {homePageBlogs.map((blog, index) => {
+            return (
+              <motion.div
+                key={index}
+                className="group relative aspect-3/4 max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+              >
+                <Link
+                  href={blog.postUrl}
+                  target="_blank"
+                  className="absolute inset-0 z-10 hover:cursor-pointer"
+                />
+                <Image
+                  src={blog.image}
+                  alt="Background"
+                  width={400}
+                  height={400}
+                  className="absolute right-0 top-0 w-full h-3/4 object-cover group-hover:opacity-100 transition-all duration-300 opacity-90"
+                />
+                <div className="absolute right-0 top-0 w-full h-3/4 bg-[linear-gradient(rgb(0,4,31,0)_72.36%,rgba(0,4,31,0.98)_99.99%,rgba(0,4,31)_100%)]"></div>
 
-            <div className="absolute bottom-8 left-8 w-full">
-              <div className="text-[18px] my-0 w-full text-left">
-                Some Headline
-              </div>
-              <div className="text-[#A7ADBE] w-full text-left">
-                Some Strong Punchline For This
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-3/4 max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={banner}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-3/4 object-cover"
-            />
-            <div className="absolute right-0 top-0 w-full h-3/4 bg-[linear-gradient(rgb(0,4,31,0)_72.36%,rgba(0,4,31,0.98)_99.99%,rgba(0,4,31)_100%)]"></div>
-
-            <div className="absolute bottom-8 left-8 w-full">
-              <div className="text-[18px] my-0 w-full text-left">
-                Some Headline
-              </div>
-              <div className="text-[#A7ADBE] w-full text-left">
-                Some Strong Punchline For This
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-3/4 max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={banner}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-3/4 object-cover"
-            />
-            <div className="absolute right-0 top-0 w-full h-3/4 bg-[linear-gradient(rgb(0,4,31,0)_72.36%,rgba(0,4,31,0.98)_99.99%,rgba(0,4,31)_100%)]"></div>
-
-            <div className="absolute bottom-8 left-8 w-full">
-              <div className="text-[18px] my-0 w-full text-left">
-                Some Headline
-              </div>
-              <div className="text-[#A7ADBE] w-full text-left">
-                Some Strong Punchline For This
-              </div>
-            </div>
-          </motion.div>
+                <div className="absolute bottom-8 left-8 right-8 w-full">
+                  <div className="text-[18px] my-0 w-full text-left">
+                    {blog.title}
+                  </div>
+                  <div className="text-[#A7ADBE] w-full text-left">
+                    {blog.description}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         id="testimonials"
@@ -805,7 +1442,7 @@ export default function Home() {
               Testimonals
             </p>
             <h1 className="text-6xl font-bold mb-4">
-              What People Say <br /> About Previos Editions
+              What People Say <br /> About Previous Editions
             </h1>
             <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
@@ -813,60 +1450,10 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="relative w-3/5 aspect-5/3 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44"
-        >
-          <Image
-            src={cardbg9}
-            alt="Background"
-            className="absolute w-full h-full top-0 object-cover"
-          />
-
-          <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
-            <Image
-              src={commas}
-              alt="Icon"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="text-xl text-[#A7ADBE] mt-12 text-balance text-center z-10 leading-[1.2] font-semibold px-8">
-            As a Campus Ambassador for GSSoC&apos;24, I&apos;ve had an
-            incredible experience working with a dedicated team and a vibrant
-            community of developers. The program&apos;s organization, clear
-            communication, and supportive environment have made my role both
-            enjoyable and impactful. The diverse projects and the collaborative
-            spirit among participants and mentors have been truly inspiring,
-            helping me grow both technically and personally. I am grateful for
-            this opportunity and look forward to contributing to the continued
-            success of GSSoC in the future.
-          </div>
-
-          <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
-
-          <div className="flex flex-row items-center justify-between mt-12 z-10">
-            <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
-              <Image
-                src={profile}
-                alt="Icon"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="ml-4">
-              <div className="text-[18px] w-full text-left">
-                Anubha Maneshwar
-              </div>
-              <div className="text-[#A7ADBE] w-full text-left">
-                Founder And CEO
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <Testimonials />
       </motion.section>
+
+      <Sponsors />
 
       <motion.section
         id="contact"
@@ -891,7 +1478,11 @@ export default function Home() {
           </a>
         </div>
         <div className="flex flex-row justify-center items-center mt-12">
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+          <a
+            href="https://www.linkedin.com/company/girlscriptsoc"
+            target="_blank"
+            className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative "
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -903,7 +1494,11 @@ export default function Home() {
               className="absolute w-3/5 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
+          <a
+            href="https://x.com/girlscriptsoc"
+            target="_blank"
+            className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -915,7 +1510,11 @@ export default function Home() {
               className="absolute w-3/5 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+          <a
+            href="https://www.instagram.com/girlscriptsummerofcode"
+            target="_blank"
+            className="h-12 w-12 hover:cursor-pointer z-10 rounded-xl overflow-hidden flex items-center justify-center relative "
+          >
             <Image
               src={iconbg}
               alt="Background"
