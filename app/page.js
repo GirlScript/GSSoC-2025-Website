@@ -68,9 +68,94 @@ const DataBlock = ({ title, desc, iconIdx }) => {
       whileInView="show"
       viewport={{ once: false, amount: 0.3 }}
     >
-      <div className="text-[16px] my-1 font-semibold text-white text-center">{title}</div>
+      <div className="text-[16px] my-1 font-semibold text-white text-center">
+        {title}
+      </div>
       <div className="text-[#A7ADBE] text-xs text-center">{desc}</div>
     </motion.div>
+  );
+};
+
+const Sponsors = () => {
+  return (
+    <motion.section
+      id="sponsors"
+      className="w-screen my-20 pt-50 pb-30 relative flex flex-col items-center bg-[#00020f] text-white py-16"
+    >
+      <h1 className="text-6xl font-bold mb-12">Our Past Sponsors</h1>
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
+        <div className="flex shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] items-center justify-center bg-white rounded-xl p-4 h-32">
+          <Image
+            src={postmanLogo}
+            alt="Postman"
+            className="scale-220 object-contain min-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={vercelLogo}
+            alt="Vercel"
+            className="scale-200 object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={filecoinLogo}
+            alt="Filecoin"
+            className="scale-260 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={moralisLogo}
+            alt="Moralis"
+            className="scale-200 object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={taskadeLogo}
+            alt="Taskade"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={pricelineLogo}
+            alt="Priceline"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={bluelearnLogo}
+            alt="Bluelearn"
+            className="scale-200 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={quineLogo}
+            alt="Quine"
+            className="scale-85 object-contain max-h-16 w-auto"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={xyzLogo}
+            alt="XYZ"
+            className="object-contain max-h-16 w-auto filter-bluegrey"
+          />
+        </div>
+        <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
+          <Image
+            src={mentroLogo}
+            alt="Mentro"
+            className="scale-160 object-contain max-h-16 w-auto"
+          />
+        </div>
+      </div>
+    </motion.section>
   );
 };
 
@@ -96,20 +181,27 @@ const homePageBlogs = [
   {
     title: "GSSoC'20 -A remarkable end to a heuristic journey!",
     description: "Sometimes, struggles are exactly what we need in our life.",
-    image: "https://miro.medium.com/v2/resize:fit:720/format:webp/0*GFQal8gMY08uDlQd.png",
-    postUrl: "https://medium.com/girlscript-summer-of-code/gssoc20-a-remarkable-end-to-a-heuristic-journey-79b8f309f89a",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/0*GFQal8gMY08uDlQd.png",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/gssoc20-a-remarkable-end-to-a-heuristic-journey-79b8f309f89a",
   },
   {
     title: "404 Not Found",
-    description: "A journey of finding series of events along the way of open source contribution to reach in top 10 contestants.",
-    image: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*mls1ez3obbDUyKY2Q_NyDQ.png",
-    postUrl: "https://medium.com/girlscript-summer-of-code/404-not-found-9d0ca178bdbf",
+    description:
+      "A journey of finding series of events along the way of open source contribution to reach in top 10 contestants.",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/1*mls1ez3obbDUyKY2Q_NyDQ.png",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/404-not-found-9d0ca178bdbf",
   },
   {
     title: "Importance of Growing Together as a Tech Community",
     description: "Summer is coming to an end but the journey continues.",
-    image: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*-nGbxmVGeh2PMCAv48ikqg.jpeg",
-    postUrl: "https://medium.com/girlscript-summer-of-code/importance-of-growing-together-as-a-tech-community-e25efc1fda6d",
+    image:
+      "https://miro.medium.com/v2/resize:fit:720/format:webp/1*-nGbxmVGeh2PMCAv48ikqg.jpeg",
+    postUrl:
+      "https://medium.com/girlscript-summer-of-code/importance-of-growing-together-as-a-tech-community-e25efc1fda6d",
   },
 ];
 
@@ -125,10 +217,11 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Anshika Saini",
-      imgUrl: "https://drive.google.com/uc?id=1xYc7IfxBA3bdI61MMl6HGPsDXCXYN1xB",
+      imgUrl:
+        "https://drive.google.com/uc?id=1xYc7IfxBA3bdI61MMl6HGPsDXCXYN1xB",
       numOfStars: 5,
       feedback: `Being part of the GSSoC core team has been an epic adventure, filled with challenges and fun.`,
-      role: "GSSoC Contributor"
+      role: "GSSoC Contributor",
     },
     {
       name: "Deepesh Gupta",
@@ -136,7 +229,7 @@ const Testimonials = () => {
         "https://drive.google.com/uc?id=1sWqxgvYFINZOrupHvT_fxmtvQ7VJbidM",
       numOfStars: 5,
       feedback: `Mentoring in GSSOC'24 was a great experience.`,
-      role: "GSSoC'24 Mentor"
+      role: "GSSoC'24 Mentor",
     },
     {
       name: "Jeevana Maradana",
@@ -144,7 +237,7 @@ const Testimonials = () => {
         "https://drive.google.com/uc?id=1HJYiiz--2ILG_MueuwdflGxlcxyeAfE1",
       numOfStars: 4,
       feedback: `As a Core team member of GSSoC'24 has been an incredibly enriching experience.`,
-      role: "GSSoC'24 Core Team"
+      role: "GSSoC'24 Core Team",
     },
     {
       name: "Payal Kumari",
@@ -152,7 +245,15 @@ const Testimonials = () => {
         "https://drive.google.com/uc?id=1_HsL2GXcT18hReJphjwjvsq4QZwxx3uc",
       numOfStars: 4,
       feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience.`,
-      role: "GSSoC'24 Contributor"
+      role: "GSSoC'24 Contributor",
+    },
+    {
+      name: "Tina Borundia",
+      imgUrl:
+        "https://drive.google.com/uc?id=1LAMOYY4S3PP0hvSJSC0u-ym9THWvXdvn",
+      numOfStars: 5,
+      feedback: `Participating in GSSoC'24 has been an incredibly rewarding journey as a contributor and campus ambassador.`,
+      role: "GSSoC'24 Contributor, CA",
     },
     {
       name: "Rishi Mondal",
@@ -160,15 +261,7 @@ const Testimonials = () => {
         "https://drive.google.com/uc?id=1PoNDKA9SNnJCJtcPlO8iNSV0Mow-PpAO",
       numOfStars: 5,
       feedback: `Serving as a Project Admin for GirlScript Summer of Code (GSSoC) was an incredibly fulfilling experience.`,
-      role: "GSSoC Project Admin"
-    },
-    {
-      name: "Payal Kumari",
-      imgUrl:
-        "https://drive.google.com/uc?id=1LAMOYY4S3PP0hvSJSC0u-ym9THWvXdvn",
-      numOfStars: 4,
-      feedback: `Participating in GSSoC 2024 as a mentor has been an incredibly rewarding experience.`,
-      role: "GSSoC'24 Mentor"
+      role: "GSSoC Project Admin",
     },
   ];
 
@@ -178,7 +271,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     let controls;
-    let finalPosition = (-width / 2 - 12 * testimonials.length);
+    let finalPosition = -width / 2 - 12 * testimonials.length;
 
     if (mustFinish) {
       controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
@@ -204,102 +297,102 @@ const Testimonials = () => {
 
   return (
     <div className="w-full flex gap-3 overflow-hidden" ref={ref}>
-      {[...testimonials, ...testimonials].map((item, idx) => <motion.div
-        key={idx}
-        style={{ x: xTranslation }}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-        className="relative w-full aspect-5/3 min-w-[500px] border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44 py-10"
-      >
-        <Image
-          src={cardbg9}
-          alt="Background"
-          className="absolute w-full h-full top-0 object-cover rounded-3xl"
-        />
-
-        <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+      {[...testimonials, ...testimonials].map((item, idx) => (
+        <motion.div
+          key={idx}
+          style={{ x: xTranslation }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="relative w-full aspect-5/3 min-w-[500px] border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44 py-10"
+        >
           <Image
-            src={commas}
-            alt="Icon"
-            className="w-full h-full object-cover"
+            src={cardbg9}
+            alt="Background"
+            className="absolute w-full h-full top-0 object-cover rounded-3xl"
           />
-        </div>
 
-        <div className="text-xl text-[#A7ADBE] mt-12 max-h-30 overflow-hidden text-balance text-center z-10 leading-[1.2] font-semibold px-8">
-          {item.feedback}
-        </div>
-
-        {item.numOfStars === 4 ? (
-          <Image src={fourStars} alt="Icon" className="z-10 mt-8 w-[100px]" />
-        ) : (
-          <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
-        )}
-
-        <div className="flex flex-row items-center justify-between mt-12 z-10">
           <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
             <Image
-              src={item.imgUrl}
+              src={commas}
               alt="Icon"
               className="w-full h-full object-cover"
-              width={100}
-              height={100}
             />
           </div>
-          <div className="ml-4">
-            <div className="text-[18px] w-full text-left">{item.name}</div>
-            <div className="text-[#A7ADBE] w-full text-left">
-              {item.role}
+
+          <div className="text-xl text-[#A7ADBE] mt-12 max-h-30 overflow-hidden text-balance text-center z-10 leading-[1.2] font-semibold px-8">
+            {item.feedback}
+          </div>
+
+          {item.numOfStars === 4 ? (
+            <Image src={fourStars} alt="Icon" className="z-10 mt-8 w-[100px]" />
+          ) : (
+            <Image src={stars} alt="Icon" className="z-10 mt-8 w-[120px]" />
+          )}
+
+          <div className="flex flex-row items-center justify-between mt-12 z-10">
+            <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+              <Image
+                src={item.imgUrl}
+                alt="Icon"
+                className="w-full h-full object-cover"
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="ml-4">
+              <div className="text-[18px] w-full text-left">{item.name}</div>
+              <div className="text-[#A7ADBE] w-full text-left">{item.role}</div>
             </div>
           </div>
-        </div>
-      </motion.div>)}
+        </motion.div>
+      ))}
     </div>
   );
 };
 
 const timelineData = [
   {
-    date: '1st-2nd June',
-    color: 'text-blue-400',
-    dot: 'bg-blue-500',
-    title: 'Project Assignment to Mentors',
-    desc: 'Mentors are assigned to projects and begin preparing to guide contributors throughout the program.',
+    date: "20th June",
+    color: "text-blue-400",
+    dot: "bg-blue-500",
+    title: "Project Assignment to Mentors",
+    desc: "Mentors are assigned to projects and begin preparing to guide contributors throughout the program.",
   },
   {
-    date: '13th June',
-    color: 'text-yellow-400',
-    dot: 'bg-yellow-400',
-    title: 'Coding Period Starts',
-    desc: 'Contributors officially start working on their assigned open source projects under mentor supervision.',
+    date: "23rd June",
+    color: "text-green-400",
+    dot: "bg-green-400",
+    title: "Community Bonding Period Starts",
+    desc: "Contributors and mentors interact, discuss project goals, and get familiar with the community.",
   },
   {
-    date: '8th June',
-    color: 'text-green-400',
-    dot: 'bg-green-400',
-    title: 'Community Bonding Period Starts',
-    desc: 'Contributors and mentors interact, discuss project goals, and get familiar with the community.',
+    date: "25th June",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+    title: "Coding Period Starts",
+    desc: "Contributors officially start working on their assigned open source projects under mentor supervision.",
   },
   {
-    date: '26th July',
-    color: 'text-blue-400',
-    dot: 'bg-blue-500',
-    title: 'Result will be declared',
-    desc: 'Final results are announced, recognizing top contributors and successful projects.',
+    date: "30th June",
+    color: "text-green-400",
+    dot: "bg-green-400",
+    title: "Leaderboard Opens",
+    desc: "The leaderboard is made public, allowing participants to track their progress and contributions.",
   },
   {
-    date: '13th July',
-    color: 'text-yellow-400',
-    dot: 'bg-yellow-400',
-    title: 'Coding Period Ends',
-    desc: 'The official coding phase concludes; contributors submit their final work for evaluation.',
+    date: "25th September",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+    title: "Coding Period Ends",
+    desc: "The official coding phase concludes; contributors submit their final work for evaluation.",
   },
   {
-    date: '11th June',
-    color: 'text-green-400',
-    dot: 'bg-green-400',
-    title: 'Leaderboard Opens',
-    desc: 'The leaderboard is made public, allowing participants to track their progress and contributions.',
+    date: "2nd October",
+    color: "text-blue-400",
+    dot: "bg-blue-500",
+    title: "Result will be declared",
+    desc: "Final results are announced, recognizing top contributors and successful projects.",
   },
 ];
 
@@ -308,29 +401,54 @@ const Timeline = () => {
     <div className="w-full flex mt-20 flex-col items-center py-16 bg-[#00020f]">
       <div className="relative w-full max-w-[2000px] px-10 mx-auto">
         {/* Timeline line */}
-        <div className="absolute left-0 right-0 top-1/2 h-1 bg-[#232D6B] z-0 opacity-60 w-full" style={{transform: 'translateY(-50%)'}} />
+        <div
+          className="absolute left-0 right-0 top-1/2 h-1 bg-[#232D6B] z-0 opacity-60 w-full"
+          style={{ transform: "translateY(-50%)" }}
+        />
         <div className="flex justify-between relative z-10">
           {timelineData.map((item, idx) => (
-            <div key={item.date} className="flex flex-col items-center w-1/7 min-w-[90px]">
+            <div
+              key={item.date}
+              className="flex flex-col items-center w-1/7 min-w-[90px]"
+            >
               {idx % 2 === 0 ? (
                 <div className="mb-8 flex flex-col items-center w-full">
-                  <DataBlock title={item.title} desc={item.desc} iconIdx={idx} />
+                  <DataBlock
+                    title={item.title}
+                    desc={item.desc}
+                    iconIdx={idx}
+                  />
                 </div>
-              ) : <div className="mb-8" style={{height: '180px'}}></div>}
+              ) : (
+                <div className="mb-8" style={{ height: "180px" }}></div>
+              )}
               {/* Dot and year */}
               <div className="flex flex-col items-center">
                 {idx % 2 !== 0 && (
-                  <div className={`mt-2 font-bold ${item.color} text-base`}>{item.date}</div>
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>
+                    {item.date}
+                  </div>
                 )}
-                <div className={`w-4 h-4 rounded-full border-4 border-[#00020f] shadow ${item.dot}`}></div>
+                <div
+                  className={`w-4 h-4 rounded-full border-4 border-[#00020f] shadow ${item.dot}`}
+                ></div>
                 {idx % 2 === 0 && (
-                  <div className={`mt-2 font-bold ${item.color} text-base`}>{item.date}</div>
-                )}              </div>
+                  <div className={`mt-2 font-bold ${item.color} text-base`}>
+                    {item.date}
+                  </div>
+                )}{" "}
+              </div>
               {idx % 2 === 1 ? (
                 <div className="mt-8 flex flex-col items-center w-full">
-                  <DataBlock title={item.title} desc={item.desc} iconIdx={idx} />
+                  <DataBlock
+                    title={item.title}
+                    desc={item.desc}
+                    iconIdx={idx}
+                  />
                 </div>
-              ) : <div className="mt-8" style={{height: '180px'}}></div>}
+              ) : (
+                <div className="mt-8" style={{ height: "180px" }}></div>
+              )}
             </div>
           ))}
         </div>
@@ -370,10 +488,10 @@ export default function Home() {
             Timeline
           </a>
           <a
-            href="#blogs"
+            href="#sponsors"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
-            Blogs
+            Sponsors
           </a>
           <a
             href="#contact"
@@ -484,9 +602,9 @@ export default function Home() {
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner&apos;s growth is a shared success. Join us in
-              shaping a future where education is a right—not a privilege—and
-              where everyone can thrive.
+              Girlscript, every learner&apos;s growth is a shared success. Join
+              us in shaping a future where education is a right—not a
+              privilege—and where everyone can thrive.
             </p>
           </div>
         </motion.div>
@@ -728,14 +846,15 @@ export default function Home() {
           ></iframe>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
           className="w-5/6 flex flex-row items-center mt-12 space-x-8"
         >
-          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
+          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
+          >
             <Image
               src={cardbg1}
               alt="Background"
@@ -755,8 +874,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Access India’s Largest Tech Talent Pool</div>
+            <div className="text-[#A7ADBE]">Partner with a community of 100,000+ emerging
+            developers.</div>
           </motion.div>
           <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -778,8 +898,9 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Boost Recruitment & R&D</div>
+            <div className="text-[#A7ADBE]">Leverage real project contributions to identify top
+            talent and accelerate innovation.</div>
           </motion.div>
           <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -801,10 +922,11 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
+            <div className="text-[18px] my-2">Engage Early-Career Coders</div>
+            <div className="text-[#A7ADBE]">Connect with students and professionals contributing
+            to open source, startups, and tech giants.</div>
           </motion.div>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           variants={itemVariants}
@@ -1063,53 +1185,9 @@ export default function Home() {
 
         {/* TODO: Add testimonials carousel */}
         <Testimonials />
-
       </motion.section>
 
-      <motion.section
-        id="sponsors"
-        className="w-screen my-20 relative flex flex-col items-center bg-[#00020f] text-white py-16"
-      >
-        <h1 className="text-6xl font-bold mb-12">Our Past Sponsors</h1>
-        <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
-          <div className="flex shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] items-center justify-center bg-white rounded-xl p-4 h-32">
-            <Image src={postmanLogo} alt="Postman" className="scale-220 object-contain min-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={vercelLogo} alt="Vercel" className="scale-200 object-contain max-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={filecoinLogo} alt="Filecoin" className="scale-260 object-contain max-h-16 w-auto" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={moralisLogo} alt="Moralis" className="scale-200 object-contain max-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={taskadeLogo} alt="Taskade" className="object-contain max-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={pricelineLogo} alt="Priceline" className="object-contain max-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={bluelearnLogo} alt="Bluelearn" className="scale-200 object-contain max-h-16 w-auto" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={quineLogo} alt="Quine" className="scale-85 object-contain max-h-16 w-auto" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={xyzLogo} alt="XYZ" className="object-contain max-h-16 w-auto filter-bluegrey" />
-          </div>
-          <div className="flex items-center justify-center bg-white rounded-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 h-32">
-            <Image src={mentroLogo} alt="Mentro" className="scale-160 object-contain max-h-16 w-auto" />
-          </div>
-        </div>
-      </motion.section>
-
-      <style jsx global>{`
-        .filter-bluegrey {
-          filter: grayscale(1) brightness(0.8) sepia(1) hue-rotate(180deg) saturate(2);
-        }
-      `}</style>
+      <Sponsors />
 
       <motion.section
         id="contact"
