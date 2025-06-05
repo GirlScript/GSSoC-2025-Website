@@ -29,7 +29,7 @@ import twitter from "@/assets/twitter.svg";
 import linkedin from "@/assets/linkedin.svg";
 import instagram from "@/assets/instagram.svg";
 import banner from "@/assets/banner.jpg";
-import bannerAbout from "@/assets/banner-about.png";
+import bannerAbout from "@/assets/banner_image.jpeg";
 import profile from "@/assets/profile.jpeg";
 import commas from "@/assets/commas.svg";
 import stars from "@/assets/stars.svg";
@@ -122,7 +122,7 @@ const Sponsors = () => {
   return (
     <motion.section
       id="sponsors"
-      className="w-screen my-20 pt-50 pb-30 relative flex flex-col items-center bg-[#00020f] text-white py-16"
+      className="w-screen pt-52 pb-64 relative flex flex-col items-center bg-[#00020f] text-white"
     >
       <h1 className="text-6xl font-bold mb-12">Our Past Sponsors</h1>
       <div className="w-full max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
@@ -625,7 +625,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white pt-36"
         >
           <div className="text-center text-white z-20 flex flex-col items-center">
             <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
@@ -718,7 +718,7 @@ export default function Home() {
         variants={containerVariants}
         className="w-screen h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
       >
-        {/* <motion.div
+        <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -730,18 +730,18 @@ export default function Home() {
             alt="Background"
             className="absolute left-0 top-0 h-full w-full object-cover"
           />
-        </motion.div> */}
+        </motion.div>
         <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white my-80"
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
         >
-          <div className="text-center text-white z-20 flex flex-col items-center">
-            {/* <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+          {/* <div className="text-center text-white z-20 flex flex-col items-center">
+            <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               About Us
-            </p> */}
+            </p>
             <h1 className="text-6xl font-bold mb-4">
               What is GirlScript
               <br /> Summer Of Code
@@ -760,11 +760,11 @@ export default function Home() {
               impact by fostering innovation, collaboration, and inclusivity in
               tech.
             </p>
-          </div>
+          </div> */}
 
           {/* TODO: add increasing numbers data here */}
 
-          <div className="w-2/3 mx-auto my-16 aspect-video bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20">
+          {/* <div className="w-2/3 mx-auto my-16 aspect-video bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20">
             <div className="w-full h-full min-h-[400px] relative">
               <Image
                 src={cardbg1}
@@ -870,7 +870,7 @@ export default function Home() {
                 ariaLabel="GSSoC Demographics Bar Chart"
               />
             </div>
-          </div>
+          </div> */}
         </motion.div>
         {/* <motion.div
           variants={itemVariants}
@@ -1062,7 +1062,7 @@ export default function Home() {
               <div className="text-[22px] font-bold my-1 w-full text-center">
                 Boost Your Career
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
+              <div className="text-[#A7ADBE] w-full text-center text-balance">
                 Contributions can lead to job offers, freelance work, or
                 recognition in the tech community.
               </div>
