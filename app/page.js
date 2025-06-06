@@ -24,12 +24,12 @@ import cardbg9 from "@/assets/card-bg-10.svg";
 import needle from "@/assets/needle.svg";
 import needle2 from "@/assets/needle-2.svg";
 
-import about from "@/assets/about.png";
+import about from "@/assets/about.jpeg";
 import twitter from "@/assets/twitter.svg";
 import linkedin from "@/assets/linkedin.svg";
 import instagram from "@/assets/instagram.svg";
 import banner from "@/assets/banner.jpg";
-import profile from "@/assets/profile.png";
+import profile from "@/assets/profile.jpeg";
 import commas from "@/assets/commas.svg";
 import stars from "@/assets/stars.svg";
 
@@ -66,9 +66,9 @@ export default function Home() {
       </div>
 
       <header className="fixed top-0 left-0 w-full bg-transparent flex items-center justify-between p-8 z-80">
-        <div className="text-white text-2xl">GSSoC &apos;25</div>
+        <div className="text-white text-xl md:text-2xl">GSSoC &apos;25</div>
 
-        <nav className="flex space-x-2 bg-[#0E122E] p-[4px] px-2 rounded-full border border-[#232D6B]">
+        <nav className="md:flex hidden space-x-2 bg-[#0E122E] p-[4px] px-2 rounded-full border border-[#232D6B]">
           <a
             href="#home"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
@@ -88,10 +88,10 @@ export default function Home() {
             Timeline
           </a>
           <a
-            href="#blogs"
+            href="#sponsor"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
-            Blogs
+            Sponsor
           </a>
           <a
             href="#contact"
@@ -103,7 +103,7 @@ export default function Home() {
 
         <a
           href="/apply/campus-ambassador"
-          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer"
+          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px] text-[12px] md:text-[10px] md:text-[14px]"
         >
           Apply Now
         </a>
@@ -116,41 +116,39 @@ export default function Home() {
         <Image
           src={bg}
           alt="Background"
-          className="absolute bottom-0 w-5/6 object-contain -z-10"
+          className="absolute bottom-0 w-full md:w-5/6 object-contain -z-10 md:hidden"
         />
-        {/*
-          <Image
-            src={bgsup}
-            alt="Background"
-            className="absolute top-0 left-0 w-[800px] object-contain -z-10"
-          />
-          <Image
-            src={bgsup}
-            alt="Background"
-            className="absolute top-0 right-0 w-[800px] object-contain -z-10 scale-x-[-1]"
-          />
-        */}
+        <Image
+          src={bgsup}
+          alt="Background"
+          className="absolute top-0 left-0 w-[800px] object-contain -z-10 md:hidden"
+        />
+        <Image
+          src={bgsup}
+          alt="Background"
+          className="absolute top-0 right-0 w-[800px] object-contain -z-10 scale-x-[-1] md:hidden"
+        />
 
         <div className="text-center text-white">
-          <p className="text-lg mb-8 mt-44 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+          <p className="md:mb-8 mb-4 md:mt-44 text-[#A7ADBE] bg-[#FFFFFF15] text-[8px] md:text-[12px] inline-block px-4 py-2 rounded-full">
             India&apos;s prominent open source program with 50,000+ annual
             applicants.
           </p>
-          <h1 className="text-6xl font-bold mb-4">
+          <h1 className="text-3xl md:text-6xl font-bold mb-4">
             GirlScript Summer <br /> Of Code 2025
           </h1>
-          <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+          <p className="text-[10px] mb-8 md:text-[14px] text-[#A7ADBE]">
             A new era of open source contributions and learning.
           </p>
           <a
             href="/apply/campus-ambassador"
-            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
           >
             Tap To Join Today
           </a>
           <div className="flex items-center justify-center mt-6">
             <div className="bg-[#0DDE33] h-2 w-2 rounded-full" />
-            <p className="text-lg text-[#A7ADBE] text-[12px] ml-2">
+            <p className="text-[#A7ADBE] text-[10px] md:text-[12px] ml-2">
               CA Applications Live!
             </p>
           </div>
@@ -170,7 +168,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-5/6 mb-24 overflow-hidden aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32"
+          className="w-11/12 md:w-5/6 mb-16 md:mb-24 overflow-hidden aspect-5/4 md:aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-12 md:mt-32"
         >
           <Image
             src={about}
@@ -189,11 +187,11 @@ export default function Home() {
             <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               About Us
             </p>
-            <h1 className="text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
               Know About <br /> GirlScript Foundation
             </h1>
-            <p className="w-3/5 text-lg mb-8 text-[14px] text-[#A7ADBE] text-balance">
-              Founded in 2017 by Anubha Maheshwari, Girlscript is a
+            <p className="w-11/12 text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
+              Founded in 2017 by Anubha Maheshwar, Girlscript is a
               not-for-profit organization dedicated to making quality education
               accessible for all. With a mission to empower individuals through
               learning, we’ve built a vibrant community of over 500,000
@@ -218,27 +216,27 @@ export default function Home() {
           <a
             href="mailto:gssoc@girlscript.tech"
             target="_blank"
-            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer mr-4"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px] mr-4"
           >
             Get In Touch
           </a>
           <a
             href="https://girlscript.tech"
             target="_blank"
-            className="bg-transparent bg-[radial-gradient(100%_100%_at_50%_100%,_rgb(16,_22,_54)_14.38%,_rgb(12,_16,_39)_100%)] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+            className="bg-transparent bg-[radial-gradient(100%_100%_at_50%_100%,_rgb(16,_22,_54)_14.38%,_rgb(12,_16,_39)_100%)] border border-[#131839] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
           >
             Visit Our Website
           </a>
         </motion.div>
 
         <motion.div
-          className="relative max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-row justify-between items-center p-4 shadow-2xl shadow-blue-500/20 mb-16"
+          className="relative max-w-[400px] w-3/4 bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-row justify-between items-center p-4 shadow-2xl shadow-blue-500/20 md:mb-16"
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <div className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+          <div className="h-8 md:h-12 w-8 md:w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
             <Image
               src={profile}
               alt="Icon"
@@ -246,14 +244,20 @@ export default function Home() {
             />
           </div>
 
-          <div className="w-3/5">
-            <div className="text-[18px] w-full text-left">Anubha Maneshwar</div>
-            <div className="text-[#A7ADBE] w-full text-left">
+          <div className="w-3/5 ">
+            <div className="text-[12px] md:text-[18px] w-full text-left">
+              Anubha Maneshwar
+            </div>
+            <div className="text-[#A7ADBE] w-full text-left text-[12px]">
               Founder And CEO
             </div>
           </div>
 
-          <a className="h-12 w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative">
+          <a
+            href="https://x.com/anubhamane"
+            target="_blank"
+            className="h-8 md:h-12 w-8 md:w-12 aspect-square rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -262,7 +266,7 @@ export default function Home() {
             <Image
               src={twitter}
               alt="Icon"
-              className="absolute w-3/5 object-cover"
+              className="absolute w-1/2 object-cover"
             />
           </a>
         </motion.div>
@@ -302,17 +306,17 @@ export default function Home() {
             <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               Why GSSoC?
             </p>
-            <h1 className="text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
               Why You Should <br /> Take Part In GSSoC
             </h1>
-            <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+            <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
             </p>
           </div>
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-1 mb-12 gap-4 mt-[120px] items-center justify-items-center"
+          className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mb-12 gap-4 mt-[80px] md:mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -337,10 +341,10 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
+                Grow Your Career
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
+              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
                 Some Strong Punchline For This
               </div>
             </div>
@@ -365,10 +369,10 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
+                Maximize Your Potential
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
+              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
                 Some Strong Punchline For This
               </div>
             </div>
@@ -393,25 +397,16 @@ export default function Home() {
             />
 
             <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[18px] my-2 w-full text-center">
-                Some Headline
+              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
+                Stand Out From The Crowd
               </div>
-              <div className="text-[#A7ADBE] w-full text-center">
+              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
                 Some Strong Punchline For This
               </div>
             </div>
           </motion.div>
         </motion.div>
-      </motion.section>
 
-      <motion.section
-        id="new"
-        className="w-screen min-h-screen relative flex flex-col items-center bg-[#00020f] text-white p-12"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: false, amount: 0.3 }}
-        variants={containerVariants}
-      >
         <motion.div
           className="flex flex-row items-center justify-center w-full"
           variants={itemVariants}
@@ -420,8 +415,8 @@ export default function Home() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <div className="w-1/4 bg-gradient-to-r from-transparent to-[#171D45] h-[2px]" />
-          <span className="text-[#C4C8D4] mx-4">
-            See What&apos;s New This Year
+          <span className="text-[#C4C8D4] mx-4 text-center text-[12px] md:text-[16px]">
+            Watch This To Learn More
           </span>
           <div className="w-1/4 bg-gradient-to-l from-transparent to-[#171D45] h-[2px]" />
         </motion.div>
@@ -431,12 +426,12 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-5/6 border border-[#131839] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] mt-12 rounded-3xl aspect-video p-2 shadow-2xl shadow-blue-500/20"
+          className="w-11/12 md:w-5/6 border border-[#131839] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] mt-12 rounded-3xl aspect-video p-2 shadow-2xl shadow-blue-500/20"
         >
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/LVap_wOjWMI?si=wu-cUhZZKGfgxMOS&amp;controls=0&amp;start=0&amp;loop=1&amp;playlist=LVap_wOjWMI&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;origin=https://gssoc.girlscript.tech&amp;iv_load_policy=3&amp;modestbranding=1"
+            src="https://www.youtube.com/embed/yi_LounnOk0?si=mieHOllq35pt5m1J&amp;controls=0&amp;start=0&amp;loop=1&amp;playlist=LVap_wOjWMI&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;origin=https://gssoc.girlscript.tech&amp;iv_load_policy=3&amp;modestbranding=1"
             title="YouTube Video Player"
             frameBorder="0"
             allow="none"
@@ -445,114 +440,11 @@ export default function Home() {
             className="rounded-3xl"
           ></iframe>
         </motion.div>
-
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-5/6 flex flex-row items-center mt-12 space-x-8"
-        >
-          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
-            <Image
-              src={cardbg1}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-
-            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
-              <Image
-                src={iconbg}
-                alt="Background"
-                className="w-full h-full object-cover"
-              />
-              <Image
-                src={icon1}
-                alt="Background"
-                className="absolute w-3/5 h-3/5 object-cover"
-              />
-            </div>
-
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
-          </motion.div>
-          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
-            <Image
-              src={cardbg1}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-
-            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
-              <Image
-                src={iconbg}
-                alt="Background"
-                className="w-full h-full object-cover"
-              />
-              <Image
-                src={icon2}
-                alt="Background"
-                className="absolute w-3/5 h-3/5 object-cover"
-              />
-            </div>
-
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
-          </motion.div>
-          <motion.div className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
-            <Image
-              src={cardbg1}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-
-            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
-              <Image
-                src={iconbg}
-                alt="Background"
-                className="w-full h-full object-cover"
-              />
-              <Image
-                src={icon3}
-                alt="Background"
-                className="absolute w-3/5 h-3/5 object-cover"
-              />
-            </div>
-
-            <div className="text-[18px] my-2">Some Headline</div>
-            <div className="text-[#A7ADBE]">Some Strong Punchline For This</div>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-5/6 aspect-5/2 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32"
-        >
-          <SparklesCore
-            id="tsparticlesfullpage"
-            background="transparent"
-            minSize={0.4}
-            maxSize={0.8}
-            particleDensity={200}
-            particleSpeed={0.3}
-            className="absolute w-full h-2/5"
-            particleColor="#FFFFFF"
-          />
-          <div className="text-6xl text-balance text-center z-10 leading-[1.2] font-semibold">
-            Our mission is to design websites that attract and engage customers.
-          </div>
-          <div className="text-[#A7ADBE] text-lg mt-8">
-            However, we approach things a bit differently around here.
-          </div>
-        </motion.div>
       </motion.section>
 
       <motion.section
         id="timeline"
-        className="w-screen min-h-screen relative flex flex-col items-center bg-[#00020f] text-white p-12"
+        className="w-screen min-h-screen relative flex flex-col items-center bg-[#00020f] text-white"
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.3 }}
@@ -593,59 +485,175 @@ export default function Home() {
             <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               Timeline
             </p>
-            <h1 className="text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
               Whats And When <br /> Will Things Happen
             </h1>
-            <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+            <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
             </p>
           </div>
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-2 gap-4 mt-[120px] items-center justify-items-center"
+          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-6 md:grid-rows-2 gap-4 mt-[120px] items-center justify-items-center mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          {Array.from({ length: 6 }).map((_, idx) => (
-            <motion.div
-              key={idx}
-              className="relative w-full h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0.3 }}
-            >
-              <Image
-                src={cardbg1}
-                alt="Background"
-                className="absolute right-0 top-0 w-full h-full object-cover"
-              />
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
 
-              <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
-                <Image
-                  src={iconbg}
-                  alt="Background"
-                  className="w-full h-full object-cover"
-                />
-                <Image
-                  src={[icon1, icon2, icon3][idx % 3]}
-                  alt="Icon"
-                  className="absolute w-3/5 h-3/5 object-cover"
-                />
-              </div>
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
 
-              <div className="text-[18px] my-2">Some Headline</div>
-              <div className="text-[#A7ADBE]">
-                Some Strong Punchline For This
-              </div>
-            </motion.div>
-          ))}
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 flex-box"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
+              6th June 2025
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">
+              CA Applications Go Live
+            </div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
         </motion.div>
       </motion.section>
 
+      {/* 
       <motion.section
         id="blogs"
         initial="hidden"
@@ -680,10 +688,10 @@ export default function Home() {
             <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               Blogs
             </p>
-            <h1 className="text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
               Stay Ahead With Latest <br /> Updates From Team
             </h1>
-            <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+            <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
             </p>
           </div>
@@ -769,6 +777,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </motion.section>
+      */}
 
       <motion.section
         id="testimonials"
@@ -804,10 +813,10 @@ export default function Home() {
             <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
               Testimonals
             </p>
-            <h1 className="text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
               What People Say <br /> About Previos Editions
             </h1>
-            <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+            <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
             </p>
           </div>
@@ -818,7 +827,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="relative w-3/5 aspect-5/3 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44"
+          className="relative w-11/12 aspect-5/3 border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44"
         >
           <Image
             src={cardbg9}
@@ -869,6 +878,167 @@ export default function Home() {
       </motion.section>
 
       <motion.section
+        id="sponsor"
+        className="w-screen min-h-screen relative flex flex-col items-center bg-[#00020f] text-white"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        <motion.div
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-32"
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <Image
+            src={sbg2}
+            alt="Background"
+            className="absolute top-20 object-contain scale-x-[-1]"
+          />
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={0.8}
+            particleDensity={80}
+            particleSpeed={0.2}
+            className="absolute top-20 w-full h-[300px]"
+            particleColor="#FFFFFF"
+          />
+          <Image
+            src={stick}
+            alt="Background"
+            className="absolute top-0 left-0 w-1/3 object-contain scale-x-[-1] z-10"
+          />
+          <Image
+            src={stick}
+            alt="Background"
+            className="absolute top-0 right-0 w-1/3 object-contain z-10"
+          />
+          <div className="text-center text-white z-20">
+            <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+              Sponsor And Partner
+            </p>
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
+              Sponsor Us Or <br /> Become Our Partner
+            </h1>
+            <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
+              A new era of open source contributions and learning.
+            </p>
+          </div>
+        </motion.div>
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mt-12 gap-2 md:gap-8"
+        >
+          <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
+              <Image
+                src={iconbg}
+                alt="Background"
+                className="w-full h-full object-cover"
+              />
+              <Image
+                src={icon1}
+                alt="Background"
+                className="absolute w-11/12 h-3/5 object-cover"
+              />
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+          <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
+              <Image
+                src={iconbg}
+                alt="Background"
+                className="w-full h-full object-cover"
+              />
+              <Image
+                src={icon2}
+                alt="Background"
+                className="absolute w-11/12 h-3/5 object-cover"
+              />
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+          <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover"
+            />
+
+            <div className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative">
+              <Image
+                src={iconbg}
+                alt="Background"
+                className="w-full h-full object-cover"
+              />
+              <Image
+                src={icon3}
+                alt="Background"
+                className="absolute w-11/12 h-3/5 object-cover"
+              />
+            </div>
+
+            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[12px] text-[#A7ADBE]">
+              Some Strong Punchline For This
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-11/12 md:w-5/6 h-[180px] md:h-[400px] border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-4  mb-16"
+        >
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={0.4}
+            maxSize={0.8}
+            particleDensity={200}
+            particleSpeed={0.3}
+            className="absolute w-full h-2/5"
+            particleColor="#FFFFFF"
+          />
+          <div className="text-md md:text-6xl z-10 leading-[1.2] font-semibold w-11/12 text-balance text-center ">
+            Our mission is to design websites that attract and engage customers.
+          </div>
+          <div className="text-[#A7ADBE] text-[10px] md:text-lg mt-2 md:mt-8 w-11/12 text-balance text-center">
+            However, we approach things a bit differently around here.
+          </div>
+        </motion.div>
+      </motion.section>
+
+      <motion.section
         id="contact"
         initial="hidden"
         whileInView="show"
@@ -877,15 +1047,15 @@ export default function Home() {
         className="w-screen relative flex flex-col items-center bg-[#00041F] text-white py-16"
       >
         <div className="text-center text-white">
-          <h1 className="text-6xl font-bold mb-4">
+          <h1 className="text-3xl md:text-6xl font-bold mb-4">
             GirlScript Summer <br /> Of Code 2025
           </h1>
-          <p className="text-lg mb-8 text-[14px] text-[#A7ADBE]">
+          <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
             Get In Touch With Us Via Email Or Social Media
           </p>
           <a
             href="mailto:gssoc@girlscript.tech"
-            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
           >
             Contact Us
           </a>
@@ -900,7 +1070,7 @@ export default function Home() {
             <Image
               src={linkedin}
               alt="Icon"
-              className="absolute w-3/5 h-3/5 object-cover"
+              className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>
           <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
@@ -912,7 +1082,7 @@ export default function Home() {
             <Image
               src={twitter}
               alt="Icon"
-              className="absolute w-3/5 h-3/5 object-cover"
+              className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>
           <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
@@ -924,7 +1094,7 @@ export default function Home() {
             <Image
               src={instagram}
               alt="Icon"
-              className="absolute w-3/5 h-3/5 object-cover"
+              className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>
         </div>

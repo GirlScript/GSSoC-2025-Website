@@ -21,6 +21,7 @@ const CA = () => {
   const [linkedIn, setLinkedIn] = useState("");
   const [github, setGithub] = useState("");
   const [twitterUrl, setTwitterUrl] = useState("");
+  const [instagramUrl, setInstagramUrl] = useState("");
   const [discordTag, setDiscordTag] = useState("");
   const [resumeUrl, setResumeUrl] = useState("");
   const [promotionPlan, setPromotionPlan] = useState("");
@@ -126,6 +127,7 @@ const CA = () => {
         linkedin_url: linkedIn,
         github_url: github,
         twitter_url: twitterUrl,
+        instagram_url: instagramUrl,
         discord_tag: discordTag,
         resume_url: resumeUrl,
         promotion_plan: promotionPlan,
@@ -333,6 +335,7 @@ const CA = () => {
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
                 placeholder="https://linkedin.com/in/yourprofile"
                 value={linkedIn}
+                required
                 onChange={(e) => setLinkedIn(e.target.value)}
               />
 
@@ -344,6 +347,7 @@ const CA = () => {
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
                 placeholder="https://github.com/yourusername"
                 value={github}
+                required
                 onChange={(e) => setGithub(e.target.value)}
               />
 
@@ -359,6 +363,17 @@ const CA = () => {
               />
 
               <label className="block text-[10px] md:text-sm mb-1">
+                Instagram URL
+              </label>
+              <input
+                type="url"
+                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
+                placeholder="https://instagram.com/yourhandle"
+                value={instagramUrl}
+                onChange={(e) => setInstagramUrl(e.target.value)}
+              />
+
+              <label className="block text-[10px] md:text-sm mb-1">
                 Discord Tag
               </label>
               <input
@@ -367,6 +382,7 @@ const CA = () => {
                 placeholder="username#1234"
                 value={discordTag}
                 onChange={(e) => setDiscordTag(e.target.value)}
+                required
               />
 
               <label className="block text-[10px] md:text-sm mb-1">
@@ -401,6 +417,7 @@ const CA = () => {
                 placeholder="Share any relevant experience"
                 rows={3}
                 value={previousExperience}
+                required
                 onChange={(e) => setPreviousExperience(e.target.value)}
               />
 
