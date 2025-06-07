@@ -359,6 +359,7 @@ const CA = () => {
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
                 placeholder="https://twitter.com/yourhandle"
                 value={twitterUrl}
+                required
                 onChange={(e) => setTwitterUrl(e.target.value)}
               />
 
@@ -370,6 +371,7 @@ const CA = () => {
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
                 placeholder="https://instagram.com/yourhandle"
                 value={instagramUrl}
+                required
                 onChange={(e) => setInstagramUrl(e.target.value)}
               />
 
@@ -393,6 +395,7 @@ const CA = () => {
                 className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
                 placeholder="https://yourdomain.com/portfolio"
                 value={resumeUrl}
+                required
                 onChange={(e) => setResumeUrl(e.target.value)}
               />
 
