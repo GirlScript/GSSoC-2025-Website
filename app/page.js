@@ -118,17 +118,17 @@ export default function Home() {
         <Image
           src={bg}
           alt="Background"
-          className="absolute bottom-0 w-full md:w-5/6 object-contain -z-10 md:hidden"
+          className="absolute bottom-0 w-full md:w-5/6 object-contain -z-10"
         />
         <Image
           src={bgsup}
           alt="Background"
-          className="absolute top-0 left-0 w-[800px] object-contain -z-10 md:hidden"
+          className="absolute top-0 left-0 w-[800px] object-contain -z-10"
         />
         <Image
           src={bgsup}
           alt="Background"
-          className="absolute top-0 right-0 w-[800px] object-contain -z-10 scale-x-[-1] md:hidden"
+          className="absolute top-0 right-0 w-[800px] object-contain -z-10 scale-x-[-1]"
         />
 
         <div className="text-center text-white">
