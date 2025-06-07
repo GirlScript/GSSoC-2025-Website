@@ -38,6 +38,8 @@ import { StarsBackground } from "@/components/stars-background";
 import { SparklesCore } from "@/components/sparkles";
 import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
+import Testimonials from "@/components/Testimonials";
+import PastSponsors from "@/components/PastSponsors";
 
 const containerVariants = {
   hidden: {},
@@ -344,8 +346,8 @@ export default function Home() {
               <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
                 Grow Your Career
               </div>
-              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
+               Build Projects. Build Skills. Build Your Career
               </div>
             </div>
           </motion.div>
@@ -372,8 +374,10 @@ export default function Home() {
               <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
                 Maximize Your Potential
               </div>
-              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
+                Maximize Impact. Maximize You.
+
+
               </div>
             </div>
           </motion.div>
@@ -400,8 +404,8 @@ export default function Home() {
               <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
                 Stand Out From The Crowd
               </div>
-              <div className="text-[#A7ADBE] text-[12px] w-full text-center">
-                Some Strong Punchline For This
+              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
+                Contribute Boldly. Shine Brightly.
               </div>
             </div>
           </motion.div>
@@ -428,17 +432,18 @@ export default function Home() {
           viewport={{ once: false, amount: 0.3 }}
           className="w-11/12 md:w-5/6 border border-[#131839] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] mt-12 rounded-3xl aspect-video p-2 shadow-2xl shadow-blue-500/20"
         >
-          <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/yi_LounnOk0?si=mieHOllq35pt5m1J&amp;controls=0&amp;start=0&amp;loop=1&amp;playlist=LVap_wOjWMI&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;origin=https://gssoc.girlscript.tech&amp;iv_load_policy=3&amp;modestbranding=1"
-            title="YouTube Video Player"
-            frameBorder="0"
-            allow="none"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="rounded-3xl"
-          ></iframe>
+         <iframe
+  width="100%"
+  height="100%"
+  src="https://www.youtube.com/embed/yi_LounnOk0?autoplay=1&loop=1&playlist=yi_LounnOk0&controls=0&rel=0&showinfo=0&modestbranding=1"
+  title="GSSoC 2024 Video"
+  frameBorder="0"
+  allow="autoplay; encrypted-media"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+  className="rounded-3xl"
+/>
+
         </motion.div>
       </motion.section>
 
@@ -515,14 +520,14 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+              20th June 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+             Project Assignment to Mentors
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+              Mentors are assigned to projects and begin preparing to guide contributors throughout the program.
             </div>
           </motion.div>
 
@@ -540,14 +545,14 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+             23th June 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+             Community Bonding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+              Contributors and mentors interact, discuss project goals, and get familiar with the community.
             </div>
           </motion.div>
 
@@ -565,14 +570,14 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+              Coding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+             Contributors officially start working on their assigned open source projects under mentor supervision.
             </div>
           </motion.div>
 
@@ -590,14 +595,14 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+                 To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+             Leaderboard Opens
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+            The leaderboard is made public, allowing participants to track their progress and contributions.
             </div>
           </motion.div>
 
@@ -615,14 +620,13 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+            To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+             Coding Period Ends
             </div>
-            <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+            <div className="text-[12px] text-[#A7ADBE]">The official coding phase concludes; contributors submit their final work for evaluation.
             </div>
           </motion.div>
 
@@ -640,14 +644,14 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              6th June 2025
+               To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-              CA Applications Go Live
+              Result will be declared
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+              Final results are announced, recognizing top contributors and successful projects.
             </div>
           </motion.div>
         </motion.div>
@@ -814,7 +818,7 @@ export default function Home() {
               Testimonals
             </p>
             <h1 className="text-3xl md:text-6xl font-bold mb-4">
-              What People Say <br /> About Previos Editions
+              What People Say <br /> About Previous Editions
             </h1>
             <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
               A new era of open source contributions and learning.
@@ -822,7 +826,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
@@ -874,8 +878,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
+
+      <Testimonials/>
 
       <motion.section
         id="sponsor"
@@ -955,9 +961,14 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[14px] md:text-[18px] my-2">Maximize Visibility</div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+              Feature
+your brand across app,
+website, social media (500K+
+reach), newsletters, and
+event swag.
+
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -980,9 +991,14 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[14px] md:text-[18px] my-2">Engage & Activate</div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+             e: Host
+workshops, showcase tech,
+and integrate product tasks
+to reach 50,000+ developers
+directly.
+
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -1005,12 +1021,20 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Some Headline</div>
+            <div className="text-[14px] md:text-[18px] my-2">
+Community Impact</div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Some Strong Punchline For This
+             Champion gender equity in
+tech through measurable
+support—mentorship hours,
+project outcomes, and
+participant placements.
             </div>
           </motion.div>
         </motion.div>
+
+
+        <PastSponsors/>
 
         <motion.div
           variants={itemVariants}
@@ -1030,7 +1054,7 @@ export default function Home() {
             particleColor="#FFFFFF"
           />
           <div className="text-md md:text-6xl z-10 leading-[1.2] font-semibold w-11/12 text-balance text-center ">
-            Our mission is to design websites that attract and engage customers.
+            Bridging passion and purpose through impactful open source contributions!
           </div>
           <div className="text-[#A7ADBE] text-[10px] md:text-lg mt-2 md:mt-8 w-11/12 text-balance text-center">
             However, we approach things a bit differently around here.
