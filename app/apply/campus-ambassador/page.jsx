@@ -1,155 +1,150 @@
 "use client";
 import Image from "next/image";
 import bg from "@/assets/hero-bg-2.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 
-const CA = () => {
+const EVENT_NAME = "GirlScript Summer of Code 2025";
+const ROLE = "campus_ambassador";
+
+const initialFormData = {
+  name: "",
+  about: "",
+  gender: "",
+  phone: "",
+  college: "",
+  country: "",
+  city: "",
+  linkedIn: "",
+  github: "",
+  twitterUrl: "",
+  instagramUrl: "",
+  discordTag: "",
+  resumeUrl: "",
+  promotionPlan: "",
+  previousExperience: "",
+};
+
+export default function CampusAmbassadorApp() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState("email");
   const [status, setStatus] = useState("");
   const [user, setUser] = useState(null);
   const [applicationStatus, setApplicationStatus] = useState(null);
-  const [name, setName] = useState("");
-  const [about, setAbout] = useState("");
-  const [gender, setGender] = useState("");
-  const [phone, setPhone] = useState("");
-  const [college, setCollege] = useState("");
-  const [country, setCountry] = useState("");
-  const [city, setCity] = useState("");
-  const [linkedIn, setLinkedIn] = useState("");
-  const [github, setGithub] = useState("");
-  const [twitterUrl, setTwitterUrl] = useState("");
-  const [instagramUrl, setInstagramUrl] = useState("");
-  const [discordTag, setDiscordTag] = useState("");
-  const [resumeUrl, setResumeUrl] = useState("");
-  const [promotionPlan, setPromotionPlan] = useState("");
-  const [previousExperience, setPreviousExperience] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
+  const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
-    const checkSession = async () => {
+    let subscription;
+
+    const init = async () => {
       const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        const currentUser = data.session.user;
-        setUser(currentUser);
-        const { data: appData, error: appError } = await supabase
-          .from("events")
-          .select("application_id, status")
-          .eq("participant_id", currentUser.id)
-          .eq("role", "campus_ambassador")
-          .eq("event_name", "GirlScript Summer of Code 2025")
-          .maybeSingle();
-        if (appError) {
-          console.error("Error checking application:", appError.message);
-        } else if (appData) {
-          setApplicationStatus(appData.status || "under_review");
-        }
-      }
+      if (data?.session) handleUser(data.session.user);
     };
-    checkSession();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (session?.user) {
-          const currentUser = session.user;
-          setUser(currentUser);
-          setStep("email");
-          setStatus("");
-          const { data: appData, error: appError } = await supabase
-            .from("events")
-            .select("application_id, status")
-            .eq("participant_id", currentUser.id)
-            .eq("role", "campus_ambassador")
-            .eq("event_name", "GirlScript Summer of Code 2025")
-            .maybeSingle();
-          if (appError) {
-            console.error("Error checking application:", appError.message);
-          } else if (appData) {
-            setApplicationStatus(appData.status || "under_review");
-          }
-        } else {
-          setUser(null);
-          setStep("email");
-          setStatus("");
-          setApplicationStatus(null);
-        }
-      }
-    );
+    const authListener = supabase.auth.onAuthStateChange((_, session) => {
+      if (session?.user) handleUser(session.user);
+      else resetState();
+    });
 
-    return () => {
-      authListener.subscription.unsubscribe();
+    const handleUser = async (currentUser) => {
+      setUser(currentUser);
+      setStep("email");
+      setStatus("");
+      const { data: appData, error } = await supabase
+        .from("events")
+        .select("status")
+        .eq("participant_id", currentUser.id)
+        .eq("role", ROLE)
+        .eq("event_name", EVENT_NAME)
+        .maybeSingle();
+      if (error) console.error(error.message);
+      else setApplicationStatus(appData?.status || null);
     };
+
+    const resetState = () => {
+      setUser(null);
+      setStep("email");
+      setStatus("");
+      setApplicationStatus(null);
+    };
+
+    init();
+    subscription = authListener.data.subscription;
+    return () => subscription.unsubscribe();
   }, []);
 
-  const handleSubmitAuth = async (e) => {
-    e.preventDefault();
-    setStatus("Processing...");
-
-    if (step === "email") {
-      const { error } = await supabase.auth.signInWithOtp({ email });
-      if (error) {
-        setStatus(`Error sending OTP: ${error.message}`);
-      } else {
-        setStatus(`OTP sent to ${email}. Please check your inbox.`);
-        setStep("otp");
+  const handleAuthSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setStatus("Processing...");
+      try {
+        if (step === "email") {
+          const { error } = await supabase.auth.signInWithOtp({ email });
+          if (error) throw error;
+          setStatus(`OTP sent to ${email}.`);
+          setStep("otp");
+        } else {
+          const { data, error } = await supabase.auth.verifyOtp({
+            email,
+            token: otp,
+            type: "email",
+          });
+          if (error) throw error;
+          setStatus("Logged in successfully!");
+          handleUser(data.user);
+        }
+      } catch (err) {
+        setStatus(err.message);
       }
-    } else if (step === "otp") {
-      const { data, error } = await supabase.auth.verifyOtp({
-        email,
-        token: otp,
-        type: "email",
-      });
-      if (error) {
-        setStatus(`Error verifying OTP: ${error.message}`);
-      } else {
-        setStatus("Logged in successfully!");
-        setUser(data.user);
+    },
+    [email, otp, step]
+  );
+
+  const handleInputChange = useCallback((e) => {
+    const { name, value } = e.target;
+    if (name === "email") setEmail(value);
+    else if (name === "otp") setOtp(value);
+    else setFormData((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  const handleProfileSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setSubmitStatus("Submitting...");
+      try {
+        const payload = {
+          full_name: formData.name,
+          email: user.email,
+          about: formData.about,
+          gender: formData.gender,
+          phone: formData.phone,
+          college: formData.college,
+          country: formData.country,
+          city: formData.city,
+          linkedin_url: formData.linkedIn,
+          github_url: formData.github,
+          twitter_url: formData.twitterUrl,
+          instagram_url: formData.instagramUrl,
+          discord_tag: formData.discordTag,
+          resume_url: formData.resumeUrl,
+          promotion_plan: formData.promotionPlan,
+          previous_experience: formData.previousExperience,
+          status: "under_review",
+          role: ROLE,
+          event_name: EVENT_NAME,
+        };
+        const { error } = await supabase.from("events").insert(payload);
+        if (error) throw error;
+        setSubmitStatus("Application submitted! Under review.");
+        setApplicationStatus("under_review");
+      } catch (err) {
+        setSubmitStatus(err.message);
       }
-    }
-  };
-
-  const handleProfileSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitStatus("Submitting...");
-
-    try {
-      const { error } = await supabase.from("events").insert({
-        full_name: name,
-        email: user.email,
-        about,
-        gender,
-        phone,
-        college,
-        country,
-        city,
-        linkedin_url: linkedIn,
-        github_url: github,
-        twitter_url: twitterUrl,
-        instagram_url: instagramUrl,
-        discord_tag: discordTag,
-        resume_url: resumeUrl,
-        promotion_plan: promotionPlan,
-        previous_experience: previousExperience,
-        status: "under_review",
-        role: "campus_ambassador",
-        event_name: "GirlScript Summer of Code 2025",
-      });
-      if (error) console.error("Error saving application:", error.message);
-      if (error) throw error;
-      else {
-        console.log("Application saved successfully");
-      }
-
-      setSubmitStatus(
-        "Application submitted! Your application is under review."
-      );
-      setApplicationStatus("under_review");
-    } catch (err) {
-      setSubmitStatus(`Error saving application: ${err.message}`);
-    }
-  };
+    },
+    [formData, user]
+  );
 
   return (
     <div className="relative w-full min-h-screen font-sans text-[12px] md:text-[16px]">
@@ -157,7 +152,7 @@ const CA = () => {
         <div className="text-white text-[16px] md:text-2xl">GSSoC &apos;25</div>
         <a
           href="/"
-          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer"
+          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal"
         >
           Go Back
         </a>
@@ -189,29 +184,31 @@ const CA = () => {
 
           {!user ? (
             <form
-              onSubmit={handleSubmitAuth}
+              onSubmit={handleAuthSubmit}
               className="mb-8 bg-[#00041F] w-full md:w-[600px] px-4 py-2 rounded-full border border-[#0E122E] flex items-center justify-center shadow-2xl shadow-blue-500/20"
             >
               {step === "email" ? (
                 <input
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
-                  placeholder="Enter Your Email"
+                  name="email"
                   type="email"
+                  placeholder="Enter Your Email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
                 />
               ) : (
                 <input
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
-                  placeholder="Enter OTP"
+                  name="otp"
                   type="text"
+                  placeholder="Enter OTP"
                   required
                   value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
+                  onChange={handleInputChange}
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
                 />
               )}
-              <button className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer w-[140px]">
+              <button className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal w-[140px]">
                 {step === "email" ? "Send OTP" : "Verify OTP"}
               </button>
             </form>
@@ -233,212 +230,86 @@ const CA = () => {
               <h2 className="text-[14px] md:text-2xl font-semibold mb-4">
                 Campus Ambassador Application Form
               </h2>
-
-              <label className="block text-[10px] md:text-sm mb-1">Name</label>
-              <input
-                type="text"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Enter your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Email (auto-detected)
-              </label>
-              <input
-                type="email"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-gray-400 outline-none border border-[#0E122E]"
-                value={user ? user.email : email}
-                readOnly
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                About You
-              </label>
-              <textarea
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Tell us about yourself"
-                rows={4}
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Gender
-              </label>
-              <select
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                required
-              >
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="+1234567890"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                College
-              </label>
-              <input
-                type="text"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Your college/university"
-                value={college}
-                onChange={(e) => setCollege(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Country
-              </label>
-              <input
-                type="text"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">City</label>
-              <input
-                type="text"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="City"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                LinkedIn URL
-              </label>
-              <input
-                type="url"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="https://linkedin.com/in/yourprofile"
-                value={linkedIn}
-                required
-                onChange={(e) => setLinkedIn(e.target.value)}
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                GitHub URL
-              </label>
-              <input
-                type="url"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="https://github.com/yourusername"
-                value={github}
-                required
-                onChange={(e) => setGithub(e.target.value)}
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Twitter URL
-              </label>
-              <input
-                type="url"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="https://twitter.com/yourhandle"
-                value={twitterUrl}
-                required
-                onChange={(e) => setTwitterUrl(e.target.value)}
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Instagram URL
-              </label>
-              <input
-                type="url"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="https://instagram.com/yourhandle"
-                value={instagramUrl}
-                required
-                onChange={(e) => setInstagramUrl(e.target.value)}
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Discord Tag
-              </label>
-              <input
-                type="text"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="username#1234"
-                value={discordTag}
-                onChange={(e) => setDiscordTag(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Resume/Portfolio URL
-              </label>
-              <input
-                type="url"
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="https://yourdomain.com/portfolio"
-                value={resumeUrl}
-                required
-                onChange={(e) => setResumeUrl(e.target.value)}
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                How will you promote GSSoC'25 on your campus and other places?
-              </label>
-              <textarea
-                className="w-full mb-3 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Describe your promotional plan"
-                rows={4}
-                value={promotionPlan}
-                onChange={(e) => setPromotionPlan(e.target.value)}
-                required
-              />
-
-              <label className="block text-[10px] md:text-sm mb-1">
-                Previous experience with GirlScript or other open-source
-                programs
-              </label>
-              <textarea
-                className="w-full mb-4 px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
-                placeholder="Share any relevant experience"
-                rows={3}
-                value={previousExperience}
-                required
-                onChange={(e) => setPreviousExperience(e.target.value)}
-              />
-
+              {Object.entries(initialFormData).map(([key]) => (
+                <div key={key} className="mb-3">
+                  <label className="block text-[10px] md:text-sm mb-1 capitalize">
+                    {key.replace(/([A-Z])/g, " $1")}
+                  </label>
+                  {key === "about" ||
+                  key === "promotionPlan" ||
+                  key === "previousExperience" ? (
+                    <textarea
+                      name={key}
+                      rows={key === "previousExperience" ? 3 : 4}
+                      placeholder={
+                        key === "about"
+                          ? "Tell us about yourself"
+                          : key === "promotionPlan"
+                          ? "Describe your promotional plan"
+                          : "Share any relevant experience"
+                      }
+                      value={formData[key]}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
+                    />
+                  ) : key === "gender" ? (
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
+                    >
+                      <option value="">Select gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  ) : (
+                    <input
+                      name={key}
+                      type={
+                        [
+                          "linkedIn",
+                          "github",
+                          "twitterUrl",
+                          "instagramUrl",
+                          "resumeUrl",
+                        ].includes(key)
+                          ? "url"
+                          : "text"
+                      }
+                      placeholder={
+                        key === "resumeUrl"
+                          ? "https://yourdomain.com/portfolio"
+                          : key.includes("Url")
+                          ? `https://` +
+                            key.replace(/([A-Z])/g, "") +
+                            `.com/yourprofile`
+                          : ""
+                      }
+                      value={formData[key]}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 rounded-md bg-[#1A1F2E] text-white outline-none border border-[#0E122E]"
+                    />
+                  )}
+                </div>
+              ))}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer"
+                className="w-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal"
               >
                 Submit Application
               </button>
-
               {submitStatus && (
                 <p className="mt-3 text-sm text-[#A7ADBE]">{submitStatus}</p>
               )}
             </form>
           )}
-
           {!user && status && (
-            <p className="text-[10px] text-white bg-[#00041F] px-4 py-2 rounded-full">
+            <p className="text-[10px] text-white bg-[#00041F] px-4 py-2 rounded-full mt-4">
               {status}
             </p>
           )}
@@ -446,6 +317,4 @@ const CA = () => {
       </section>
     </div>
   );
-};
-
-export default CA;
+}
