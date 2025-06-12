@@ -325,7 +325,6 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          {/* TODO: Add metric charts here */}
           {/* <motion.div
             className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
             variants={itemVariants}
@@ -374,7 +373,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20"
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
             variants={itemVariants}
             initial="hidden"
             whileInView="show"
@@ -974,7 +973,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mt-12 gap-2 md:gap-8"
+          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-2 md:grid-rows-1 mt-12 gap-2 md:gap-8"
         >
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
