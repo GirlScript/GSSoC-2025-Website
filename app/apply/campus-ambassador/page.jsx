@@ -33,25 +33,36 @@ export default function CampusAmbassadorApp() {
   const [user, setUser] = useState(null);
   const [applicationStatus, setApplicationStatus] = useState(null);
   const [submitStatus, setSubmitStatus] = useState("");
+  const [loadingAuth, setLoadingAuth] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
     let subscription;
-
-    const init = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data?.session) handleUser(data.session.user);
-    };
-
-    const authListener = supabase.auth.onAuthStateChange((_, session) => {
-      if (session?.user) handleUser(session.user);
+    async function init() {
+      try {
+        const { data: sessionData, error: sessionError } =
+          await supabase.auth.getSession();
+        if (sessionError) throw sessionError;
+        if (sessionData.session) await handleUser(sessionData.session.user);
+      } catch (err) {
+        console.error("Session init error:", err.message);
+      }
+    }
+    const authListener = supabase.auth.onAuthStateChange(async (_, session) => {
+      if (session?.user) await handleUser(session.user);
       else resetState();
     });
+    init();
+    subscription = authListener.data.subscription;
+    return () => subscription?.unsubscribe();
+  }, []);
 
-    const handleUser = async (currentUser) => {
-      setUser(currentUser);
-      setStep("email");
-      setStatus("");
+  const handleUser = useCallback(async (currentUser) => {
+    setUser(currentUser);
+    setStep("email");
+    setStatus("");
+    try {
       const { data: appData, error } = await supabase
         .from("events")
         .select("status")
@@ -59,26 +70,27 @@ export default function CampusAmbassadorApp() {
         .eq("role", ROLE)
         .eq("event_name", EVENT_NAME)
         .maybeSingle();
-      if (error) console.error(error.message);
-      else setApplicationStatus(appData?.status || null);
-    };
+      if (error) throw error;
+      setApplicationStatus(appData?.status || null);
+    } catch (err) {
+      console.error("Fetch application status error:", err.message);
+      setStatus("Unable to fetch application status. Please try again later.");
+    }
+  }, []);
 
-    const resetState = () => {
-      setUser(null);
-      setStep("email");
-      setStatus("");
-      setApplicationStatus(null);
-    };
-
-    init();
-    subscription = authListener.data.subscription;
-    return () => subscription.unsubscribe();
+  const resetState = useCallback(() => {
+    setUser(null);
+    setStep("email");
+    setStatus("");
+    setApplicationStatus(null);
+    setFormData(initialFormData);
   }, []);
 
   const handleAuthSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      setStatus("Processing...");
+      setStatus("");
+      setLoadingAuth(true);
       try {
         if (step === "email") {
           const { error } = await supabase.auth.signInWithOtp({ email });
@@ -93,13 +105,16 @@ export default function CampusAmbassadorApp() {
           });
           if (error) throw error;
           setStatus("Logged in successfully!");
-          handleUser(data.user);
+          await handleUser(data.user);
         }
       } catch (err) {
-        setStatus(err.message);
+        console.error("Auth error:", err.message);
+        setStatus(err.message || "Authentication failed.");
+      } finally {
+        setLoadingAuth(false);
       }
     },
-    [email, otp, step]
+    [email, otp, step, handleUser]
   );
 
   const handleInputChange = useCallback((e) => {
@@ -112,9 +127,12 @@ export default function CampusAmbassadorApp() {
   const handleProfileSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      setSubmitStatus("Submitting...");
+      setStatus("");
+      setSubmitStatus("");
+      setLoadingSubmit(true);
       try {
         const payload = {
+          participant_id: user.id,
           full_name: formData.name,
           email: user.email,
           about: formData.about,
@@ -140,7 +158,10 @@ export default function CampusAmbassadorApp() {
         setSubmitStatus("Application submitted! Under review.");
         setApplicationStatus("under_review");
       } catch (err) {
-        setSubmitStatus(err.message);
+        console.error("Submit error:", err.message);
+        setSubmitStatus(err.message || "Submission failed. Please try again.");
+      } finally {
+        setLoadingSubmit(false);
       }
     },
     [formData, user]
@@ -167,7 +188,6 @@ export default function CampusAmbassadorApp() {
           alt="Background"
           className="absolute top-0 w-screen h-[300px] object-contain -z-10"
         />
-
         <div className="text-center text-white w-full flex flex-col items-center justify-center px-4 mt-48">
           <p className="text-lg mb-4 md:mb-8 text-[#A7ADBE] bg-[#00041F] text-[12px] inline-block px-4 py-2 rounded-full">
             Campus Ambassador Program
@@ -177,9 +197,10 @@ export default function CampusAmbassadorApp() {
           </h1>
           <p className="text-[10px] md:text-sm mb-8 text-[#A7ADBE]">
             Represent your campus and be a part of the largest open-source{" "}
-            <br /> community in India! Join us as a Campus Ambassador and help
-            spread <br /> the word about the GirlScript Summer of Code (GSSoC)
-            program.
+            <br />
+            community in India! Join us as a Campus Ambassador and help spread{" "}
+            <br />
+            the word about the GirlScript Summer of Code (GSSoC) program.
           </p>
 
           {!user ? (
@@ -195,7 +216,8 @@ export default function CampusAmbassadorApp() {
                   required
                   value={email}
                   onChange={handleInputChange}
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
+                  disabled={loadingAuth}
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE] disabled:opacity-50"
                 />
               ) : (
                 <input
@@ -205,14 +227,23 @@ export default function CampusAmbassadorApp() {
                   required
                   value={otp}
                   onChange={handleInputChange}
-                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE]"
+                  disabled={loadingAuth}
+                  className="bg-transparent outline-none border-none text-white mr-2 w-full placeholder:text-[#A7ADBE] disabled:opacity-50"
                 />
               )}
-              <button className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal w-[140px]">
-                {step === "email" ? "Send OTP" : "Verify OTP"}
+              <button
+                type="submit"
+                disabled={loadingAuth}
+                className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal w-[140px] disabled:opacity-50"
+              >
+                {loadingAuth
+                  ? "Processing..."
+                  : step === "email"
+                  ? "Send OTP"
+                  : "Verify OTP"}
               </button>
             </form>
-          ) : applicationStatus !== null ? (
+          ) : applicationStatus ? (
             <div className="mb-8 bg-[#00041F] p-6 rounded-lg border border-[#0E122E] md:w-3/5 w-auto text-white flex flex-col items-center shadow-2xl shadow-blue-500/20">
               <h2 className="md:text-xl font-semibold mb-2">
                 Application Status
@@ -284,9 +315,9 @@ export default function CampusAmbassadorApp() {
                         key === "resumeUrl"
                           ? "https://yourdomain.com/portfolio"
                           : key.includes("Url")
-                          ? `https://` +
-                            key.replace(/([A-Z])/g, "") +
-                            `.com/yourprofile`
+                          ? `https://${key
+                              .replace(/([A-Z])/g, "")
+                              .toLowerCase()}.com/yourprofile`
                           : ""
                       }
                       value={formData[key]}
@@ -299,9 +330,10 @@ export default function CampusAmbassadorApp() {
               ))}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal"
+                disabled={loadingSubmit}
+                className="w-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal disabled:opacity-50"
               >
-                Submit Application
+                {loadingSubmit ? "Submitting..." : "Submit Application"}
               </button>
               {submitStatus && (
                 <p className="mt-3 text-sm text-[#A7ADBE]">{submitStatus}</p>
