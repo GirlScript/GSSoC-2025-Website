@@ -40,6 +40,7 @@ import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
+import { AreaChartComponent, BarChartComponent, RadarChartComponent } from "@/components/Charts";
 
 const containerVariants = {
   hidden: {},
@@ -318,13 +319,13 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mb-12 gap-4 mt-[80px] md:mt-[120px] items-center justify-items-center"
+          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 mb-12 gap-4 mt-[80px] md:mt-[120px] items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          <motion.div
+          {/* <motion.div
             className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
             variants={itemVariants}
             initial="hidden"
@@ -350,9 +351,38 @@ export default function Home() {
                Build Projects. Build Skills. Build Your Career
               </div>
             </div>
+          </motion.div> */}
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <BarChartComponent />
           </motion.div>
 
           <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <AreaChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <RadarChartComponent />
+          </motion.div>
+
+          {/* <motion.div
             className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20"
             variants={itemVariants}
             initial="hidden"
@@ -376,8 +406,6 @@ export default function Home() {
               </div>
               <div className="text-[#A7ADBE] text-[14px] w-full text-center">
                 Maximize Impact. Maximize You.
-
-
               </div>
             </div>
           </motion.div>
@@ -408,7 +436,7 @@ export default function Home() {
                 Contribute Boldly. Shine Brightly.
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         <motion.div
@@ -432,18 +460,17 @@ export default function Home() {
           viewport={{ once: false, amount: 0.3 }}
           className="w-11/12 md:w-5/6 border border-[#131839] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] mt-12 rounded-3xl aspect-video p-2 shadow-2xl shadow-blue-500/20"
         >
-         <iframe
-  width="100%"
-  height="100%"
-  src="https://www.youtube.com/embed/yi_LounnOk0?autoplay=1&loop=1&playlist=yi_LounnOk0&controls=0&rel=0&showinfo=0&modestbranding=1"
-  title="GSSoC 2024 Video"
-  frameBorder="0"
-  allow="autoplay; encrypted-media"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen
-  className="rounded-3xl"
-/>
-
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/yi_LounnOk0?autoplay=1&loop=1&playlist=yi_LounnOk0&controls=0&rel=0&showinfo=0&modestbranding=1"
+            title="GSSoC 2024 Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="rounded-3xl"
+          />
         </motion.div>
       </motion.section>
 
@@ -524,10 +551,11 @@ export default function Home() {
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Project Assignment to Mentors
+              Project Assignment to Mentors
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Mentors are assigned to projects and begin preparing to guide contributors throughout the program.
+              Mentors are assigned to projects and begin preparing to guide
+              contributors throughout the program.
             </div>
           </motion.div>
 
@@ -545,14 +573,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-             23th June 2025
+              23th June 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Community Bonding Period Starts
+              Community Bonding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Contributors and mentors interact, discuss project goals, and get familiar with the community.
+              Contributors and mentors interact, discuss project goals, and get
+              familiar with the community.
             </div>
           </motion.div>
 
@@ -577,7 +606,8 @@ export default function Home() {
               Coding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             Contributors officially start working on their assigned open source projects under mentor supervision.
+              Contributors officially start working on their assigned open
+              source projects under mentor supervision.
             </div>
           </motion.div>
 
@@ -595,14 +625,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-                 To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Leaderboard Opens
+              Leaderboard Opens
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-            The leaderboard is made public, allowing participants to track their progress and contributions.
+              The leaderboard is made public, allowing participants to track
+              their progress and contributions.
             </div>
           </motion.div>
 
@@ -620,13 +651,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-            To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Coding Period Ends
+              Coding Period Ends
             </div>
-            <div className="text-[12px] text-[#A7ADBE]">The official coding phase concludes; contributors submit their final work for evaluation.
+            <div className="text-[12px] text-[#A7ADBE]">
+              The official coding phase concludes; contributors submit their
+              final work for evaluation.
             </div>
           </motion.div>
 
@@ -644,14 +677,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-               To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
               Result will be declared
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Final results are announced, recognizing top contributors and successful projects.
+              Final results are announced, recognizing top contributors and
+              successful projects.
             </div>
           </motion.div>
         </motion.div>
@@ -881,7 +915,7 @@ export default function Home() {
         </motion.div> */}
       </motion.section>
 
-      <Testimonials/>
+      <Testimonials />
 
       <motion.section
         id="sponsor"
@@ -939,7 +973,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mt-12 gap-2 md:gap-8"
+          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-2 md:grid-rows-1 mt-12 gap-2 md:gap-8"
         >
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -961,14 +995,12 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Maximize Visibility</div>
+            <div className="text-[14px] md:text-[18px] my-2">
+              Maximize Visibility
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Feature
-your brand across app,
-website, social media (500K+
-reach), newsletters, and
-event swag.
-
+              Feature your brand across app, website, social media (500K+
+              reach), newsletters, and event swag.
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -991,14 +1023,12 @@ event swag.
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Engage & Activate</div>
+            <div className="text-[14px] md:text-[18px] my-2">
+              Engage & Activate
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             e: Host
-workshops, showcase tech,
-and integrate product tasks
-to reach 50,000+ developers
-directly.
-
+              e: Host workshops, showcase tech, and integrate product tasks to
+              reach 50,000+ developers directly.
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -1022,19 +1052,17 @@ directly.
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-Community Impact</div>
+              Community Impact
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             Champion gender equity in
-tech through measurable
-support—mentorship hours,
-project outcomes, and
-participant placements.
+              Champion gender equity in tech through measurable
+              support—mentorship hours, project outcomes, and participant
+              placements.
             </div>
           </motion.div>
         </motion.div>
 
-
-        <PastSponsors/>
+        <PastSponsors />
 
         <motion.div
           variants={itemVariants}
@@ -1054,7 +1082,8 @@ participant placements.
             particleColor="#FFFFFF"
           />
           <div className="text-md md:text-6xl z-10 leading-[1.2] font-semibold w-11/12 text-balance text-center ">
-            Bridging passion and purpose through impactful open source contributions!
+            Bridging passion and purpose through impactful open source
+            contributions!
           </div>
           <div className="text-[#A7ADBE] text-[10px] md:text-lg mt-2 md:mt-8 w-11/12 text-balance text-center">
             However, we approach things a bit differently around here.
@@ -1085,7 +1114,13 @@ participant placements.
           </a>
         </div>
         <div className="flex flex-row justify-center items-center mt-12">
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/company/girlscriptsoc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -1093,11 +1128,18 @@ participant placements.
             />
             <Image
               src={linkedin}
-              alt="Icon"
+              alt="LinkedIn Icon"
               className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
+
+          {/* Twitter/X */}
+          <a
+            href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -1105,11 +1147,18 @@ participant placements.
             />
             <Image
               src={twitter}
-              alt="Icon"
+              alt="Twitter Icon"
               className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
             <Image
               src={iconbg}
               alt="Background"
@@ -1117,7 +1166,7 @@ participant placements.
             />
             <Image
               src={instagram}
-              alt="Icon"
+              alt="Instagram Icon"
               className="absolute w-11/12 h-3/5 object-cover"
             />
           </a>

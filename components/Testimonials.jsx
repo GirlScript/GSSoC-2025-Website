@@ -18,6 +18,18 @@ const testimonials = [
     feedback: `Being part of the GSSoC core team has been an epic adventure...`,
   },
   {
+    name: "Anchal Chaturvedi",
+    imgUrl: "https://drive.google.com/uc?id=1D4rzFbw4oGlLOqZKDLOBpcNGJuvk8xDq",
+    role: "Contributor & Ambassador",
+    feedback: `Throughout this journey, all the mentors were very supportive and helpful at every step. This was the beginning of my open source journey, and I learned a lot from it.`,
+  },
+  {
+    name: "Vuppala Sai Srija",
+    imgUrl: "https://drive.google.com/uc?id=1ZV2bJWGGquPMK_NYBFSqVucHinNjArkp",
+    role: "Contributor",
+    feedback: `My journey through GSSoC'24 has been an exciting blend of learning and achievement. Although I started late due to exams, I was able to...`,
+  },
+  {
     name: "Jeevana Maradana",
     imgUrl: "https://drive.google.com/uc?id=1HJYiiz--2ILG_MueuwdflGxlcxyeAfE1",
     role: "Core Team Member",
@@ -47,6 +59,7 @@ const testimonials = [
     role: "Contributor & Ambassador",
     feedback: `Participating in GSSoC 2024 has been an incredibly rewarding journey...`,
   },
+
 ];
 
 const Testimonials = () => {
