@@ -40,7 +40,7 @@ import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
-import { AreaChartComponent, BarChartComponent, RadarChartComponent } from "@/components/Charts";
+import { AreaChartComponent, BarChartComponent, RadarChartComponent, LineChartComponent, PieChartComponent, ComposedChartComponent } from "@/components/Charts";
 import CountUp from '@/components/CountUp';
 
 const containerVariants = {
@@ -276,7 +276,6 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* TODO: Add Know about GSSoC section */}
       <motion.section
         id="about"
         initial="hidden"
@@ -302,7 +301,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* TODO: Add the increasing number elements section here */}
         <motion.div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
           <motion.div 
             variants={itemVariants}
@@ -353,7 +351,76 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
+        <motion.div
+          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 mb-12 gap-4 mt-[80px] md:mt-8 items-center justify-items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <BarChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <AreaChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <RadarChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <LineChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <PieChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <ComposedChartComponent />
+          </motion.div>
+        </motion.div>
       </motion.section>
+
+      
 
       <motion.section
         id="why-gssoc"
@@ -396,127 +463,6 @@ export default function Home() {
               A new era of open source contributions and learning.
             </p>
           </div>
-        </motion.div>
-
-        <motion.div
-          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 mb-12 gap-4 mt-[80px] md:mt-[120px] items-center justify-items-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          {/* <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg6}
-              alt="Background"
-              className="absolute right-0 top-0 h-full object-cover"
-            />
-            <Image
-              src={needle2}
-              alt="Background"
-              className="absolute object-cover transition-transform duration-500 translate-y-12 translate-x-24 group-hover:translate-x-60  group-hover:-translate-y-12"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Grow Your Career
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-               Build Projects. Build Skills. Build Your Career
-              </div>
-            </div>
-          </motion.div> */}
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <BarChartComponent />
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <AreaChartComponent />
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <RadarChartComponent />
-          </motion.div>
-
-          {/* <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg7}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-            <Image
-              src={needle}
-              alt="Background"
-              className="absolute object-cover -translate-y-12 origin-bottom -rotate-[60deg] transition-transform duration-500 group-hover:rotate-[60deg]"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Maximize Your Potential
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-                Maximize Impact. Maximize You.
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg4}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-            <Image
-              src={cardbg8}
-              alt="Background"
-              className="absolute object-cover transition-transform duration-500 group-hover:-translate-y-8"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Stand Out From The Crowd
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-                Contribute Boldly. Shine Brightly.
-              </div>
-            </div>
-          </motion.div> */}
         </motion.div>
 
         <motion.div
