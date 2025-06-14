@@ -41,6 +41,7 @@ import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
 import { AreaChartComponent, BarChartComponent, RadarChartComponent } from "@/components/Charts";
+import CountUp from '@/components/CountUp';
 
 const containerVariants = {
   hidden: {},
@@ -197,13 +198,13 @@ export default function Home() {
               Founded in 2017 by Anubha Maheshwar, Girlscript is a
               not-for-profit organization dedicated to making quality education
               accessible for all. With a mission to empower individuals through
-              learning, we’ve built a vibrant community of over 500,000
+              learning, we&apos;ve built a vibrant community of over 500,000
               learners. Our programs focus on skill development, mentorship, and
               career guidance, bridging the gap between education and the
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner’s growth is a shared success. Join us in
+              Girlscript, every learner&apos;s growth is a shared success. Join us in
               shaping a future where education is a right—not a privilege—and
               where everyone can thrive.
             </p>
@@ -273,6 +274,85 @@ export default function Home() {
             />
           </a>
         </motion.div>
+      </motion.section>
+
+      {/* TODO: Add Know about GSSoC section */}
+      <motion.section
+        id="about"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-screen mt-40 h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
+      >
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
+        >
+          <div className="text-center text-white z-20 flex flex-col items-center">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
+              Know About <br /> GirlScript Summer Of Code
+            </h1>
+            <p className="w-11/12 text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
+            GirlScript Summer of Code is the 3-month long Open Source program during summers conducted by GirlScript Foundation, started in 2018, to help beginners get started with Open Source Development while encouraging diversity. Throughout the program, participants contribute to different projects under the guidance of experienced mentors. Top participants get exciting goodies and opportunities.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* TODO: Add the increasing number elements section here */}
+        <motion.div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={42} suffix="k+"/>
+            <div className="text-[#A7ADBE] text-sm md:text-base">Registrations</div>
+          </motion.div>
+
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={200} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">Institutes</div>
+          </motion.div>
+
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={21} suffix="K+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants} 
+            className="flex flex-col items-center"
+          >
+            <CountUp end={20} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">Countries</div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={30} suffix="K+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">Participants</div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={500} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">Total Projects</div>
+          </motion.div>
+        </motion.div>
+
       </motion.section>
 
       <motion.section
