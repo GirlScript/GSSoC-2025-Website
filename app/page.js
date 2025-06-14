@@ -41,6 +41,8 @@ import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
 
+import Link from 'next/link';
+
 const containerVariants = {
   hidden: {},
   show: {
@@ -783,6 +785,15 @@ export default function Home() {
       </motion.section>
       */}
 
+
+      <div className="text-center my-16">
+  <Link href="/faqs">
+    <span className="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full text-xl font-semibold shadow-lg hover:scale-105 transition duration-300 cursor-pointer">
+      🤔 View FAQs – GSSoC '25
+    </span>
+  </Link>
+</div>
+
       <motion.section
         id="testimonials"
         initial="hidden"
@@ -880,6 +891,7 @@ export default function Home() {
           </div>
         </motion.div> */}
       </motion.section>
+
 
       <Testimonials/>
 
@@ -1084,44 +1096,65 @@ participant placements.
             Contact Us
           </a>
         </div>
-        <div className="flex flex-row justify-center items-center mt-12">
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
-            <Image
-              src={iconbg}
-              alt="Background"
-              className="w-full h-full object-cover"
-            />
-            <Image
-              src={linkedin}
-              alt="Icon"
-              className="absolute w-11/12 h-3/5 object-cover"
-            />
-          </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4">
-            <Image
-              src={iconbg}
-              alt="Background"
-              className="w-full h-full object-cover"
-            />
-            <Image
-              src={twitter}
-              alt="Icon"
-              className="absolute w-11/12 h-3/5 object-cover"
-            />
-          </a>
-          <a className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative ">
-            <Image
-              src={iconbg}
-              alt="Background"
-              className="w-full h-full object-cover"
-            />
-            <Image
-              src={instagram}
-              alt="Icon"
-              className="absolute w-11/12 h-3/5 object-cover"
-            />
-          </a>
-        </div>
+    <div className="flex flex-row justify-center items-center mt-12">
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/company/girlscriptsoc/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+  >
+    <Image
+      src={iconbg}
+      alt="Background"
+      className="w-full h-full object-cover"
+    />
+    <Image
+      src={linkedin}
+      alt="LinkedIn Icon"
+      className="absolute w-11/12 h-3/5 object-cover"
+    />
+  </a>
+
+  {/* Twitter/X */}
+  <a
+    href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
+  >
+    <Image
+      src={iconbg}
+      alt="Background"
+      className="w-full h-full object-cover"
+    />
+    <Image
+      src={twitter}
+      alt="Twitter Icon"
+      className="absolute w-11/12 h-3/5 object-cover"
+    />
+  </a>
+
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
+    target="_blank"
+    rel="noopener noreferrer"
+    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+  >
+    <Image
+      src={iconbg}
+      alt="Background"
+      className="w-full h-full object-cover"
+    />
+    <Image
+      src={instagram}
+      alt="Instagram Icon"
+      className="absolute w-11/12 h-3/5 object-cover"
+    />
+  </a>
+</div>
+
       </motion.section>
     </div>
   );
