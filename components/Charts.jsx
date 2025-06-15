@@ -149,7 +149,7 @@ export function BarChartComponent() {
             height={60}
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
           />
-          <YAxis 
+          <YAxis
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
             tickFormatter={formatNumber}
           />
@@ -192,7 +192,7 @@ export function AreaChartComponent() {
             height={60}
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
           />
-          <YAxis 
+          <YAxis
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
             tickFormatter={formatNumber}
           />
@@ -248,7 +248,7 @@ export function RadarChartComponent() {
             tick={{ fontSize: 13, fill: "#A7ADFE" }}
             className="text-center text-sm md:text-base"
           />
-          <PolarRadiusAxis 
+          <PolarRadiusAxis
             tick={{ fill: "#A7ADFE", fontSize: 11 }}
             tickFormatter={formatNumber}
           />
@@ -278,7 +278,7 @@ export function LineChartComponent() {
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />
           <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 11 }} />
-          <YAxis 
+          <YAxis
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
             tickFormatter={formatNumber}
           />
@@ -308,7 +308,7 @@ export function PieChartComponent() {
   return (
     <div>
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
-        Registrations From Contributors
+        Contributor Registrations
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
@@ -316,14 +316,15 @@ export function PieChartComponent() {
             data={registrationsFromContributorsData}
             cx="50%"
             cy="50%"
+            fontSize={12}
             labelLine={false}
-            outerRadius={100}
+            outerRadius={60}
             fill="#8884d8"
             dataKey="value"
             label={({ name, percent }) =>
               `${name} ${(percent * 100).toFixed(0)}%`
             }
-          >
+            >
             {pullRequestsData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
@@ -341,7 +342,7 @@ export function ComposedChartComponent() {
   return (
     <div>
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
-        Contributors Making It Onto Leaderboard
+        Active Participants
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <ComposedChart
@@ -350,7 +351,7 @@ export function ComposedChartComponent() {
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />
           <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 11 }} />
-          <YAxis 
+          <YAxis
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
             tickFormatter={formatNumber}
           />

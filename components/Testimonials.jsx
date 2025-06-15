@@ -21,7 +21,7 @@ const testimonials = [
     name: "Anchal Chaturvedi",
     imgUrl: "https://drive.google.com/uc?id=1D4rzFbw4oGlLOqZKDLOBpcNGJuvk8xDq",
     role: "Contributor & Ambassador",
-    feedback: `Throughout this journey, all the mentors were very supportive and helpful at every step. This was the beginning of my open source journey, and I learned a lot from it.`,
+    feedback: `Throughout this journey, all the mentors were very supportive and helpful at every step...`,
   },
   {
     name: "Vuppala Sai Srija",
@@ -105,7 +105,18 @@ const Testimonials = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="relative min-w-[500px] aspect-5/3 border border-[#131839] bg-radial from-[#003BFF24] to-[#00020F] rounded-3xl p-6 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44"
+          className="
+            relative
+            min-w-[300px] max-w-[95vw] sm:min-w-[400px] md:min-w-[500px]
+            aspect-5/3
+            border border-[#131839]
+            bg-radial from-[#003BFF24] to-[#00020F]
+            rounded-3xl
+            p-3 md:p-6
+            flex flex-col items-center justify-center
+            shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]
+            mt-12 md:mt-32 mb-20 md:mb-44
+          "
         >
           <Image
             src={cardbg9}
@@ -118,7 +129,7 @@ const Testimonials = () => {
             <Image src={commas} alt="Icon" width={48} height={48} />
           </div>
 
-          <div className="text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-auto">
+          <div className="text-sm md:text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-auto">
             {item.feedback}
           </div>
 
@@ -135,8 +146,8 @@ const Testimonials = () => {
               />
             </div>
             <div className="ml-4 text-left">
-              <div className="text-[18px] font-medium">{item.name}</div>
-              <div className="text-sm text-[#A7ADBE]">{item.role}</div>
+              <div className="text-sm md:text-[18px] font-medium">{item.name}</div>
+              <div className="text-balance md:text-sm text-[#A7ADBE]">{item.role}</div>
             </div>
           </div>
         </motion.div>

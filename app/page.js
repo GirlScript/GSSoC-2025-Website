@@ -970,8 +970,9 @@ export default function Home() {
           </div>
         </motion.div> */}
       </motion.section>
-
-      <Testimonials />
+      <div className="w-full">
+        <Testimonials />
+      </div>
 
       <motion.section
         id="sponsor"
