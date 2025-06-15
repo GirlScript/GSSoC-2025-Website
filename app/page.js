@@ -365,6 +365,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <BarChartComponent />
           </motion.div>
 
@@ -375,6 +380,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <AreaChartComponent />
           </motion.div>
 
@@ -385,6 +395,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <RadarChartComponent />
           </motion.div>
 
@@ -395,6 +410,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <LineChartComponent />
           </motion.div>
 
@@ -405,6 +425,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <PieChartComponent />
           </motion.div>
 
@@ -415,6 +440,11 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: false, amount: 0.3 }}
           >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
             <ComposedChartComponent />
           </motion.div>
         </motion.div>

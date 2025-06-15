@@ -69,7 +69,60 @@ const linkedinFollowersData = [
   },
 ];
 
+const projectAdminRegistrationsData = [
+  {
+    name: "GSSoC'23",
+    value: 18000,
+  },
+  {
+    name: "GSSoC'24",
+    value: 24000,
+  },
+  {
+    name: "GSSoC'24 Ext",
+    value: 29000,
+  },
+];
+
+const contributorsMakingItOntoLeaderboardData = [
+  {
+    name: "GSSoC'23",
+    value: 26000,
+  },
+  {
+    name: "GSSoC'24",
+    value: 31000,
+  },
+  {
+    name: "GSSoC'24 Ext",
+    value: 36000,
+  },
+];
+
+const registrationsFromContributorsData = [
+  {
+    name: "GSSoC'23",
+    value: 33000,
+  },
+  {
+    name: "GSSoC'24",
+    value: 40000,
+  },
+  {
+    name: "GSSoC'24 Ext",
+    value: 47000,
+  },
+];
+
 const COLORS = ["#4C75FF", "#1A4FFF", "#A7ADFE"];
+
+// Format number to k format
+const formatNumber = (value) => {
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(0)}k`;
+  }
+  return value;
+};
 
 export function BarChartComponent() {
   return (
@@ -96,17 +149,21 @@ export function BarChartComponent() {
             height={60}
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
           />
-          <YAxis tick={{ fill: "#A7ADFE", fontSize: 13 }} />
+          <YAxis 
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+            tickFormatter={formatNumber}
+          />
           <Bar
             dataKey="value"
             fill="#4C75FF"
-            radius={[8, 8, 0, 0]}
-            activeBar={<Rectangle fill="#1A4FFF" stroke="#000055" />}
+            radius={[4, 4, 0, 0]}
+            activeBar={<Rectangle fill="#1A4FFF" stroke="#000055" width={3} />}
           >
             <LabelList
               dataKey="value"
               position="top"
               style={{ fill: "#fff", fontWeight: 600 }}
+              formatter={formatNumber}
             />
           </Bar>
         </BarChart>
@@ -121,10 +178,10 @@ export function AreaChartComponent() {
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
         Campus Ambassadors
       </h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="90%" height={300} className="px-1">
         <AreaChart
           data={campusAmbassadorsData}
-          margin={{ top: 20, right: 10, left: 10, bottom: 0 }}
+          margin={{ top: 20, right: 15, left: 10, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="1 1" stroke="#232D6B" />
           <XAxis
@@ -135,7 +192,10 @@ export function AreaChartComponent() {
             height={60}
             tick={{ fill: "#A7ADFE", fontSize: 13 }}
           />
-          <YAxis tick={{ fill: "#A7ADFE", fontSize: 13 }} />
+          <YAxis 
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+            tickFormatter={formatNumber}
+          />
           <Tooltip
             wrapperClassName="border-[20px] border-red-500"
             contentStyle={{
@@ -144,6 +204,7 @@ export function AreaChartComponent() {
               color: "#fff",
             }}
             labelStyle={{ color: "#A7ADFE" }}
+            formatter={formatNumber}
           />
           <Area
             type="monotone"
@@ -158,6 +219,7 @@ export function AreaChartComponent() {
               dataKey="value"
               position="top"
               style={{ fill: "#fff", fontWeight: 600 }}
+              formatter={formatNumber}
             />
           </Area>
         </AreaChart>
@@ -169,29 +231,33 @@ export function AreaChartComponent() {
 export function RadarChartComponent() {
   return (
     <div>
-      <h3 className="w-full text-center text-[#A7ADFE] mb-4 font-semibold text-xl">
+      <h3 className="w-full text-center text-[#A7ADFE] font-semibold text-xl">
         LinkedIn Followers
       </h3>
-      <ResponsiveContainer width={300} height={300}>
+      <ResponsiveContainer width={430} height={300}>
         <RadarChart
           cx="55%"
           cy="50%"
-          outerRadius="95%"
+          outerRadius="60%"
           data={linkedinFollowersData}
           margin={{ left: 0, right: 0, top: 20, bottom: 10 }}
         >
           <PolarGrid stroke="#232D6B" />
           <PolarAngleAxis
             dataKey="name"
-            tick={{ fontSize: 16, fill: "#A7ADFE" }}
+            tick={{ fontSize: 13, fill: "#A7ADFE" }}
+            className="text-center text-sm md:text-base"
           />
-          <PolarRadiusAxis tick={{ fill: "#A7ADFE", fontSize: 13 }} />
+          <PolarRadiusAxis 
+            tick={{ fill: "#A7ADFE", fontSize: 11 }}
+            tickFormatter={formatNumber}
+          />
           <Radar
             name="Followers"
             dataKey="value"
             stroke="#4C75FF"
             fill="#4C75FF"
-            fillOpacity={0.4}
+            fillOpacity={0.3}
           />
         </RadarChart>
       </ResponsiveContainer>
@@ -207,12 +273,15 @@ export function LineChartComponent() {
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart
-          data={pullRequestsData}
+          data={projectAdminRegistrationsData}
           margin={{ top: 20, right: 10, left: 10, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />
-          <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 13 }} />
-          <YAxis tick={{ fill: "#A7ADFE", fontSize: 13 }} />
+          <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 11 }} />
+          <YAxis 
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+            tickFormatter={formatNumber}
+          />
           <Tooltip
             contentStyle={{
               background: "#232D6B",
@@ -220,6 +289,7 @@ export function LineChartComponent() {
               color: "#fff",
             }}
             labelStyle={{ color: "#A7ADFE" }}
+            formatter={formatNumber}
           />
           <Line
             type="monotone"
@@ -243,7 +313,7 @@ export function PieChartComponent() {
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
-            data={pullRequestsData}
+            data={registrationsFromContributorsData}
             cx="50%"
             cy="50%"
             labelLine={false}
@@ -261,14 +331,6 @@ export function PieChartComponent() {
               />
             ))}
           </Pie>
-          {/* <Tooltip
-            contentStyle={{
-              background: "#232D6B",
-              border: "none",
-              color: "#fff",
-            }}
-            labelStyle={{ color: "#A7ADFE" }}
-          /> */}
         </PieChart>
       </ResponsiveContainer>
     </div>
@@ -283,12 +345,15 @@ export function ComposedChartComponent() {
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <ComposedChart
-          data={pullRequestsData}
-          margin={{ top: 20, right: 10, left: 10, bottom: 10 }}
+          data={contributorsMakingItOntoLeaderboardData}
+          margin={{ top: 20, right: 0, left: 0, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />
-          <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 13 }} />
-          <YAxis tick={{ fill: "#A7ADFE", fontSize: 13 }} />
+          <XAxis dataKey="name" tick={{ fill: "#A7ADFE", fontSize: 11 }} />
+          <YAxis 
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+            tickFormatter={formatNumber}
+          />
           <Tooltip
             contentStyle={{
               background: "#232D6B",
@@ -296,6 +361,7 @@ export function ComposedChartComponent() {
               color: "#fff",
             }}
             labelStyle={{ color: "#A7ADFE" }}
+            formatter={formatNumber}
           />
           <Area
             type="monotone"
