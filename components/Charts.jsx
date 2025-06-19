@@ -35,7 +35,7 @@ const pullRequestsData = [
   },
   {
     name: "GSSoC'24 Ext",
-    value: 36000,
+    value: 35000,
   },
 ];
 
@@ -95,7 +95,7 @@ const contributorsMakingItOntoLeaderboardData = [
   },
   {
     name: "GSSoC'24 Ext",
-    value: 36000,
+    value: 35000,
   },
 ];
 

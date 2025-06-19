@@ -322,7 +322,7 @@ export default function Home() {
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={21} suffix="K+" />
+            <CountUp end={35} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
           </motion.div>
 
@@ -338,7 +338,7 @@ export default function Home() {
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={30} suffix="K+" />
+            <CountUp end={35} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">Participants</div>
           </motion.div>
 
@@ -352,7 +352,7 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 mb-12 gap-4 mt-[80px] md:mt-8 items-center justify-items-center"
+          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-2 gap-4 mt-[80px] md:mt-8 items-center justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
