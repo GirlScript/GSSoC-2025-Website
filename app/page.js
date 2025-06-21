@@ -345,7 +345,7 @@ export default function Home() {
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={21} suffix="K+" />
+            <CountUp end={35} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
           </motion.div>
 

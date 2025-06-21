@@ -112,7 +112,7 @@ const contributorsMakingItOntoLeaderboardData = [
   },
   {
     name: "GSSoC'24 Ext",
-    value: 36000,
+    value: 35000,
   },
 ];
 
