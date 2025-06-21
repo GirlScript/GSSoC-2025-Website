@@ -22,35 +22,52 @@ import {
   Pie,
   Cell,
   ComposedChart,
+  RadialBarChart,
+  RadialBar,
 } from "recharts";
 
 const pullRequestsData = [
   {
     name: "GSSoC'23",
-    value: 27000,
+    value: 7000,
   },
   {
     name: "GSSoC'24",
-    value: 29000,
+    value: 18000,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 35000,
+    value: 21000,
+  },
+];
+
+const mentorRegistrationsData = [
+  {
+    name: "GSSoC'23",
+    value: 180,
+  },
+  {
+    name: "GSSoC'24",
+    value: 400,
+  },
+  {
+    name: "GSSoC'24 Ext",
+    value: 700,
   },
 ];
 
 const campusAmbassadorsData = [
   {
     name: "GSSoC'23",
-    value: 27000,
+    value: 100,
   },
   {
     name: "GSSoC'24",
-    value: 29000,
+    value: 700,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 36000,
+    value: 1083,
   },
 ];
 
@@ -158,14 +175,7 @@ export function BarChartComponent() {
             fill="#4C75FF"
             radius={[4, 4, 0, 0]}
             activeBar={<Rectangle fill="#1A4FFF" stroke="#000055" width={3} />}
-          >
-            <LabelList
-              dataKey="value"
-              position="top"
-              style={{ fill: "#fff", fontWeight: 600 }}
-              formatter={formatNumber}
-            />
-          </Bar>
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -213,15 +223,8 @@ export function AreaChartComponent() {
             fill="#A7ADFE"
             fillOpacity={0.25}
             strokeWidth={3}
-            dot={{ r: 5, fill: "#4C75FF" }}
-          >
-            <LabelList
-              dataKey="value"
-              position="top"
-              style={{ fill: "#fff", fontWeight: 600 }}
-              formatter={formatNumber}
-            />
-          </Area>
+            dot={{ r: 3, fill: "#4C75FF" }}
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>
@@ -296,7 +299,7 @@ export function LineChartComponent() {
             dataKey="value"
             stroke="#4C75FF"
             strokeWidth={3}
-            dot={{ r: 6, fill: "#4C75FF" }}
+            dot={{ r: 4, fill: "#4C75FF" }}
           />
         </LineChart>
       </ResponsiveContainer>
@@ -304,35 +307,92 @@ export function LineChartComponent() {
   );
 }
 
-export function PieChartComponent() {
+export function HorizontalBarChartComponent() {
   return (
     <div>
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
         Contributor Registrations
       </h3>
       <ResponsiveContainer width="100%" height={300}>
-        <PieChart>
-          <Pie
-            data={registrationsFromContributorsData}
-            cx="50%"
-            cy="50%"
-            fontSize={12}
-            labelLine={false}
-            outerRadius={60}
-            fill="#8884d8"
+        <BarChart
+          data={registrationsFromContributorsData}
+          layout="vertical"
+          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />
+          <XAxis
+            type="number"
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+            tickFormatter={formatNumber}
+          />
+          <YAxis
+            type="category"
+            dataKey="name"
+            width={80}
+            tick={{ fill: "#A7ADFE", fontSize: 13 }}
+          />
+          <Tooltip
+            contentStyle={{
+              background: "#232D6B",
+              border: "none",
+              color: "#fff",
+            }}
+            labelStyle={{ color: "#A7ADFE" }}
+            formatter={formatNumber}
+          />
+          <Bar
             dataKey="value"
-            label={({ name, percent }) =>
-              `${name} ${(percent * 100).toFixed(0)}%`
-            }
-            >
-            {pullRequestsData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
+            fill="#4C75FF"
+            radius={[0, 4, 4, 0]}
+            activeBar={<Rectangle fill="#1A4FFF" stroke="#000055" />}
+            barSize={45}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+export function RadialBarChartComponent() {
+  return (
+    <div>
+      <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
+        Mentor Registrations
+      </h3>
+      <ResponsiveContainer width="100%" height={300}>
+        <RadialBarChart
+          cx="50%"
+          cy="40%"
+          innerRadius="30%"
+          outerRadius="90%"
+          data={mentorRegistrationsData}
+          barSize={25}
+        >
+          <RadialBar
+            minAngle={15}
+            clockWise
+            dataKey="value"
+          >
+            {mentorRegistrationsData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
-          </Pie>
-        </PieChart>
+          </RadialBar>
+          <Legend
+            iconSize={10}
+            layout="horizontal"
+            verticalAlign="bottom"
+            formatter={(value) => <span style={{ color: '#A7ADFE' }}>{value}</span>}
+          />
+          <Tooltip
+            contentStyle={{
+              background: "#232D6B",
+              border: "none",
+              color: "#fff",
+            }}
+            labelStyle={{ color: "#A7ADFE" }}
+            formatter={formatNumber}
+          />
+        </RadialBarChart>
       </ResponsiveContainer>
     </div>
   );

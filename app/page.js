@@ -40,8 +40,16 @@ import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
-import { AreaChartComponent, BarChartComponent, RadarChartComponent, LineChartComponent, PieChartComponent, ComposedChartComponent } from "@/components/Charts";
-import CountUp from '@/components/CountUp';
+import {
+  AreaChartComponent,
+  BarChartComponent,
+  RadarChartComponent,
+  LineChartComponent,
+  HorizontalBarChartComponent,
+  ComposedChartComponent,
+  RadialBarChartComponent,
+} from "@/components/Charts";
+import CountUp from "@/components/CountUp";
 
 const containerVariants = {
   hidden: {},
@@ -98,6 +106,12 @@ export default function Home() {
             Sponsor
           </a>
           <a
+            href="/team"
+            className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
+          >
+            Team
+          </a>
+          <a
             href="#contact"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
@@ -107,7 +121,7 @@ export default function Home() {
 
         <a
           href="/apply/campus-ambassador"
-          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px] text-[12px] md:text-[10px] md:text-[14px]"
+          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px]"
         >
           Apply Now
         </a>
@@ -204,9 +218,9 @@ export default function Home() {
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner&apos;s growth is a shared success. Join us in
-              shaping a future where education is a right—not a privilege—and
-              where everyone can thrive.
+              Girlscript, every learner&apos;s growth is a shared success. Join
+              us in shaping a future where education is a right—not a
+              privilege—and where everyone can thrive.
             </p>
           </div>
         </motion.div>
@@ -296,29 +310,38 @@ export default function Home() {
               Know About <br /> GirlScript Summer Of Code
             </h1>
             <p className="w-11/12 text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
-            GirlScript Summer of Code is the 3-month long Open Source program during summers conducted by GirlScript Foundation, started in 2018, to help beginners get started with Open Source Development while encouraging diversity. Throughout the program, participants contribute to different projects under the guidance of experienced mentors. Top participants get exciting goodies and opportunities.
+              GirlScript Summer of Code is the 3-month long Open Source program
+              during summers conducted by GirlScript Foundation, started in
+              2018, to help beginners get started with Open Source Development
+              while encouraging diversity. Throughout the program, participants
+              contribute to different projects under the guidance of experienced
+              mentors. Top participants get exciting goodies and opportunities.
             </p>
           </div>
         </motion.div>
 
         <motion.div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={42} suffix="k+"/>
-            <div className="text-[#A7ADBE] text-sm md:text-base">Registrations</div>
+            <CountUp end={43} suffix="k+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Registrations
+            </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
             <CountUp end={200} suffix="+" />
-            <div className="text-[#A7ADBE] text-sm md:text-base">Institutes</div>
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Institutes
+            </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
@@ -327,7 +350,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={itemVariants} 
+            variants={itemVariants}
             className="flex flex-col items-center"
           >
             <CountUp end={20} suffix="+" />
@@ -338,8 +361,10 @@ export default function Home() {
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={35} suffix="K+" />
-            <div className="text-[#A7ADBE] text-sm md:text-base">Participants</div>
+            <CountUp end={137} suffix="K+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Linkedin Followers
+            </div>
           </motion.div>
 
           <motion.div
@@ -347,12 +372,14 @@ export default function Home() {
             className="flex flex-col items-center"
           >
             <CountUp end={500} suffix="+" />
-            <div className="text-[#A7ADBE] text-sm md:text-base">Total Projects</div>
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Total Projects
+            </div>
           </motion.div>
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-2 gap-4 mt-[80px] md:mt-8 items-center justify-items-center"
+          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 gap-4 mt-[80px] md:mt-8 items-center justify-items-center max-w-7xl"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -388,7 +415,8 @@ export default function Home() {
             <AreaChartComponent />
           </motion.div>
 
-          <motion.div
+          {/* Radar Chart for LinkedIn Followers */}
+          {/* <motion.div
             className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
             variants={itemVariants}
             initial="hidden"
@@ -401,7 +429,7 @@ export default function Home() {
               className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
             />
             <RadarChartComponent />
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
@@ -430,7 +458,7 @@ export default function Home() {
               alt="Background"
               className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
             />
-            <PieChartComponent />
+            <HorizontalBarChartComponent />
           </motion.div>
 
           <motion.div
@@ -447,10 +475,22 @@ export default function Home() {
             />
             <ComposedChartComponent />
           </motion.div>
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <RadialBarChartComponent />
+          </motion.div>
         </motion.div>
       </motion.section>
-
-      
 
       <motion.section
         id="why-gssoc"
