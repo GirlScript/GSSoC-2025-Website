@@ -130,7 +130,7 @@ export default function CampusAmbassadorApp() {
           github_url: formData.github,
           twitter_url: formData.twitterUrl || null,
           instagram_url: formData.instagramUrl || null,
-          portfolio_url: formData.portfolioUrl || null,
+          resume_url: formData.portfolioUrl || null,
           discord_tag: formData.discordTag,
           resume_url: formData.portfolioUrl || null,
           promotion_plan: formData.promotionPlan,
@@ -233,7 +233,7 @@ export default function CampusAmbassadorApp() {
                 Application Status
               </h2>
               <p className="w-2/3 text-[10px] md:text-[14px] text-[#A7ADBE]">
-                Sorry! Your application wasn't accepted. Thank you for applying!
+                Sorry! Your application was not accepted for this year. Thank you for applying!
                 For any queries, please feel reach out to us at{" "}
                 <a
                   className="text-[#4C75FF]"
