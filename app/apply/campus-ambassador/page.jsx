@@ -36,6 +36,8 @@ export default function CampusAmbassadorApp() {
   const [submitStatus, setSubmitStatus] = useState("");
   const [formData, setFormData] = useState(initialFormData);
 
+  console.log(applicationStatus);
+
   useEffect(() => {
     let subscription;
 
@@ -215,7 +217,7 @@ export default function CampusAmbassadorApp() {
                 {step === "email" ? "Send OTP" : "Verify OTP"}
               </button>
             </form>
-          ) : applicationStatus === "under_review" ? (
+          ) : applicationStatus == "under_review" ? (
             <div className="mb-8 bg-[#00041F] p-6 rounded-lg border border-[#0E122E] md:w-3/5 w-auto text-white flex flex-col items-center shadow-2xl shadow-blue-500/20">
               <h2 className="md:text-xl font-semibold mb-2">
                 Application Status
@@ -225,7 +227,24 @@ export default function CampusAmbassadorApp() {
                 applying!
               </p>
             </div>
-          ) : applicationStatus === "approved" ? (
+          ) : applicationStatus == "rejected" ? (
+            <div className="mb-8 bg-[#00041F] p-6 rounded-lg border border-[#0E122E] md:w-3/5 w-auto text-white flex flex-col items-center shadow-2xl shadow-blue-500/20">
+              <h2 className="md:text-xl font-semibold mb-2">
+                Application Status
+              </h2>
+              <p className="w-2/3 text-[10px] md:text-[14px] text-[#A7ADBE]">
+                Sorry! Your application wasn't accepted. Thank you for applying!
+                For any queries, please feel reach out to us at{" "}
+                <a
+                  className="text-[#4C75FF]"
+                  href="mailto:gssoc@girlscript.tech"
+                >
+                  gssoc@girlscript.tech
+                </a>
+                .
+              </p>
+            </div>
+          ) : applicationStatus == "approved" ? (
             <div className="mb-8 bg-[#00041F] p-6 rounded-lg border border-[#0E122E] md:w-3/5 w-auto text-white flex flex-col items-center shadow-2xl shadow-blue-500/20">
               <h2 className="md:text-xl font-semibold mb-2">
                 Congratulations! You are accepted!
