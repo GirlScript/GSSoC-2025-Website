@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 
 const EVENT_NAME = "GirlScript Summer of Code 2025";
-const ROLE = "campus_ambassador";
+const ROLE = "contributor";
 
 const initialFormData = {
   name: "",
@@ -173,16 +173,15 @@ export default function CampusAmbassadorApp() {
 
         <div className="text-center text-white w-full flex flex-col items-center justify-center px-4 mt-48">
           <p className="text-lg mb-4 md:mb-8 text-[#A7ADBE] bg-[#00041F] text-[12px] inline-block px-4 py-2 rounded-full">
-            Campus Ambassador Program
+            Contributor Program
           </p>
           <h1 className="text-2xl md:text-6xl font-bold mb-4">
-            Become An OpenSource <br /> Campus Ambassador
+            Become An <br /> OpenSource Contributor
           </h1>
-          <p className="text-[10px] md:text-sm mb-8 text-[#A7ADBE]">
-            Represent your campus and be a part of the largest open-source{" "}
-            <br /> community in India! Join us as a Campus Ambassador and help
-            spread <br /> the word about the GirlScript Summer of Code (GSSoC)
-            program.
+          <p className="text-[10px] md:text-sm mb-8 text-[#A7ADBE] max-w-[400px]">
+            Represent your campus and be a part of the largest open-source
+            community in India! Join us as a Contributor and gain experience,
+            skills, and recognition in the world of open-source development.
           </p>
 
           {!user ? (
@@ -236,7 +235,7 @@ export default function CampusAmbassadorApp() {
               </p>
               <div className="flex flex-row items-center gap-8">
                 <a
-                  href="https://discord.gg/jxkN3Ek8XQ"
+                  href="https://discord.gg/girlscript"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal mt-8"
@@ -259,7 +258,7 @@ export default function CampusAmbassadorApp() {
               className="mb-8 bg-[#00041F] w-full p-6 rounded-lg border border-[#0E122E] md:w-3/5 text-left shadow-2xl shadow-blue-500/20"
             >
               <h2 className="text-[14px] md:text-2xl font-semibold mb-4">
-                Campus Ambassador Application Form
+                Contributor Application Form
               </h2>
               {Object.entries(initialFormData).map(([key]) => (
                 <div key={key} className="mb-3">
