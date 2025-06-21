@@ -47,13 +47,13 @@ export default function TeamsPage() {
         </Link>
       </header>
 
-      <section className="w-screen min-h-screen relative flex flex-col items-center bg-transparent text-white pt-32">
+      <section className="w-full min-h-screen relative flex flex-col items-center justify-center bg-transparent text-white px-4 pt-32">
         <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-transparent text-white mb-16"
+          className="w-full max-w-6xl flex flex-col items-center bg-transparent text-white mb-16"
         >
           <div className="text-center text-white z-20 flex flex-col items-center">
             <p className="text-lg mb-4 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
@@ -62,7 +62,7 @@ export default function TeamsPage() {
             <h1 className="text-3xl md:text-6xl font-bold mb-4">
               Meet Our <br /> Core Team
             </h1>
-            <p className="w-11/12 text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
+            <p className="w-full max-w-4xl text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
               The passionate individuals behind GirlScript Summer of Code 2025, 
               dedicated to fostering open source contributions and empowering developers worldwide.
             </p>
@@ -70,7 +70,7 @@ export default function TeamsPage() {
         </motion.div>
 
         <motion.div
-          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16"
+          className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16 justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -178,24 +178,6 @@ export default function TeamsPage() {
           ))}
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="text-center text-white mb-16 mt-4"
-        >
-          <p className="text-[#A7ADBE] text-[12px] md:text-[14px] mb-4">
-            Want to join our team?
-          </p>
-          <a
-            href="mailto:gssoc@girlscript.tech"
-            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-6 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px] hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-          >
-            Get In Touch
-          </a>
-        </motion.div>
       </section>
     </div>
   );
