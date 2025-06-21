@@ -34,9 +34,9 @@ const coreTeamMembers = [
   {
     name: "Shubhanshu Kumar",
     role: "Web Developer",
-    image: "",
-    linkedin: "https://www.linkedin.com/in/",
-    twitter: "https://x.com/",
+    image: "https://drive.google.com/uc?id=16_DyNu3FerMoUjeAZnVxAb4HWFndY0DR",
+    linkedin: "https://www.linkedin.com/in/shubhanshu-kumar-6a961525a/",
+    twitter: "https://x.com/Xmart_shubh?t=dzArdoZP8fDo-8JMmjJuYQ&s=09",
     instagram: "https://www.instagram.com/",
   },
   {
