@@ -1,168 +1,192 @@
 "use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { ShootingStars } from "@/components/shooting-stars";
+import { StarsBackground } from "@/components/stars-background";
+import Image from "next/image";
+import twitter from "../../assets/twitter.svg";
+import linkedin from "../../assets/linkedin.svg";
+import instagram from  "../../assets/instagram.svg";
+import iconbg from "../../assets/icon-bg.svg";
+import cardbg1 from "../../assets/box-bg.svg"; // use SVG/png background for soft effect
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
 
 const faqs = [
   {
-    question: "When will the registration begin? Where and how to apply?",
-    answer: "We will soon release the registration details so stay tuned!! Follow GSSoC LinkedIn and Discord for timely updates."
+    question: "Eligibility for Contributors?",
+    answer: " Anyone with a zeal to learn, grow their skills, and actively contribute to open source. Whether you're a beginner or experienced, if you're passionate about making an impact - you're at the right place!"
   },
   {
-    question: "Can a person participate as both contributor and project admin?",
-    answer: "Campus Ambassadors can apply for any role. You cannot apply for a contributor if you’re selected for the role of Project Admin or Mentor."
+    question: " I'm a beginner, can I participate in GSSoC?",
+    answer: "Absolutely! GSSoC is a beginner-friendly open-source program and offers a great opportunity to understand how open source works while helping you build valuable technical skills."
   },
   {
-    question: "What are the requirements to qualify for GSSoC?",
-    answer: "We have some categories and based on that rubric (to be shared with selected candidates), contributors will be provided with perks."
+    question: " Do prior experience or open-source contributions needed?",
+    answer: " Not necessarily. While it’s helpful to know languages like HTML, CSS, Python, etc., as many projects use them, open-source experience is not mandatory. We warmly welcome everyone—from curious beginners to experienced developers."
   },
   {
-    question: "When will you release the GSSoC date?",
-    answer: "The timeline will be released soon. Stay tuned to our official platforms."
+    question: " Eligibility for Mentors and Project Admins?",
+    answer: " Individuals with proven experience in their preferred tech stack. Your expertise matters—be sure to fill out the form thoroughly! However, please note Mentors / PAs can’t be Contributors."
   },
   {
-    question: "How to participate and what is the procedure?",
-    answer: "Register once the link is live. After selection, choose projects and start contributing under mentor guidance."
+    question: " Can professionals with 1-2 years of experience participate?",
+    answer: " Yes! GSSoC is open to all, regardless of your academic or professional background. If you're passionate about tech and open source, you're welcome."
   },
   {
-    question: "I'm a beginner to open source, can I participate in GSSOC?",
-    answer: "Absolutely! GSSoC is beginner-friendly and a great way to get started in open source."
+    question: " Can one be both a Contributor and Campus Ambassador or Contributor and Project Admin?",
+    answer: "Campus Ambassadors are free to apply for any additional role. However, if you're selected as a Project Admin or Mentor, you cannot participate as a Contributor."
   },
   {
-    question: "How many projects will be there? Am I selected for contribution?",
-    answer: "Number of projects will be announced later. Selection depends on form responses and profile."
+    question: "Will Contributors be assigned to projects, or can we choose ourselves?",
+    answer: " You have the freedom to choose the projects you're most interested in. Find what excites you and start contributing—it's entirely up to you!"
   },
   {
-    question: "Can I propose a Spring Boot API project and also join as participant?",
-    answer: "Yes! We will soon release registration for Project Admins. Beginners are welcome."
+    question: " How many projects can a Contributor work on at the same time?",
+    answer: " There's no fixed limit; you can contribute to as many projects as you can manage effectively. Just make sure you maintain quality and consistency in your contributions."
   },
   {
-    question: "What is the selection process for GSSoC 2025?",
-    answer: "Based on your registration form, enthusiasm, past work (if any), and responses."
+    question: " As a prospective participant, how can I start preparing for GSSoC 2025?",
+    answer: "Start by brushing up on your technical skills and exploring the basics of open source. Once the selected projects are announced, you can check them out—and don’t worry, Project Admins and the respective mentors will guide you in getting started! "
   },
   {
-    question: "Do prior experience or open source contributions matter?",
-    answer: "Not necessarily. Preferred, but not mandatory. Knowing basic tech like HTML, CSS, Python helps."
+    question: " What will be the perks and benefits for Contributors for successfully doing the contribution work?",
+    answer: "Contributors will be evaluated using a rubric-based system (will be shared with selected participants). Based on performance and impact, top contributors will receive certificates, swags, and Letters of Recommendation (LORs), along with the priceless experience of real-world collaboration."
   },
-  {
-    question: "How can I apply as a contributor in GSSoC?",
-    answer: "Registration details will be shared soon. Apply through the official form."
-  },
-  {
-    question: "I'm a beginner. I need a roadmap.",
-    answer: "Start by learning GitHub basics, explore HTML/CSS/JS or Python, and join our community."
-  },
-  {
-    question: "Can we participate as both contributor and campus ambassador?",
-    answer: "Yes. Only constraint is Contributor can't be Project Admin or Mentor."
-  },
-  {
-    question: "Can working professionals in non-tech background participate?",
-    answer: "Yes, GSSoC is open to all. If you're willing to learn, you can participate."
-  },
-  {
-    question: "How are projects selected and maintained?",
-    answer: "Project Admins propose and maintain them. Mentors guide contributors."
-  },
-  {
-    question: "What are your expectations from contributors?",
-    answer: "To be enthusiastic and willing to learn throughout the journey."
-  },
-  {
-    question: "Is this project beginner-friendly?",
-    answer: "Most projects are. Skills required will be listed per project."
-  },
-  {
-    question: "What tech stack should I know?",
-    answer: "Depends on the project. Generally HTML, CSS, JS, React, Python, etc."
-  },
-  {
-    question: "What are the eligibility requirements?",
-    answer: "Full-time students for contributor/campus ambassador roles. Open for all for mentor/admin."
-  },
-  {
-    question: "What does the program timeline look like?",
-    answer: "Starts with bonding, followed by contributions, evaluations, and final results."
-  },
-  {
-    question: "How does mentorship work?",
-    answer: "Mentors guide contributors through issues, PRs, and project goals."
-  },
-  {
-    question: "What’s the selection process like?",
-    answer: "Based on form, enthusiasm, and fit with program goals."
-  },
-  {
-    question: "Are there internship opportunities after the program?",
-    answer: "Not officially, but contributors may receive LORs, swags, and networking."
-  },
-  {
-    question: "Will there be a community platform?",
-    answer: "Yes. Discord and Telegram will be used for discussion and support."
-  },
-  {
-    question: "How to become a mentor?",
-    answer: "Have relevant tech experience. Fill the mentor form when it’s live."
-  },
-  {
-    question: "How much do we need to know to contribute?",
-    answer: "Basic development knowledge is helpful. Learn and build during GSSoC."
-  },
-  {
-    question: "How to join GSSoC core team?",
-    answer: "Join other roles first and stay consistent. Core team roles are limited."
-  },
-  {
-    question: "Is GSSoC open for professionals with 1-2 years of experience?",
-    answer: "Yes. All are welcome."
-  },
-  {
-    question: "Is this same as GSoC?",
-    answer: "No. GSoC is by Google. GSSoC is by GirlScript Foundation."
-  },
-  {
-    question: "Can anyone contribute?",
-    answer: "Yes! GSSoC welcomes everyone interested in open source."
-  },
-  {
-    question: "Which organizations will participate?",
-    answer: "They will be listed on the official site."
-  },
-  {
-    question: "What are the fields for contribution?",
-    answer: "Web Dev, ML, App Dev, APIs, Documentation, etc."
-  },
-  {
-    question: "What are the perks and benefits for contributors?",
-    answer: "Top performers will receive certificates, swags, and LORs."
-  },
-  {
-    question: "How to get selected for GSSoC?",
-    answer: "Fill the form sincerely. Show enthusiasm and basic understanding."
-  },
-  {
-    question: "How to prepare for GSSoC 2025?",
-    answer: "Learn Git, coding basics, join Discord, and follow past projects."
-  },
-  {
-    question: "Is BCA student eligible?",
-    answer: "Yes, full-time students are eligible."
-  },
-  {
-    question: "What is the selection criteria?",
-    answer: "Form responses, enthusiasm, skill interest."
-  },
-  {
-    question: "How to become a core contributor?",
-    answer: "Be consistent, helpful, and go beyond tasks. Engage post-GSSoC too."
-  },
-  {
-    question: "I’m in 1st year and learning AI/ML. Can I contribute?",
-    answer: "Yes! Choose a matching project and get started."
-  }
+  // {
+  //   question: "Do prior experience or open source contributions matter?",
+  //   answer: "They are preferred but not mandatory. Having basic knowledge in HTML, CSS, or Python helps."
+  // },
+  // {
+  //   question: "How can I apply as a Contributor in GSSoC?",
+  //   answer: "Registration details will be shared soon. Apply through the official form when it's live."
+  // },
+  // {
+  //   question: "I'm a beginner. I need a roadmap.",
+  //   answer: "Start by learning GitHub basics. Explore HTML/CSS/JS or Python. Join our community for guidance."
+  // },
+  // {
+  //   question: "Can we participate as both Contributor and Campus Ambassador?",
+  //   answer: "Yes. However, a Contributor cannot be selected as a Project Admin or Mentor."
+  // },
+  // {
+  //   question: "Can working professionals from a non-tech background participate?",
+  //   answer: "Yes, GSSoC is open to everyone. If you're willing to learn, you're welcome to join."
+  // },
+  // {
+  //   question: "How are projects selected and maintained?",
+  //   answer: "Project Admins propose and maintain them. Mentors guide Contributors throughout the program."
+  // },
+  // {
+  //   question: "What are your expectations from Contributors?",
+  //   answer: "We expect Contributors to be enthusiastic and eager to learn throughout the journey."
+  // },
+  // {
+  //   question: "Is this project beginner-friendly?",
+  //   answer: "Most projects are. The required skills will be listed with each project."
+  // },
+  // {
+  //   question: "What tech stack should I know?",
+  //   answer: "It depends on the project. Common stacks include HTML, CSS, JavaScript, React, Python, etc."
+  // },
+  // {
+  //   question: "What are the eligibility requirements?",
+  //   answer: "Full-time students are eligible for Contributor and Campus Ambassador roles. Mentor and Project Admin roles are open to all."
+  // },
+  // {
+  //   question: "What does the program timeline look like?",
+  //   answer: "It starts with a bonding phase, followed by contributions, evaluations, and final results."
+  // },
+  // {
+  //   question: "How does mentorship work?",
+  //   answer: "Mentors guide Contributors on issues, pull requests, and project milestones throughout the program."
+  // },
+  // {
+  //   question: "What’s the selection process like?",
+  //   answer: "Selection is based on the registration form, enthusiasm, and alignment with the program goals."
+  // },
+  // {
+  //   question: "Are there internship opportunities after the program?",
+  //   answer: "Not officially. However, top Contributors may receive Letters of Recommendation, swags, and networking opportunities."
+  // },
+  // {
+  //   question: "Will there be a community platform?",
+  //   answer: "Yes. Discord and Telegram will be used for communication and support."
+  // },
+  // {
+  //   question: "How to become a Mentor?",
+  //   answer: "You should have relevant tech experience. Fill out the Mentor form when it's live."
+  // },
+  // {
+  //   question: "How much do we need to know to contribute?",
+  //   answer: "Basic development knowledge helps. Learn and build as you go during the program."
+  // },
+  // {
+  //   question: "How to join the GSSoC Core Team?",
+  //   answer: "Start with other roles and stay consistent. Core Team roles are limited and selected based on involvement."
+  // },
+  // {
+  //   question: "Is GSSoC open for professionals with 1–2 years of experience?",
+  //   answer: "Yes, the program is open to all who are interested."
+  // },
+  // {
+  //   question: "Is this the same as GSoC?",
+  //   answer: "No. GSoC is by Google, while GSSoC is conducted by GirlScript Foundation."
+  // },
+  // {
+  //   question: "Can anyone contribute?",
+  //   answer: "Yes! GSSoC welcomes everyone interested in open source."
+  // },
+  // {
+  //   question: "Which organizations will participate?",
+  //   answer: "They will be listed on the official GSSoC website soon."
+  // },
+  // {
+  //   question: "What are the fields for contribution?",
+  //   answer: "Fields include Web Development, Machine Learning, App Development, APIs, Documentation, and more."
+  // },
+  // {
+  //   question: "What are the perks and benefits for Contributors?",
+  //   answer: "Top performers will receive certificates, swags, and Letters of Recommendation."
+  // },
+  // {
+  //   question: "How to get selected for GSSoC?",
+  //   answer: "Fill out the form sincerely. Showcase your enthusiasm and basic understanding."
+  // },
+  // {
+  //   question: "How to prepare for GSSoC 2025?",
+  //   answer: "Learn Git, understand the basics of coding, join Discord, and explore previous projects."
+  // },
+  // {
+  //   question: "Is a BCA student eligible?",
+  //   answer: "Yes, all full-time students including BCA are eligible to apply."
+  // },
+  // {
+  //   question: "What is the selection criteria?",
+  //   answer: "Form responses, enthusiasm, and interest in the tech stack and projects."
+  // },
+  // {
+  //   question: "How to become a Core Contributor?",
+  //   answer: "Be consistent, helpful, and go beyond just completing tasks. Engage even after GSSoC."
+  // },
+  // {
+  //   question: "I’m in 1st year and learning AI/ML. Can I contribute?",
+  //   answer: "Yes! Choose a matching project and start contributing."
+  // }
 ];
+
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -172,56 +196,153 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="bg-[#0a0a23] text-white py-20 px-6" id="faq">
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-bold text-center mb-14 text-blue-400 drop-shadow"
-      >
-        🙋 FAQs - GSSoC '25
-      </motion.h2>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {faqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.015 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-tr from-[#111132] to-[#1f1f3c] p-6 rounded-2xl border border-[#262640] transition-all hover:shadow-blue-500/20 shadow-sm cursor-pointer"
-            onClick={() => toggle(index)}
-          >
-            <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">{faq.question}</h3>
-              <motion.span
-                animate={{ rotate: openIndex === index ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown className="text-blue-400" />
-              </motion.span>
-            </div>
-
-            <AnimatePresence>
-              {openIndex === index && (
-                <motion.p
-                  key="content"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-4 text-gray-300 leading-relaxed"
-                >
-                  {faq.answer}
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
+    <section
+      className="relative min-h-screen overflow-hidden bg-[#0a0a23] py-20 px-6 text-white"
+      id="faq"
+    >
+      {/* 🌌 Starry Background */}
+      <div className="absolute inset-0 z-0">
+        <StarsBackground />
+        <ShootingStars />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-[#0a0a23]" />
       </div>
+
+      {/* 💬 FAQs */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold text-center mb-14 text-white drop-shadow-md"
+        >
+          FAQs - GSSoC '25
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-2 md:px-0">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              onClick={() => toggle(index)}
+              className="group relative rounded-3xl cursor-pointer bg-gradient-to-br from-[#111132] to-[#1f1f3c] p-6 md:p-8 border border-[#2a2a4c] shadow-lg hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+            >
+              <div className="absolute inset-0">
+                <Image
+                  src="/box-bg.svg"
+                  alt="Card Background"
+                  fill
+                  className="object-cover opacity-20 group-hover:opacity-30 transition duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent rounded-3xl" />
+              </div>
+
+              <div className="relative z-10">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-white text-base md:text-lg font-semibold leading-snug">
+                    {faq.question}
+                  </h3>
+                  <motion.span
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown className="text-blue-400 w-5 h-5" />
+                  </motion.span>
+                </div>
+
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.p
+                      key="faq-content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4 text-[#A7ADBE] text-sm leading-relaxed"
+                    >
+                      {faq.answer}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 📬 Contact Section Footer */}
+
+        <motion.section
+  id="contact"
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: false, amount: 0.3 }}
+  variants={containerVariants}
+  className="w-full bg-[#00041F] text-white py-20 mt-16"
+>
+  <div className="max-w-4xl mx-auto text-center px-4">
+    <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-snug">
+      GirlScript Summer <br className="md:hidden" /> Of Code 2025
+    </h1>
+    <p className="text-xs md:text-sm text-[#A7ADBE] mb-6">
+      Get In Touch With Us Via Email Or Social Media
+    </p>
+
+    <a
+      href="mailto:gssoc@girlscript.tech"
+      className="inline-block bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] hover:opacity-90 transition px-6 py-3 rounded-full font-medium text-sm"
+    >
+      Contact Us
+    </a>
+
+    {/* Social Icons */}
+    <div className="flex justify-center items-center gap-6 mt-10">
+      {[
+        {
+          href: "https://www.linkedin.com/company/girlscriptsoc/",
+          icon: linkedin,
+          alt: "LinkedIn",
+        },
+        {
+          href: "https://x.com/girlscriptsoc",
+          icon: twitter,
+          alt: "Twitter/X",
+        },
+        {
+          href: "https://www.instagram.com/girlscriptsummerofcode",
+          icon: instagram,
+          alt: "Instagram",
+        },
+      ].map((social, idx) => (
+        <a
+          key={idx}
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative h-12 w-12 rounded-lg overflow-hidden flex items-center justify-center bg-[#0F0F2F] hover:bg-[#1A1A40] transition"
+        >
+          <Image
+            src={social.icon}
+            alt={social.alt}
+            className="w-6 h-6 object-contain transition-transform duration-200 ease-in-out group-hover:scale-110"
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+</motion.section>
+
+      
+
+      </div>
+
+     
+      
     </section>
+    
+    
   );
 }

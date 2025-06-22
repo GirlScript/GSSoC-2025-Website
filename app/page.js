@@ -36,12 +36,17 @@ import stars from "@/assets/stars.svg";
 import { ShootingStars } from "@/components/shooting-stars";
 import { StarsBackground } from "@/components/stars-background";
 import { SparklesCore } from "@/components/sparkles";
-import { delay, motion, Variants } from "framer-motion";
+
+import { motion, AnimatePresence } from "framer-motion"; // ✅ Single motion import
+import { ChevronDown } from "lucide-react";
+
 import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
 
+
 import Link from 'next/link';
+import { useState } from "react";
 
 const containerVariants = {
   hidden: {},
@@ -62,6 +67,35 @@ const itemVariants = {
 };
 
 export default function Home() {
+   const [openIndex, setOpenIndex] = useState(null);
+
+
+   const faqs = [
+    {
+      question: "When will the registration begin? Where and how to apply?",
+      answer:
+        "We will soon release the registration details so stay tuned!! Follow GSSoC LinkedIn and Discord for timely updates.",
+    },
+    {
+      question: "Can a person participate as both contributor and project admin?",
+      answer:
+        "Campus Ambassadors can apply for any role. You cannot apply for a contributor if you're selected for the role of Project Admin or Mentor.",
+    },
+    {
+      question: "What are the requirements to qualify for GSSoC?",
+      answer:
+        "We have some categories and based on that rubric (to be shared with selected candidates), contributors will be provided with perks.",
+    },
+    {
+      question: "When will you release the GSSoC date?",
+      answer:
+        "The timeline will be released soon. Stay tuned to our official platforms.",
+    },
+  ];
+
+  const toggle = (index) => {
+  setOpenIndex(openIndex === index ? null : index);
+};
   return (
     <div className="relative w-full min-h-screen font-sans">
       <div className="fixed inset-0 -z-20 w-full h-full overflow-hidden">
@@ -103,7 +137,11 @@ export default function Home() {
           >
             Contact
           </a>
+
+          
         </nav>
+
+        
 
         <a
           href="/apply/campus-ambassador"
@@ -786,13 +824,116 @@ export default function Home() {
       */}
 
 
-      <div className="text-center my-16">
+
+<motion.section
+  id="faq"
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: false, amount: 0.3 }}
+  variants={containerVariants}
+  className="w-screen relative flex flex-col items-center bg-[#00020f] text-white overflow-hidden"
+>
+  <motion.div
+    variants={itemVariants}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: false, amount: 0.3 }}
+    className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-32"
+  >
+    {/* Background visuals */}
+    <Image
+      src={sbg2}
+      alt="Background"
+      className="absolute top-20 object-contain scale-x-[-1]"
+    />
+    <SparklesCore
+      background="transparent"
+      minSize={0.4}
+      maxSize={0.8}
+      particleDensity={80}
+      particleSpeed={0.2}
+      className="absolute top-20 w-1/3 h-[300px]"
+      particleColor="#FFFFFF"
+    />
+
+    {/* Title */}
+    <div className="text-center text-white z-20">
+      <p className="text-lg mb-4 mt-32 text-[#A7ADBE] bg-[#FFFFFF15] text-[12px] inline-block px-4 py-2 rounded-full">
+        FAQs
+      </p>
+      <h1 className="text-3xl md:text-6xl font-bold mb-4">
+        Frequently Asked <br /> Questions
+      </h1>
+      <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
+        Everything you need to know about GSSoC ‘25.
+      </p>
+    </div>
+
+    {/* FAQ Cards */}
+    <div className="relative z-20 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-16">
+      {faqs.map((faq, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.015 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: index * 0.1 }}
+          viewport={{ once: true }}
+          className="relative w-full h-auto bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 cursor-pointer"
+          onClick={() => setOpenIndex(index === openIndex ? null : index)}
+        >
+          <Image
+            src={cardbg1}
+            alt="Card Background"
+            className="absolute inset-0 w-full h-full object-cover rounded-3xl z-0"
+          />
+          <div className="relative z-10">
+            <div className="flex justify-between items-center mb-2 text-[14px] md:text-[18px] text-white font-semibold">
+              <h3>{faq.question}</h3>
+              <motion.span
+                animate={{ rotate: openIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ChevronDown className="text-blue-400 w-5 h-5" />
+              </motion.span>
+            </div>
+
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.p
+                  key="content"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-2 text-[12px] md:text-[14px] text-[#A7ADBE] leading-relaxed"
+                >
+                  {faq.answer}
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* View All FAQs Button */}
+    <div className="text-center mt-4 mb-4 z-20">
   <Link href="/faqs">
-    <span className="inline-block bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full text-xl font-semibold shadow-lg hover:scale-105 transition duration-300 cursor-pointer">
-      🤔 View FAQs – GSSoC '25
+    <span className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px] transition-all duration-300 shadow-md hover:shadow-blue-500/30 hover:scale-105 hover:brightness-110">
+      View All FAQs
     </span>
   </Link>
 </div>
+
+  </motion.div>
+</motion.section>
+
+
+
+
+
+
 
       <motion.section
         id="testimonials"
