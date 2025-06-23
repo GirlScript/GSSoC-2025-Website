@@ -71,28 +71,41 @@ export default function Home() {
 
 
    const faqs = [
-    {
-      question: "When will the registration begin? Where and how to apply?",
-      answer:
-        "We will soon release the registration details so stay tuned!! Follow GSSoC LinkedIn and Discord for timely updates.",
-    },
-    {
-      question: "Can a person participate as both contributor and project admin?",
-      answer:
-        "Campus Ambassadors can apply for any role. You cannot apply for a contributor if you're selected for the role of Project Admin or Mentor.",
-    },
-    {
-      question: "What are the requirements to qualify for GSSoC?",
-      answer:
-        "We have some categories and based on that rubric (to be shared with selected candidates), contributors will be provided with perks.",
-    },
-    {
-      question: "When will you release the GSSoC date?",
-      answer:
-        "The timeline will be released soon. Stay tuned to our official platforms.",
-    },
-  ];
-
+  {
+    question: "When will the registration begin? Where and how to apply?",
+    answer: (
+      <>
+        We will soon release the registration details so stay tuned!! Follow{" "}
+        <a
+          href="https://www.linkedin.com/company/girlscriptsoc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-blue-400 hover:text-blue-500 transition"
+        >
+          GSSoC LinkedIn
+        </a>{" "}
+        and join the {" "}
+        {"GirlScript Foundation's Community Groups"}{" "}
+        for timely updates.
+      </>
+    ),
+  },
+  {
+    question: "Eligibility for Contributors?",
+    answer:
+      " Anyone with a zeal to learn, grow their skills, and actively contribute to open source. Whether you're a beginner or experienced, if you're passionate about making an impact - you're at the right place!",
+  },
+  {
+    question: " I'm a beginner, can I participate in GSSoC?",
+    answer:
+      "Absolutely! GSSoC is a beginner-friendly open-source program and offers a great opportunity to understand how open source works while helping you build valuable technical skills.",
+  },
+  {
+    question: " Do prior experience or open-source contributions needed?",
+    answer:
+      " Not necessarily. While it’s helpful to know languages like HTML, CSS, Python, etc., as many projects use them, open-source experience is not mandatory. We warmly welcome everyone—from curious beginners to experienced developers.",
+  },
+];
   const toggle = (index) => {
   setOpenIndex(openIndex === index ? null : index);
 };
