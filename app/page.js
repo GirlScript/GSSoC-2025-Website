@@ -874,52 +874,62 @@ export default function Home() {
     </div>
 
     {/* FAQ Cards */}
-    <div className="relative z-20 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-16">
-      {faqs.map((faq, index) => (
-        <motion.div
-          key={index}
-          whileHover={{ scale: 1.015 }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: index * 0.1 }}
-          viewport={{ once: true }}
-          className="relative w-full h-auto bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20 cursor-pointer"
-          onClick={() => setOpenIndex(index === openIndex ? null : index)}
-        >
-          <Image
-            src={cardbg1}
-            alt="Card Background"
-            className="absolute inset-0 w-full h-full object-cover rounded-3xl z-0"
-          />
-          <div className="relative z-10">
-            <div className="flex justify-between items-center mb-2 text-[14px] md:text-[18px] text-white font-semibold">
-              <h3>{faq.question}</h3>
-              <motion.span
-                animate={{ rotate: openIndex === index ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown className="text-blue-400 w-5 h-5" />
-              </motion.span>
-            </div>
+   <div className="relative z-20 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-16 items-start">
+  {faqs.map((faq, index) => {
+    const isOpen = openIndex === index;
 
-            <AnimatePresence>
-              {openIndex === index && (
-                <motion.p
-                  key="content"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-2 text-[12px] md:text-[14px] text-[#A7ADBE] leading-relaxed"
-                >
-                  {faq.answer}
-                </motion.p>
-              )}
-            </AnimatePresence>
+    return (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.015 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        onClick={() => setOpenIndex(isOpen ? null : index)}
+        className="relative w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col p-8 shadow-2xl shadow-blue-500/20 cursor-pointer overflow-hidden"
+      >
+        {/* Background Image */}
+        <Image
+          src={cardbg1}
+          alt="Card Background"
+          className="absolute inset-0 w-full h-full object-cover rounded-3xl z-0"
+        />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col">
+          <div className="flex justify-between items-center mb-2 text-[14px] md:text-[18px] text-white font-semibold">
+            <h3>{faq.question}</h3>
+            <motion.span
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="text-blue-400 w-5 h-5" />
+            </motion.span>
           </div>
-        </motion.div>
-      ))}
-    </div>
+
+          <AnimatePresence initial={false}>
+            {isOpen && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <p className="mt-2 text-[12px] md:text-[14px] text-[#A7ADBE] leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    );
+  })}
+</div>
+
 
     {/* View All FAQs Button */}
     <div className="text-center mt-4 mb-4 z-20">
