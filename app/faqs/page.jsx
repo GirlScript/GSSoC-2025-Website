@@ -269,59 +269,62 @@ export default function FaqSection() {
       </motion.section>
 
       {/* FAQ Cards */}
-      <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 px-2 md:px-0">
-        {faqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.02 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            viewport={{ once: true }}
-            onClick={() => toggle(index)}
-            className="group relative rounded-3xl cursor-pointer bg-[#00020f] p-6 md:p-8 border border-[#2a2a4c] shadow-lg hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm overflow-hidden"
-          >
-            <div className="absolute inset-0">
-              <Image
-                src="/box-bg.svg"
-                alt="Card Background"
-                fill
-                className="object-cover opacity-20 group-hover:opacity-30 transition duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent rounded-3xl" />
-            </div>
+     <div className="relative z-20 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 px-4 mb-16 items-start">
+  {faqs.map((faq, index) => {
+    const isOpen = openIndex === index;
 
-            <div className="relative z-10">
-              <div className="flex justify-between items-center">
-                <h3 className="text-white text-base md:text-lg font-semibold leading-snug">
-                  {faq.question}
-                </h3>
-                <motion.span
-                  animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="text-blue-400 w-5 h-5" />
-                </motion.span>
-              </div>
+    return (
+      <motion.div
+        key={index}
+        whileHover={{ scale: 1.015 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        onClick={() => setOpenIndex(isOpen ? null : index)}
+        className="relative w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col p-8 shadow-2xl shadow-blue-500/20 cursor-pointer overflow-hidden"
+      >
+        {/* Background Image */}
+        <Image
+          src={cardbg1}
+          alt="Card Background"
+          className="absolute inset-0 w-full h-full object-cover rounded-3xl z-0"
+        />
 
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.p
-                    key="faq-content"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-4 text-[#A7ADBE] text-sm leading-relaxed"
-                  >
-                    {faq.answer}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col">
+          <div className="flex justify-between items-center mb-2 text-[14px] md:text-[18px] text-white font-semibold">
+            <h3>{faq.question}</h3>
+            <motion.span
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="text-blue-400 w-5 h-5" />
+            </motion.span>
+          </div>
+
+          <AnimatePresence initial={false}>
+            {isOpen && (
+              <motion.div
+                key="content"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <p className="mt-2 text-[12px] md:text-[14px] text-[#A7ADBE] leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.div>
+    );
+  })}
+</div>
+
 
       {/* 📬 Contact Section Footer */}
       <motion.section
