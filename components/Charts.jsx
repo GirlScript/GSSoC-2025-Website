@@ -89,45 +89,45 @@ const linkedinFollowersData = [
 const projectAdminRegistrationsData = [
   {
     name: "GSSoC'23",
-    value: 18000,
+    value: 140,
   },
   {
     name: "GSSoC'24",
-    value: 24000,
+    value: 280,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 29000,
+    value: 500,
   },
 ];
 
 const contributorsMakingItOntoLeaderboardData = [
   {
     name: "GSSoC'23",
-    value: 26000,
+    value: 1200,
   },
   {
     name: "GSSoC'24",
-    value: 31000,
+    value: 2700,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 35000,
+    value: 4000,
   },
 ];
 
 const registrationsFromContributorsData = [
   {
     name: "GSSoC'23",
-    value: 33000,
+    value: 17000,
   },
   {
     name: "GSSoC'24",
-    value: 40000,
+    value: 27000,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 47000,
+    value: 42000,
   },
 ];
 
@@ -136,6 +136,9 @@ const COLORS = ["#4C75FF", "#1A4FFF", "#A7ADFE"];
 // Format number to k format
 const formatNumber = (value) => {
   if (value >= 1000) {
+    if (value < 10000) {
+      return `${(value / 1000).toFixed(1)}k`;
+    }
     return `${(value / 1000).toFixed(0)}k`;
   }
   return value;

@@ -320,8 +320,8 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <motion.div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
-          <motion.div
+        <div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
@@ -329,9 +329,9 @@ export default function Home() {
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Registrations
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
@@ -339,25 +339,25 @@ export default function Home() {
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Institutes
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
             <CountUp end={35} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
             <CountUp end={20} suffix="+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">Countries</div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
@@ -365,9 +365,9 @@ export default function Home() {
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Linkedin Followers
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
             variants={itemVariants}
             className="flex flex-col items-center"
           >
@@ -375,8 +375,8 @@ export default function Home() {
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Total Projects
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         <motion.div
           className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 gap-4 mt-[80px] md:mt-8 items-center justify-items-center max-w-7xl"
@@ -505,7 +505,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-32"
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-2"
         >
           <Image
             src={sbg}
