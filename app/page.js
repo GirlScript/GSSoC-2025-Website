@@ -173,16 +173,7 @@ export default function Home() {
           alt="Background"
           className="absolute bottom-0 w-full md:w-5/6 object-contain -z-10 md:hidden"
         />
-        <Image
-          src={bgsup}
-          alt="Background"
-          className="absolute top-0 left-0 w-[800px] object-contain -z-10 md:hidden"
-        />
-        <Image
-          src={bgsup}
-          alt="Background"
-          className="absolute top-0 right-0 w-[800px] object-contain -z-10 scale-x-[-1] md:hidden"
-        />
+       
 
         <div className="text-center text-white">
           <p className="md:mb-8 mb-4 md:mt-44 text-[#A7ADBE] bg-[#FFFFFF15] text-[8px] md:text-[12px] inline-block px-4 py-2 rounded-full">
