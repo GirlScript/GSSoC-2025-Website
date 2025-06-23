@@ -11,6 +11,8 @@ import linkedin from "../../assets/linkedin.svg";
 import instagram from  "../../assets/instagram.svg";
 import iconbg from "../../assets/icon-bg.svg";
 import cardbg1 from "../../assets/box-bg.svg"; // use SVG/png background for soft effect
+import sbg2 from "@/assets/section-bg-mid-part-2.svg";
+import { SparklesCore } from "@/components/sparkles";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -190,159 +192,193 @@ const faqs = [
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(null);
+  const itemVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.95,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
 
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  return (
-    <section
-      className="relative min-h-screen overflow-hidden bg-[#0a0a23] py-20 px-6 text-white"
-      id="faq"
-    >
-      {/* 🌌 Starry Background */}
-      <div className="absolute inset-0 z-0">
-        <StarsBackground />
-        <ShootingStars />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-[#0a0a23]" />
+ return (
+ <div className="min-h-screen w-full  text-white relative overflow-hidden   bg-[#00020f]">
+    {/* 🌌 Starry Background */}
+    <div className="absolute inset-0 z-0">
+      <StarsBackground />
+      <ShootingStars />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-[#0a0a23]" />
+    </div>
+
+    {/* 💬 FAQs Container */}
+    <div className="relative z-10 max-w-7xl mx-auto">
+      {/* FAQ Header */}
+      <motion.section
+        id="faq"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="relative flex flex-col items-center bg-[#00020f] text-white overflow-hidden px-4"
+      >
+        <motion.div
+          variants={itemVariants}
+          className="w-full relative flex flex-col items-center text-white py-24"
+        >
+          {/* Decorative Background */}
+          <Image
+            src={sbg2}
+            alt="Background"
+            className="absolute top-0 left-1/2 -translate-x-1/2 object-contain scale-x-[-1] z-0 max-w-[80%] opacity-40"
+          />
+
+          <SparklesCore
+            background="transparent"
+            minSize={0.4}
+            maxSize={0.8}
+            particleDensity={80}
+            particleSpeed={0.2}
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[300px] z-0"
+            particleColor="#FFFFFF"
+          />
+
+          {/* Title Content */}
+          <div className="text-center relative z-10">
+            <p className="text-[11px] md:text-[13px] mb-6 text-[#A7ADBE] bg-[#FFFFFF15] inline-block px-6 py-2 rounded-full tracking-wider uppercase shadow-md backdrop-blur-sm">
+              FAQs
+            </p>
+            <h1 className="text-3xl md:text-6xl font-bold leading-tight mb-5">
+              Frequently Asked <br className="hidden md:block" /> Questions
+            </h1>
+            <p className="text-sm md:text-base text-[#A7ADBE] max-w-xl mx-auto leading-relaxed">
+              Everything you need to know about GSSoC ‘25 — process, participation, and more.
+            </p>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      {/* FAQ Cards */}
+      <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 px-2 md:px-0">
+        {faqs.map((faq, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.02 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            viewport={{ once: true }}
+            onClick={() => toggle(index)}
+            className="group relative rounded-3xl cursor-pointer bg-[#00020f] p-6 md:p-8 border border-[#2a2a4c] shadow-lg hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+          >
+            <div className="absolute inset-0">
+              <Image
+                src="/box-bg.svg"
+                alt="Card Background"
+                fill
+                className="object-cover opacity-20 group-hover:opacity-30 transition duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent rounded-3xl" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-center">
+                <h3 className="text-white text-base md:text-lg font-semibold leading-snug">
+                  {faq.question}
+                </h3>
+                <motion.span
+                  animate={{ rotate: openIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown className="text-blue-400 w-5 h-5" />
+                </motion.span>
+              </div>
+
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.p
+                    key="faq-content"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-4 text-[#A7ADBE] text-sm leading-relaxed"
+                  >
+                    {faq.answer}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      {/* 💬 FAQs */}
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-center mb-14 text-white drop-shadow-md"
-        >
-          FAQs - GSSoC '25
-        </motion.h2>
+      {/* 📬 Contact Section Footer */}
+      <motion.section
+        id="contact"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-full bg-[#00041F] text-white py-20 mt-24"
+      >
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-snug">
+            GirlScript Summer <br className="md:hidden" /> Of Code 2025
+          </h1>
+          <p className="text-xs md:text-sm text-[#A7ADBE] mb-6">
+            Get In Touch With Us Via Email Or Social Media
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-2 md:px-0">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.02 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              onClick={() => toggle(index)}
-              className="group relative rounded-3xl cursor-pointer bg-gradient-to-br from-[#111132] to-[#1f1f3c] p-6 md:p-8 border border-[#2a2a4c] shadow-lg hover:shadow-blue-500/30 transition-all duration-300 backdrop-blur-sm overflow-hidden"
-            >
-              <div className="absolute inset-0">
+          <a
+            href="mailto:gssoc@girlscript.tech"
+            className="inline-block bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] hover:opacity-90 transition px-6 py-3 rounded-full font-medium text-sm"
+          >
+            Contact Us
+          </a>
+
+          <div className="flex justify-center items-center gap-6 mt-10">
+            {[{
+              href: "https://www.linkedin.com/company/girlscriptsoc/",
+              icon: linkedin,
+              alt: "LinkedIn",
+            }, {
+              href: "https://x.com/girlscriptsoc",
+              icon: twitter,
+              alt: "Twitter/X",
+            }, {
+              href: "https://www.instagram.com/girlscriptsummerofcode",
+              icon: instagram,
+              alt: "Instagram",
+            }].map((social, idx) => (
+              <a
+                key={idx}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative h-12 w-12 rounded-lg overflow-hidden flex items-center justify-center bg-[#0F0F2F] hover:bg-[#1A1A40] transition"
+              >
                 <Image
-                  src="/box-bg.svg"
-                  alt="Card Background"
-                  fill
-                  className="object-cover opacity-20 group-hover:opacity-30 transition duration-300"
+                  src={social.icon}
+                  alt={social.alt}
+                  className="w-6 h-6 object-contain transition-transform duration-200 ease-in-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-transparent rounded-3xl" />
-              </div>
-
-              <div className="relative z-10">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-white text-base md:text-lg font-semibold leading-snug">
-                    {faq.question}
-                  </h3>
-                  <motion.span
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ChevronDown className="text-blue-400 w-5 h-5" />
-                  </motion.span>
-                </div>
-
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.p
-                      key="faq-content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="mt-4 text-[#A7ADBE] text-sm leading-relaxed"
-                    >
-                      {faq.answer}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
-
-        {/* 📬 Contact Section Footer */}
-
-        <motion.section
-  id="contact"
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: false, amount: 0.3 }}
-  variants={containerVariants}
-  className="w-full bg-[#00041F] text-white py-20 mt-16"
->
-  <div className="max-w-4xl mx-auto text-center px-4">
-    <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-snug">
-      GirlScript Summer <br className="md:hidden" /> Of Code 2025
-    </h1>
-    <p className="text-xs md:text-sm text-[#A7ADBE] mb-6">
-      Get In Touch With Us Via Email Or Social Media
-    </p>
-
-    <a
-      href="mailto:gssoc@girlscript.tech"
-      className="inline-block bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] hover:opacity-90 transition px-6 py-3 rounded-full font-medium text-sm"
-    >
-      Contact Us
-    </a>
-
-    {/* Social Icons */}
-    <div className="flex justify-center items-center gap-6 mt-10">
-      {[
-        {
-          href: "https://www.linkedin.com/company/girlscriptsoc/",
-          icon: linkedin,
-          alt: "LinkedIn",
-        },
-        {
-          href: "https://x.com/girlscriptsoc",
-          icon: twitter,
-          alt: "Twitter/X",
-        },
-        {
-          href: "https://www.instagram.com/girlscriptsummerofcode",
-          icon: instagram,
-          alt: "Instagram",
-        },
-      ].map((social, idx) => (
-        <a
-          key={idx}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative h-12 w-12 rounded-lg overflow-hidden flex items-center justify-center bg-[#0F0F2F] hover:bg-[#1A1A40] transition"
-        >
-          <Image
-            src={social.icon}
-            alt={social.alt}
-            className="w-6 h-6 object-contain transition-transform duration-200 ease-in-out group-hover:scale-110"
-          />
-        </a>
-      ))}
+      </motion.section>
     </div>
   </div>
-</motion.section>
-
-      
-
-      </div>
-
-     
-      
-    </section>
-    
-    
-  );
+);
 }
