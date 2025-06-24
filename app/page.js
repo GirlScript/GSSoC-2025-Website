@@ -47,7 +47,7 @@ import {
   LineChartComponent,
   HorizontalBarChartComponent,
   ComposedChartComponent,
-  RadialBarChartComponent,
+  PieChartComponent,
 } from "@/components/Charts";
 import CountUp from "@/components/CountUp";
 
@@ -71,7 +71,7 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <div className="relative w-full min-h-screen font-sans">
+    <div className="relative w-full min-h-screen font-sans overflow-hidden">
       <div className="fixed inset-0 -z-20 w-full h-full overflow-hidden">
         <ShootingStars />
         <StarsBackground starDensity={0.001} />
@@ -345,7 +345,7 @@ export default function Home() {
             variants={itemVariants}
             className="flex flex-col items-center"
           >
-            <CountUp end={35} suffix="K+" />
+            <CountUp end={21} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
           </div>
 
@@ -487,7 +487,7 @@ export default function Home() {
               alt="Background"
               className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
             />
-            <RadialBarChartComponent />
+            <PieChartComponent />
           </motion.div>
         </motion.div>
       </motion.section>

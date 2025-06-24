@@ -11,6 +11,7 @@ const coreTeamMembers = [
     name: "Varshitha Narra",
     role: "PR & Sponsorship",
     image: "https://drive.google.com/uc?id=1OtdaqN0mxAz1QQYkvUjRm1Jbeip0Io8R",
+    linkedin: "https://www.linkedin.com/in/varshitha-narra-a935402a0/"
   },
   {
     name: "Kajal Biju",
@@ -31,7 +32,6 @@ const coreTeamMembers = [
     role: "Web Developer",
     image: "https://drive.google.com/uc?id=17xJnI_eCENrXOtiW18LdE9cnXhJha7uG",
     linkedin: "https://www.linkedin.com/in/karansemwal/",
-    twitter: "https://x.com/phoenicstwt",
   },
   {
     name: "Rakshitha C",

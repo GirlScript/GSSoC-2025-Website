@@ -101,18 +101,18 @@ const projectAdminRegistrationsData = [
   },
 ];
 
-const contributorsMakingItOntoLeaderboardData = [
+const activeParticipants = [
   {
     name: "GSSoC'23",
-    value: 1200,
+    value: 2000,
   },
   {
     name: "GSSoC'24",
-    value: 2700,
+    value: 7000,
   },
   {
     name: "GSSoC'24 Ext",
-    value: 4000,
+    value: 10000,
   },
 ];
 
@@ -356,46 +356,58 @@ export function HorizontalBarChartComponent() {
   );
 }
 
-export function RadialBarChartComponent() {
+// Custom label for semicircle pie chart
+const renderSemiPieLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
+  // Calculate label position closer to the arc center
+  const RADIAN = Math.PI / 180;
+  const radius = innerRadius + (outerRadius - innerRadius) * 1.6;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="#A7ADFE"
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontSize={12}
+      fontWeight="bold"
+      style={{ pointerEvents: 'none' }}
+    >
+      {name}
+    </text>
+  );
+};
+
+export function PieChartComponent() {
   return (
     <div>
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
         Mentor Registrations
       </h3>
       <ResponsiveContainer width="100%" height={300}>
-        <RadialBarChart
-          cx="50%"
-          cy="40%"
-          innerRadius="30%"
-          outerRadius="90%"
-          data={mentorRegistrationsData}
-          barSize={25}
-        >
-          <RadialBar
-            minAngle={15}
-            clockWise
+        <PieChart>
+          <Pie
+            data={mentorRegistrationsData}
+            cx="53%"
+            cy="75%"
+            startAngle={180}
+            endAngle={0}
+            innerRadius={60}
+            outerRadius={120}
+            paddingAngle={2}
             dataKey="value"
+            label={renderSemiPieLabel}
+            labelLine={false}
+            stroke="none"
           >
             {mentorRegistrationsData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
-          </RadialBar>
-          <Legend
-            iconSize={10}
-            layout="horizontal"
-            verticalAlign="bottom"
-            formatter={(value) => <span style={{ color: '#A7ADFE' }}>{value}</span>}
-          />
-          <Tooltip
-            contentStyle={{
-              background: "#232D6B",
-              border: "none",
-              color: "#fff",
-            }}
-            labelStyle={{ color: "#A7ADFE" }}
-            formatter={formatNumber}
-          />
-        </RadialBarChart>
+          </Pie>
+          <Tooltip />
+        </PieChart>
       </ResponsiveContainer>
     </div>
   );
@@ -409,7 +421,7 @@ export function ComposedChartComponent() {
       </h3>
       <ResponsiveContainer width="100%" height={300}>
         <ComposedChart
-          data={contributorsMakingItOntoLeaderboardData}
+          data={activeParticipants}
           margin={{ top: 20, right: 0, left: 0, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#232D6B" />

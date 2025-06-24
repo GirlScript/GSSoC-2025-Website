@@ -129,7 +129,7 @@ const Testimonials = () => {
             <Image src={commas} alt="Icon" width={48} height={48} />
           </div>
 
-          <div className="text-sm md:text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-auto">
+          <div className="text-sm md:text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-hidden">
             {item.feedback}
           </div>
 
