@@ -25,6 +25,7 @@ import {
   RadialBarChart,
   RadialBar,
 } from "recharts";
+import { useState, useEffect } from "react";
 
 const pullRequestsData = [
   {
@@ -131,7 +132,14 @@ const registrationsFromContributorsData = [
   },
 ];
 
-const COLORS = ["#4C75FF", "#1A4FFF", "#A7ADFE"];
+const COLORS = [
+  "#1a365d",
+  "#2d3748",
+  "#4a5568",
+  "#2c5282",
+  "#2b6cb0",
+  "#3182ce",
+];
 
 // Format number to k format
 const formatNumber = (value) => {
@@ -356,31 +364,56 @@ export function HorizontalBarChartComponent() {
   );
 }
 
-// Custom label for semicircle pie chart
-const renderSemiPieLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
-  // Calculate label position closer to the arc center
-  const RADIAN = Math.PI / 180;
-  const radius = innerRadius + (outerRadius - innerRadius) * 1.6;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="#A7ADFE"
-      textAnchor="middle"
-      dominantBaseline="central"
-      fontSize={12}
-      fontWeight="bold"
-      style={{ pointerEvents: 'none' }}
-    >
-      {name}
-    </text>
-  );
-};
-
 export function PieChartComponent() {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isSmallScreen = windowWidth < 500;
+  const innerRadius = isSmallScreen ? 40 : 60;
+  const outerRadius = isSmallScreen ? 70 : 120;
+
+  const renderSemiPieLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    name,
+  }) => {
+    const RADIAN = Math.PI / 180;
+    const radius =
+      innerRadius + (outerRadius - innerRadius) * (isSmallScreen ? 1.7 : 0.7);
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    const fontSize = outerRadius <= 80 ? 8 : 2;
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="#A7ADFE"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontSize={fontSize}
+        fontWeight="bold"
+        style={{ pointerEvents: "none" }}
+        className="text-sm text-shadow-2xs"
+      >
+        {name} {Math.round(percent * 100)}%
+      </text>
+    );
+  };
+
   return (
     <div>
       <h3 className="w-full text-center text-[#A7ADFE] mb-3 font-semibold text-xl">
@@ -394,8 +427,8 @@ export function PieChartComponent() {
             cy="75%"
             startAngle={180}
             endAngle={0}
-            innerRadius={60}
-            outerRadius={120}
+            innerRadius={innerRadius}
+            outerRadius={outerRadius}
             paddingAngle={2}
             dataKey="value"
             label={renderSemiPieLabel}
@@ -403,10 +436,24 @@ export function PieChartComponent() {
             stroke="none"
           >
             {mentorRegistrationsData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              background: "#232D6B",
+              border: "none",
+              color: "#fff",
+            }}
+            labelStyle={{ color: "#A7ADFE" }}
+            formatter={(value, name, props) => [
+              `${value} mentors`,
+              props.payload.name,
+            ]}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

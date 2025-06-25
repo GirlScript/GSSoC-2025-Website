@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion, useMotionValue, animate } from 'framer-motion';
-import useMeasure from 'react-use-measure';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import useMeasure from "react-use-measure";
+import Image from "next/image";
 
-import cardbg9 from '../assets/card-bg-9.svg';
-import commas from '../assets/commas.svg';
-import stars from '../assets/stars.svg';
-
+import cardbg9 from "../assets/card-bg-9.svg";
+import commas from "../assets/commas.svg";
+import stars from "../assets/stars.svg";
 
 const testimonials = [
   {
@@ -59,7 +58,6 @@ const testimonials = [
     role: "Contributor & Ambassador",
     feedback: `Participating in GSSoC 2024 has been an incredibly rewarding journey...`,
   },
-
 ];
 
 const Testimonials = () => {
@@ -82,10 +80,10 @@ const Testimonials = () => {
       xTranslation,
       mustFinish ? [start, finalPosition] : [0, finalPosition],
       {
-        ease: 'linear',
+        ease: "linear",
         duration: mustFinish ? remainingDuration : duration,
         repeat: mustFinish ? 0 : Infinity,
-        repeatType: 'loop',
+        repeatType: "loop",
         onComplete: () => {
           setMustFinish(false);
           setRerender(!rerender);
@@ -133,7 +131,13 @@ const Testimonials = () => {
             {item.feedback}
           </div>
 
-          <Image src={stars} alt="Stars" className="z-10 mt-6 w-[100px]" width={100} height={24} />
+          <Image
+            src={stars}
+            alt="Stars"
+            className="z-10 mt-6 w-[100px]"
+            width={100}
+            height={24}
+          />
 
           <div className="flex items-center mt-10 z-10">
             <div className="h-12 w-12 rounded-xl overflow-hidden">
@@ -146,8 +150,12 @@ const Testimonials = () => {
               />
             </div>
             <div className="ml-4 text-left">
-              <div className="text-sm md:text-[18px] font-medium">{item.name}</div>
-              <div className="text-balance md:text-sm text-[#A7ADBE]">{item.role}</div>
+              <div className="text-sm md:text-[18px] font-medium">
+                {item.name}
+              </div>
+              <div className="text-balance md:text-sm text-[#A7ADBE]">
+                {item.role}
+              </div>
             </div>
           </div>
         </motion.div>

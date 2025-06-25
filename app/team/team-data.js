@@ -11,7 +11,7 @@ const coreTeamMembers = [
     name: "Varshitha Narra",
     role: "PR & Sponsorship",
     image: "https://drive.google.com/uc?id=1OtdaqN0mxAz1QQYkvUjRm1Jbeip0Io8R",
-    linkedin: "https://www.linkedin.com/in/varshitha-narra-a935402a0/"
+    linkedin: "https://www.linkedin.com/in/varshitha-narra-a935402a0/",
   },
   {
     name: "Kajal Biju",
@@ -68,7 +68,7 @@ const coreTeamMembers = [
     name: "Sanya Srivastava",
     role: "Community Moderator",
     image: "https://drive.google.com/uc?id=1kB9z0SMJ-PLs7QBWBuujGoWj_Mvw25oC",
-    linkedin: "https://www.linkedin.com/in/sanya-srivastava-s"
+    linkedin: "https://www.linkedin.com/in/sanya-srivastava-s",
   },
 ];
 

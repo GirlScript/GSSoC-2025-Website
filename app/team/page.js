@@ -63,8 +63,9 @@ export default function TeamsPage() {
               Meet Our <br /> Core Team
             </h1>
             <p className="w-full max-w-4xl text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
-              The passionate individuals behind GirlScript Summer of Code 2025, 
-              dedicated to fostering open source contributions and empowering developers worldwide.
+              The passionate individuals behind GirlScript Summer of Code 2025,
+              dedicated to fostering open source contributions and empowering
+              developers worldwide.
             </p>
           </div>
         </motion.div>
@@ -90,7 +91,7 @@ export default function TeamsPage() {
                 alt="Background"
                 className="absolute right-0 top-0 w-full h-full object-cover z-0 rounded-3xl"
               />
-              
+
               {/* Profile Image */}
               <div className="relative z-10 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-[#232D6B] mb-6">
                 <Image
@@ -133,7 +134,7 @@ export default function TeamsPage() {
                     />
                   </a>
                 )}
-                
+
                 {member.twitter && (
                   <a
                     href={member.twitter}
@@ -153,7 +154,7 @@ export default function TeamsPage() {
                     />
                   </a>
                 )}
-                
+
                 {member.instagram && (
                   <a
                     href={member.instagram}
@@ -177,7 +178,6 @@ export default function TeamsPage() {
             </motion.div>
           ))}
         </motion.div>
-
       </section>
     </div>
   );
