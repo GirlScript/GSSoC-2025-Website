@@ -338,6 +338,8 @@ export default function CampusAmbassadorApp() {
                           ? `https://${key
                               .replace(/Url/, "")
                               .toLowerCase()}.com/yourprofile`
+                          : key === "instagramUrl || twitterUrl || linkedIn || github"
+                          ? "optional"
                           : key === "referralCode"
                           ? "Your referral code (if any)"
                           : ""
