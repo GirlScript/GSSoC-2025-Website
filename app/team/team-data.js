@@ -41,7 +41,7 @@ const coreTeamMembers = [
   },
   {
     name: "Jyoti Singh",
-    role: "Content Writing",
+    role: "Content Writer",
     image: "https://drive.google.com/uc?id=1RZSUIZSlfzwMlgLxMnQwamfYzvpV39To",
     linkedin:
       "https://www.linkedin.com/in/jyoti-singh-869583183?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",

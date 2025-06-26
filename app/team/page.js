@@ -47,7 +47,7 @@ export default function TeamsPage() {
         </Link>
       </header>
 
-      <section className="w-full min-h-screen relative flex flex-col items-center justify-center bg-transparent text-white px-4 pt-32">
+      <section className="w-full min-h-screen relative flex flex-col items-center justify-center bg-transparent text-white px-4 pt-32 pb-6">
         <motion.div
           variants={itemVariants}
           initial="hidden"
@@ -179,6 +179,87 @@ export default function TeamsPage() {
           ))}
         </motion.div>
       </section>
+      <motion.section
+        id="contact"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-full relative flex flex-col items-center bg-[#00041F] text-white py-16"
+      >
+        <div className="text-center text-white">
+          <h1 className="text-3xl md:text-6xl font-bold mb-4">
+            GirlScript Summer <br /> Of Code 2025
+          </h1>
+          <p className="text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
+            Get In Touch With Us Via Email Or Social Media
+          </p>
+          <a
+            href="mailto:gssoc@girlscript.tech"
+            className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
+          >
+            Contact Us
+          </a>
+        </div>
+        <div className="flex flex-row justify-center items-center mt-12">
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/company/girlscriptsoc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={linkedin}
+              alt="LinkedIn Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
+
+          {/* Twitter/X */}
+          <a
+            href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={twitter}
+              alt="Twitter Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={instagram}
+              alt="Instagram Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
+        </div>
+      </motion.section>
     </div>
   );
 }
