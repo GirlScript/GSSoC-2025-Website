@@ -32,6 +32,7 @@ export default function CampusAmbassadorApp() {
   const [step, setStep] = useState("email");
   const [status, setStatus] = useState("");
   const [user, setUser] = useState(null);
+  const [application, setApplication] = useState(null);
   const [applicationStatus, setApplicationStatus] = useState(null);
   const [submitStatus, setSubmitStatus] = useState("");
   const [formData, setFormData] = useState(initialFormData);
@@ -57,13 +58,16 @@ export default function CampusAmbassadorApp() {
       setStatus("");
       const { data: appData, error } = await supabase
         .from("events")
-        .select("status")
+        .select("status, application_id")
         .eq("participant_id", currentUser.id)
         .eq("role", ROLE)
         .eq("event_name", EVENT_NAME)
         .maybeSingle();
       if (error) console.error(error.message);
-      else setApplicationStatus(appData?.status || null);
+      else {
+        setApplicationStatus(appData?.status || null);
+        setApplication(appData || null);
+      }
     };
 
     const resetState = () => {
@@ -71,6 +75,7 @@ export default function CampusAmbassadorApp() {
       setStep("email");
       setStatus("");
       setApplicationStatus(null);
+      setApplication(null);
     };
 
     init();
@@ -233,8 +238,9 @@ export default function CampusAmbassadorApp() {
                 Application Status
               </h2>
               <p className="w-2/3 text-[10px] md:text-[14px] text-[#A7ADBE]">
-                Sorry! Your application was not accepted for this year. Thank you for applying!
-                For any queries, please feel reach out to us at{" "}
+                Sorry! Your application was not accepted for this year. Thank
+                you for applying! For any queries, please feel reach out to us
+                at{" "}
                 <a
                   className="text-[#4C75FF]"
                   href="mailto:gssoc@girlscript.tech"
@@ -250,8 +256,8 @@ export default function CampusAmbassadorApp() {
                 Congratulations! You are accepted!
               </h2>
               <p className="w-2/3 text-[10px] md:text-[14px] text-[#A7ADBE]">
-                Copy your referral code and join our Discord server to get
-                started.
+                Copy your referral code ({application.application_id}) and join
+                our Discord server to get started.
               </p>
               <div className="flex flex-row items-center gap-8">
                 <a
@@ -264,7 +270,9 @@ export default function CampusAmbassadorApp() {
                 </a>
                 <button
                   onClick={() =>
-                    navigator.clipboard.writeText(user?.id || "N/A")
+                    navigator.clipboard.writeText(
+                      application.application_id || "N/A"
+                    )
                   }
                   className="cursor-pointer bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal mt-8"
                 >
@@ -326,7 +334,6 @@ export default function CampusAmbassadorApp() {
                           "twitterUrl",
                           "instagramUrl",
                           "portfolioUrl",
-                          "referralCode",
                         ].includes(key)
                           ? "url"
                           : "text"
