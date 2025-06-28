@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nivo/bar": "^0.99.0",
     "@supabase/supabase-js": "^2.49.8",
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
@@ -20,6 +21,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-use-measure": "^2.1.7",
+    "recharts": "^2.15.3",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

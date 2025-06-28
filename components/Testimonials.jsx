@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion, useMotionValue, animate } from 'framer-motion';
-import useMeasure from 'react-use-measure';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import useMeasure from "react-use-measure";
+import Image from "next/image";
 
-import cardbg9 from '../assets/card-bg-9.svg';
-import commas from '../assets/commas.svg';
-import stars from '../assets/stars.svg';
-
+import cardbg9 from "../assets/card-bg-9.svg";
+import commas from "../assets/commas.svg";
+import stars from "../assets/stars.svg";
 
 const testimonials = [
   {
@@ -16,6 +15,18 @@ const testimonials = [
     imgUrl: "https://drive.google.com/uc?id=1xYc7IfxBA3bdI61MMl6HGPsDXCXYN1xB",
     role: "Core Team Member",
     feedback: `Being part of the GSSoC core team has been an epic adventure...`,
+  },
+  {
+    name: "Anchal Chaturvedi",
+    imgUrl: "https://drive.google.com/uc?id=1D4rzFbw4oGlLOqZKDLOBpcNGJuvk8xDq",
+    role: "Contributor & Ambassador",
+    feedback: `Throughout this journey, all the mentors were very supportive and helpful at every step...`,
+  },
+  {
+    name: "Vuppala Sai Srija",
+    imgUrl: "https://drive.google.com/uc?id=1ZV2bJWGGquPMK_NYBFSqVucHinNjArkp",
+    role: "Contributor",
+    feedback: `My journey through GSSoC'24 has been an exciting blend of learning and achievement. Although I started late due to exams, I was able to...`,
   },
   {
     name: "Jeevana Maradana",
@@ -69,10 +80,10 @@ const Testimonials = () => {
       xTranslation,
       mustFinish ? [start, finalPosition] : [0, finalPosition],
       {
-        ease: 'linear',
+        ease: "linear",
         duration: mustFinish ? remainingDuration : duration,
         repeat: mustFinish ? 0 : Infinity,
-        repeatType: 'loop',
+        repeatType: "loop",
         onComplete: () => {
           setMustFinish(false);
           setRerender(!rerender);
@@ -92,7 +103,18 @@ const Testimonials = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="relative min-w-[500px] aspect-5/3 border border-[#131839] bg-radial from-[#003BFF24] to-[#00020F] rounded-3xl p-6 flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-32 mb-44"
+          className="
+            relative
+            min-w-[300px] max-w-[95vw] sm:min-w-[400px] md:min-w-[500px]
+            aspect-5/3
+            border border-[#131839]
+            bg-radial from-[#003BFF24] to-[#00020F]
+            rounded-3xl
+            p-3 md:p-6
+            flex flex-col items-center justify-center
+            shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]
+            mt-12 md:mt-32 mb-20 md:mb-44
+          "
         >
           <Image
             src={cardbg9}
@@ -105,11 +127,17 @@ const Testimonials = () => {
             <Image src={commas} alt="Icon" width={48} height={48} />
           </div>
 
-          <div className="text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-auto">
+          <div className="text-sm md:text-xl text-[#A7ADBE] mt-10 text-center z-10 leading-tight font-semibold px-6 max-h-60 overflow-y-hidden">
             {item.feedback}
           </div>
 
-          <Image src={stars} alt="Stars" className="z-10 mt-6 w-[100px]" width={100} height={24} />
+          <Image
+            src={stars}
+            alt="Stars"
+            className="z-10 mt-6 w-[100px]"
+            width={100}
+            height={24}
+          />
 
           <div className="flex items-center mt-10 z-10">
             <div className="h-12 w-12 rounded-xl overflow-hidden">
@@ -122,8 +150,12 @@ const Testimonials = () => {
               />
             </div>
             <div className="ml-4 text-left">
-              <div className="text-[18px] font-medium">{item.name}</div>
-              <div className="text-sm text-[#A7ADBE]">{item.role}</div>
+              <div className="text-sm md:text-[18px] font-medium">
+                {item.name}
+              </div>
+              <div className="text-balance md:text-sm text-[#A7ADBE]">
+                {item.role}
+              </div>
             </div>
           </div>
         </motion.div>
