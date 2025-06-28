@@ -40,6 +40,16 @@ import { delay, motion, Variants } from "framer-motion";
 import { redirect } from "next/navigation";
 import Testimonials from "@/components/Testimonials";
 import PastSponsors from "@/components/PastSponsors";
+import {
+  AreaChartComponent,
+  BarChartComponent,
+  RadarChartComponent,
+  LineChartComponent,
+  HorizontalBarChartComponent,
+  ComposedChartComponent,
+  PieChartComponent,
+} from "@/components/Charts";
+import CountUp from "@/components/CountUp";
 
 const containerVariants = {
   hidden: {},
@@ -61,7 +71,7 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <div className="relative w-full min-h-screen font-sans">
+    <div className="relative w-full min-h-screen font-sans overflow-hidden">
       <div className="fixed inset-0 -z-20 w-full h-full overflow-hidden">
         <ShootingStars />
         <StarsBackground starDensity={0.001} />
@@ -96,6 +106,12 @@ export default function Home() {
             Sponsor
           </a>
           <a
+            href="/team"
+            className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
+          >
+            Team
+          </a>
+          <a
             href="#contact"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
@@ -105,7 +121,7 @@ export default function Home() {
 
         <a
           href="/apply/campus-ambassador"
-          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px] text-[12px] md:text-[10px] md:text-[14px]"
+          className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px]"
         >
           Apply Now
         </a>
@@ -196,15 +212,15 @@ export default function Home() {
               Founded in 2017 by Anubha Maheshwar, Girlscript is a
               not-for-profit organization dedicated to making quality education
               accessible for all. With a mission to empower individuals through
-              learning, we’ve built a vibrant community of over 500,000
+              learning, we&apos;ve built a vibrant community of over 500,000
               learners. Our programs focus on skill development, mentorship, and
               career guidance, bridging the gap between education and the
               professional world. We collaborate with corporates and
               institutions to offer real-world learning experiences, all while
               staying rooted in inclusivity, humility, and community. At
-              Girlscript, every learner’s growth is a shared success. Join us in
-              shaping a future where education is a right—not a privilege—and
-              where everyone can thrive.
+              Girlscript, every learner&apos;s growth is a shared success. Join
+              us in shaping a future where education is a right—not a
+              privilege—and where everyone can thrive.
             </p>
           </div>
         </motion.div>
@@ -275,6 +291,208 @@ export default function Home() {
       </motion.section>
 
       <motion.section
+        id="about"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+        className="w-screen mt-40 h-min-screen relative flex flex-col items-center bg-[#00020f] text-white"
+      >
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white"
+        >
+          <div className="text-center text-white z-20 flex flex-col items-center">
+            <h1 className="text-3xl md:text-6xl font-bold mb-4">
+              Know About <br /> GirlScript Summer Of Code
+            </h1>
+            <p className="w-11/12 text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
+              GirlScript Summer of Code is the 3-month long Open Source program
+              during summers conducted by GirlScript Foundation, started in
+              2018, to help beginners get started with Open Source Development
+              while encouraging diversity. Throughout the program, participants
+              contribute to different projects under the guidance of experienced
+              mentors. Top participants get exciting goodies and opportunities.
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={43} suffix="k+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Registrations
+            </div>
+          </div>
+
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={200} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Institutes
+            </div>
+          </div>
+
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={21} suffix="K+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
+          </div>
+
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={20} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">Countries</div>
+          </div>
+
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={137} suffix="K+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Linkedin Followers
+            </div>
+          </div>
+
+          <div
+            variants={itemVariants}
+            className="flex flex-col items-center"
+          >
+            <CountUp end={500} suffix="+" />
+            <div className="text-[#A7ADBE] text-sm md:text-base">
+              Total Projects
+            </div>
+          </div>
+        </div>
+
+        <motion.div
+          className="w-5/6 grid grid-cols-1 lg:grid-cols-3 grid-rows-3 gap-4 mt-[80px] md:mt-8 items-center justify-items-center max-w-7xl"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <BarChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <AreaChartComponent />
+          </motion.div>
+
+          {/* Radar Chart for LinkedIn Followers */}
+          {/* <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-0 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <RadarChartComponent />
+          </motion.div> */}
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <LineChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <HorizontalBarChartComponent />
+          </motion.div>
+
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <ComposedChartComponent />
+          </motion.div>
+          <motion.div
+            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-4 shadow-2xl shadow-blue-500/20"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-10 rounded-3xl"
+            />
+            <PieChartComponent />
+          </motion.div>
+        </motion.div>
+      </motion.section>
+
+      <motion.section
         id="why-gssoc"
         initial="hidden"
         whileInView="show"
@@ -287,7 +505,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-32"
+          className="w-screen relative flex flex-col items-center bg-[#00020f] text-white mt-2"
         >
           <Image
             src={sbg}
@@ -318,100 +536,6 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mb-12 gap-4 mt-[80px] md:mt-[120px] items-center justify-items-center"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg6}
-              alt="Background"
-              className="absolute right-0 top-0 h-full object-cover"
-            />
-            <Image
-              src={needle2}
-              alt="Background"
-              className="absolute object-cover transition-transform duration-500 translate-y-12 translate-x-24 group-hover:translate-x-60  group-hover:-translate-y-12"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Grow Your Career
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-               Build Projects. Build Skills. Build Your Career
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg7}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-            <Image
-              src={needle}
-              alt="Background"
-              className="absolute object-cover -translate-y-12 origin-bottom -rotate-[60deg] transition-transform duration-500 group-hover:rotate-[60deg]"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Maximize Your Potential
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-                Maximize Impact. Maximize You.
-
-
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="group relative aspect-square max-w-[400px] w-full bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center items-center p-8 shadow-2xl shadow-blue-500/20 overflow-hidden"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            <Image
-              src={cardbg4}
-              alt="Background"
-              className="absolute right-0 top-0 w-full h-full object-cover"
-            />
-            <Image
-              src={cardbg8}
-              alt="Background"
-              className="absolute object-cover transition-transform duration-500 group-hover:-translate-y-8"
-            />
-
-            <div className="absolute bottom-8 left-0 w-full">
-              <div className="text-[14px] md:text-[18px] my-2 w-full text-center">
-                Stand Out From The Crowd
-              </div>
-              <div className="text-[#A7ADBE] text-[14px] w-full text-center">
-                Contribute Boldly. Shine Brightly.
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
           className="flex flex-row items-center justify-center w-full"
           variants={itemVariants}
           initial="hidden"
@@ -432,18 +556,17 @@ export default function Home() {
           viewport={{ once: false, amount: 0.3 }}
           className="w-11/12 md:w-5/6 border border-[#131839] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] mt-12 rounded-3xl aspect-video p-2 shadow-2xl shadow-blue-500/20"
         >
-         <iframe
-  width="100%"
-  height="100%"
-  src="https://www.youtube.com/embed/yi_LounnOk0?autoplay=1&loop=1&playlist=yi_LounnOk0&controls=0&rel=0&showinfo=0&modestbranding=1"
-  title="GSSoC 2024 Video"
-  frameBorder="0"
-  allow="autoplay; encrypted-media"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen
-  className="rounded-3xl"
-/>
-
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/yi_LounnOk0?autoplay=1&loop=1&playlist=yi_LounnOk0&controls=0&rel=0&showinfo=0&modestbranding=1"
+            title="GSSoC 2024 Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="rounded-3xl"
+          />
         </motion.div>
       </motion.section>
 
@@ -524,10 +647,11 @@ export default function Home() {
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Project Assignment to Mentors
+              Project Assignment to Mentors
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Mentors are assigned to projects and begin preparing to guide contributors throughout the program.
+              Mentors are assigned to projects and begin preparing to guide
+              contributors throughout the program.
             </div>
           </motion.div>
 
@@ -545,14 +669,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-             23th June 2025
+              23th June 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Community Bonding Period Starts
+              Community Bonding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Contributors and mentors interact, discuss project goals, and get familiar with the community.
+              Contributors and mentors interact, discuss project goals, and get
+              familiar with the community.
             </div>
           </motion.div>
 
@@ -577,7 +702,8 @@ export default function Home() {
               Coding Period Starts
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             Contributors officially start working on their assigned open source projects under mentor supervision.
+              Contributors officially start working on their assigned open
+              source projects under mentor supervision.
             </div>
           </motion.div>
 
@@ -595,14 +721,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-                 To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Leaderboard Opens
+              Leaderboard Opens
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-            The leaderboard is made public, allowing participants to track their progress and contributions.
+              The leaderboard is made public, allowing participants to track
+              their progress and contributions.
             </div>
           </motion.div>
 
@@ -620,13 +747,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-            To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-             Coding Period Ends
+              Coding Period Ends
             </div>
-            <div className="text-[12px] text-[#A7ADBE]">The official coding phase concludes; contributors submit their final work for evaluation.
+            <div className="text-[12px] text-[#A7ADBE]">
+              The official coding phase concludes; contributors submit their
+              final work for evaluation.
             </div>
           </motion.div>
 
@@ -644,14 +773,15 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-               To Be Announced
+              To Be Announced
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
               Result will be declared
             </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Final results are announced, recognizing top contributors and successful projects.
+              Final results are announced, recognizing top contributors and
+              successful projects.
             </div>
           </motion.div>
         </motion.div>
@@ -880,8 +1010,9 @@ export default function Home() {
           </div>
         </motion.div> */}
       </motion.section>
-
-      <Testimonials/>
+      <div className="w-full">
+        <Testimonials />
+      </div>
 
       <motion.section
         id="sponsor"
@@ -939,7 +1070,7 @@ export default function Home() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
-          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-3 md:grid-rows-1 mt-12 gap-2 md:gap-8"
+          className="w-11/12 md:w-5/6 grid grid-cols-1 md:grid-cols-3 grid-rows-2 md:grid-rows-1 mt-12 gap-2 md:gap-8"
         >
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
             <Image
@@ -961,14 +1092,12 @@ export default function Home() {
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Maximize Visibility</div>
+            <div className="text-[14px] md:text-[18px] my-2">
+              Maximize Visibility
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-              Feature
-your brand across app,
-website, social media (500K+
-reach), newsletters, and
-event swag.
-
+              Feature your brand across app, website, social media (500K+
+              reach), newsletters, and event swag.
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -991,14 +1120,12 @@ event swag.
               />
             </div>
 
-            <div className="text-[14px] md:text-[18px] my-2">Engage & Activate</div>
+            <div className="text-[14px] md:text-[18px] my-2">
+              Engage & Activate
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             e: Host
-workshops, showcase tech,
-and integrate product tasks
-to reach 50,000+ developers
-directly.
-
+              e: Host workshops, showcase tech, and integrate product tasks to
+              reach 50,000+ developers directly.
             </div>
           </motion.div>
           <motion.div className="relative w-full h-[180px] md:h-[240px] bg-transparent bg-gradient-to-b from-[#00041f] to-[#00041f00] rounded-3xl border border-[#131839] flex flex-col justify-center p-8 shadow-2xl shadow-blue-500/20">
@@ -1022,19 +1149,17 @@ directly.
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
-Community Impact</div>
+              Community Impact
+            </div>
             <div className="text-[12px] text-[#A7ADBE]">
-             Champion gender equity in
-tech through measurable
-support—mentorship hours,
-project outcomes, and
-participant placements.
+              Champion gender equity in tech through measurable
+              support—mentorship hours, project outcomes, and participant
+              placements.
             </div>
           </motion.div>
         </motion.div>
 
-
-        <PastSponsors/>
+        <PastSponsors />
 
         <motion.div
           variants={itemVariants}
@@ -1054,7 +1179,8 @@ participant placements.
             particleColor="#FFFFFF"
           />
           <div className="text-md md:text-6xl z-10 leading-[1.2] font-semibold w-11/12 text-balance text-center ">
-            Bridging passion and purpose through impactful open source contributions!
+            Bridging passion and purpose through impactful open source
+            contributions!
           </div>
           <div className="text-[#A7ADBE] text-[10px] md:text-lg mt-2 md:mt-8 w-11/12 text-balance text-center">
             However, we approach things a bit differently around here.
@@ -1084,65 +1210,64 @@ participant placements.
             Contact Us
           </a>
         </div>
-    <div className="flex flex-row justify-center items-center mt-12">
-  {/* LinkedIn */}
-  <a
-    href="https://www.linkedin.com/company/girlscriptsoc/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
-  >
-    <Image
-      src={iconbg}
-      alt="Background"
-      className="w-full h-full object-cover"
-    />
-    <Image
-      src={linkedin}
-      alt="LinkedIn Icon"
-      className="absolute w-11/12 h-3/5 object-cover"
-    />
-  </a>
+        <div className="flex flex-row justify-center items-center mt-12">
+          {/* LinkedIn */}
+          <a
+            href="https://www.linkedin.com/company/girlscriptsoc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={linkedin}
+              alt="LinkedIn Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
 
-  {/* Twitter/X */}
-  <a
-    href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
-  >
-    <Image
-      src={iconbg}
-      alt="Background"
-      className="w-full h-full object-cover"
-    />
-    <Image
-      src={twitter}
-      alt="Twitter Icon"
-      className="absolute w-11/12 h-3/5 object-cover"
-    />
-  </a>
+          {/* Twitter/X */}
+          <a
+            href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative mx-4"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={twitter}
+              alt="Twitter Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
 
-  {/* Instagram */}
-  <a
-    href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
-    target="_blank"
-    rel="noopener noreferrer"
-    className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
-  >
-    <Image
-      src={iconbg}
-      alt="Background"
-      className="w-full h-full object-cover"
-    />
-    <Image
-      src={instagram}
-      alt="Instagram Icon"
-      className="absolute w-11/12 h-3/5 object-cover"
-    />
-  </a>
-</div>
-
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="h-12 w-12 z-10 rounded-xl overflow-hidden flex items-center justify-center relative"
+          >
+            <Image
+              src={iconbg}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+            <Image
+              src={instagram}
+              alt="Instagram Icon"
+              className="absolute w-11/12 h-3/5 object-cover"
+            />
+          </a>
+        </div>
       </motion.section>
     </div>
   );

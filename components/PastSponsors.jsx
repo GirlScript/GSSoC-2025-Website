@@ -25,7 +25,7 @@ const PastSponsors = () => {
       </h1>
 
       <div className="w-full max-w-6xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 bg-white/5 rounded-2xl py-10 px-4 shadow-lg">
-        <SponsorCard src={postmanLogo} alt="Postman" scale="scale-[1.2]" />
+        <SponsorCard src={postmanLogo} alt="Postman" scale="scale-[5.0]" />
         <SponsorCard src={vercelLogo} alt="Vercel" scale="scale-[1.1]" />
         <SponsorCard src={filecoinLogo} alt="Filecoin" scale="scale-[1.3]" />
         <SponsorCard src={moralisLogo} alt="Moralis" scale="scale-[1.1]" />
