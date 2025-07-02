@@ -120,10 +120,10 @@ export default function Home() {
         </nav>
 
         <a
-          href="/apply/campus-ambassador"
+          href="#apply"
           className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px]"
         >
-          Apply Now
+          Download App
         </a>
       </header>
 
@@ -159,15 +159,15 @@ export default function Home() {
             A new era of open source contributions and learning.
           </p>
           <a
-            href="/apply/campus-ambassador"
+            href="#apply"
             className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
           >
-            Tap To Join Today
+            Download App Today
           </a>
           <div className="flex items-center justify-center mt-6">
             <div className="bg-[#0DDE33] h-2 w-2 rounded-full" />
             <p className="text-[#A7ADBE] text-[10px] md:text-[12px] ml-2">
-              CA Applications Live!
+              All Applications Live!
             </p>
           </div>
         </div>
@@ -321,56 +321,38 @@ export default function Home() {
         </motion.div>
 
         <div className="w-full flex flex-wrap justify-center md:gap-8 gap-4 mt-2 mb-32">
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={43} suffix="k+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Registrations
             </div>
           </div>
 
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={200} suffix="+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Institutes
             </div>
           </div>
 
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={21} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">PRs</div>
           </div>
 
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={20} suffix="+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">Countries</div>
           </div>
 
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={137} suffix="K+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Linkedin Followers
             </div>
           </div>
 
-          <div
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
+          <div variants={itemVariants} className="flex flex-col items-center">
             <CountUp end={500} suffix="+" />
             <div className="text-[#A7ADBE] text-sm md:text-base">
               Total Projects
@@ -1160,31 +1142,103 @@ export default function Home() {
         </motion.div>
 
         <PastSponsors />
+      </motion.section>
 
+      <motion.section
+        id="apply"
+        className="w-full bg-[#00020f] text-white relative overflow-hidden flex flex-col items-center py-20"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariants}
+      >
         <motion.div
           variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="w-11/12 md:w-5/6 h-[180px] md:h-[400px] border border-[#131839] bg-radial from-[#003BFF24] from-0% to-[#00020F] to-100% rounded-3xl p-2 flex flex-col items-center justify-center relative shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] mt-4  mb-16"
+          className="relative max-w-4xl w-11/12 bg-gradient-to-br from-[#003BFF24] to-[#00020F] border border-[#131839] rounded-3xl p-8 md:p-12 shadow-[0_20px_60px_rgba(8,112,184,0.5)]"
         >
-          <SparklesCore
-            id="tsparticlesfullpage"
-            background="transparent"
-            minSize={0.4}
-            maxSize={0.8}
-            particleDensity={200}
-            particleSpeed={0.3}
-            className="absolute w-full h-2/5"
-            particleColor="#FFFFFF"
-          />
-          <div className="text-md md:text-6xl z-10 leading-[1.2] font-semibold w-11/12 text-balance text-center ">
-            Bridging passion and purpose through impactful open source
-            contributions!
-          </div>
-          <div className="text-[#A7ADBE] text-[10px] md:text-lg mt-2 md:mt-8 w-11/12 text-balance text-center">
-            However, we approach things a bit differently around here.
-          </div>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center text-indigo-300 mb-4 leading-tight"
+          >
+            Ready to Kick Off Your GSSoC 2025 Journey?
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-center text-gray-300 text-lg md:text-xl mb-8"
+          >
+            We’ve teamed up with{" "}
+            <strong className="text-white">Smartly Ventures</strong> to
+            streamline your application process via their app{" "}
+            <strong>Insights</strong>: Learn about opensource, apply for various
+            roles and programs, and always stay up to date.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row justify-center gap-4 mb-10"
+          >
+            <a
+              href="https://lnk.ink/Dp2kd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
+            >
+              Download for Android
+            </a>
+            <a
+              href="https://lnk.ink/4UeaK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
+            >
+              Download for iOS
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="bg-[#11152b] border border-[#24315b] rounded-xl p-6 mb-10"
+          >
+            <h3 className="text-2xl font-semibold text-indigo-200 text-center mb-4">
+              How to Apply
+            </h3>
+            <ol className="list-decimal list-inside text-gray-300 space-y-2 text-base md:text-lg">
+              <li>Open the Insights app</li>
+              <li>Log in with your email</li>
+              <li>
+                Tap <strong>Explore</strong> and select the{" "}
+                <strong>GSSoC 2025</strong> banner
+              </li>
+              <li>
+                Choose your role: Contributors, Project Admins, Mentors, or
+                Campus Ambassadors
+              </li>
+              <li>Fill out the form and submit</li>
+            </ol>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col items-center text-center"
+          >
+            <a
+              href="https://lnkd.in/g8aX534F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
+            >
+              Join Our Discord
+            </a>
+            <p className="text-gray-500 mb-2 mt-4">
+              #GSSoC2025 &bull; #GirlScriptFoundation &bull; #Tech
+            </p>
+            <p className="text-sm text-gray-600">
+              For technical help, use{" "}
+              <strong className="text-white">#technical-issues</strong> in
+              Discord.
+            </p>
+          </motion.div>
         </motion.div>
       </motion.section>
 
@@ -1211,7 +1265,6 @@ export default function Home() {
           </a>
         </div>
         <div className="flex flex-row justify-center items-center mt-12">
-          {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/company/girlscriptsoc/"
             target="_blank"
@@ -1230,7 +1283,6 @@ export default function Home() {
             />
           </a>
 
-          {/* Twitter/X */}
           <a
             href="https://x.com/girlscriptsoc?fbclid=PAQ0xDSwKw-IVleHRuA2FlbQIxMAABp_RYL61UMmjR16ZRYtQ9Vr8RKnrJDW3m8Jgs_YAcL6OiU7XdT65vIkh0mu_U_aem_u7mT7T5kaX-7RyGhB8XlLg"
             target="_blank"
@@ -1249,7 +1301,6 @@ export default function Home() {
             />
           </a>
 
-          {/* Instagram */}
           <a
             href="https://www.instagram.com/girlscriptsummerofcode?igsh=MWlhYnRld2J3bWdyOQ=="
             target="_blank"
