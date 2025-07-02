@@ -123,7 +123,7 @@ export default function Home() {
           href="#apply"
           className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px]"
         >
-          Download App
+          Apply Now
         </a>
       </header>
 
@@ -162,7 +162,7 @@ export default function Home() {
             href="#apply"
             className="bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white px-5 py-3 rounded-full font-normal cursor-pointer text-[12px] md:text-[14px]"
           >
-            Download App Today
+            Apply Now
           </a>
           <div className="flex items-center justify-center mt-6">
             <div className="bg-[#0DDE33] h-2 w-2 rounded-full" />
