@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GirlScript Summer of Code (GSSoC) 2025 Website
 
-## Getting Started
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/GirlScript/GSSoC-2025-Website)](https://github.com/GirlScript/GSSoC-2025-Website/graphs/contributors)
+[![Issues](https://img.shields.io/github/issues/GirlScript/GSSoC-2025-Website)](https://github.com/GirlScript/GSSoC-2025-Website/issues)
 
-First, run the development server:
+Welcome to the official repository for the **GirlScript Summer of Code (GSSoC) 2025 Website**!  
+This website serves as the central hub for participants, mentors, and organizers to explore project information, contribute to open-source, and stay connected throughout the program.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Table of Contents
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📖 About
 
-To learn more about Next.js, take a look at the following resources:
+**GirlScript Summer of Code (GSSoC)** is an annual 3-month open-source program by [GirlScript Foundation](https://www.girlscript.tech/) that helps students learn, build projects, and contribute to open source.  
+This website showcases program details, participating projects, contributor leaderboards, and community updates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌟 Features
 
-## Deploy on Vercel
+✅ Homepage with program highlights  
+✅ Project listing and details  
+✅ Contributor dashboard  
+✅ Mentor profiles  
+✅ Event updates and announcements  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠 Tech Stack
+
+- **Frontend:** HTML, CSS, JavaScript
+- **Frameworks/Libraries:** React (or specify if different)
+- **Backend:** Node.js (if applicable)
+- **Deployment:** GitHub Pages / Netlify / Vercel (update accordingly)
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to set up the project locally.
+
+### Prerequisites
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (v14+ recommended)
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ````bash
+   git clone https://github.com/GirlScript/GSSoC-2025-Website.git
+````
+
+2. **Navigate to the project directory**
+   ````bash
+   cd GSSoC-2025-Website
+   ````
+
+3. **Install dependencies**
+
+   ```bash
+   npm install
+   ````
+
+   or
+
+   ```bash
+   yarn install
+   ```
+
+4. **Run the development server**
+
+   ```bash
+   npm start
+   ```
+
+   or
+
+   ```bash
+   yarn start
+   ```
+
+5. **Open in your browser**
+
+   The app should now be running at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from everyone! ✨
+
+1. **Fork** this repository.
+2. **Create a branch**:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Make your changes** and **commit**:
+
+   ```bash
+   git commit -m "feat: add new feature"
+   ```
+4. **Push to your fork**:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Open a Pull Request** describing your changes.
+
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md) (create this file if it doesn’t exist).
+
+---
+
+## License
+
+This project is licensed under the **MIT License**.
+See [LICENSE](LICENSE) for more information.
+
+---
+
+## 📬 Contact
+
+For questions or feedback, feel free to reach out:
+
+* [GirlScript Foundation](https://www.girlscript.tech/)
+* [GSSoC-2025 Website](https://github.com/GirlScript/GSSoC-2025-Website)
