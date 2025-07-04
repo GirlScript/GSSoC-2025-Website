@@ -68,15 +68,15 @@ export default function PostmanCertificationSection() {
         viewport={{ once: false, amount: 0.3 }}
         className="relative z-10 mx-auto max-w-5xl px-6 text-center"
       >
-        <h2 className="text-2xl font-bold tracking-wide sm:leading-14 leading-8 sm:text-4xl lg:text-5xl">
-          <div className="font-semibold">Earn Free</div>
+        <h2 className="text-3xl md:text-6xl font-bold">
+          <div>Earn Free</div>
           <span className="text-[#FF6C37] font-extrabold">
             Postman API Fundamentals
           </span>
-          <div className="font-semibold">Student Expert Certification</div>
+          <div>Student Expert Certification</div>
         </h2>
 
-        <p className="mx-auto mt-6 sm:w-2/3 w-full sm:text-lg/relaxed text-sm text-[#F8F8FF]">
+        <p className="mx-auto mt-6 sm:w-2/3 w-full sm:text-lg/relaxed text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE]">
           Complete the Postman Student Expert Program with GirlScript and stand
           a chance to win exciting Postman swag.
         </p>
@@ -89,7 +89,7 @@ export default function PostmanCertificationSection() {
           <div className="w-1/4 bg-gradient-to-l from-transparent to-[#171D45] h-[2px]" />
         </div>
 
-        <ol className="mx-auto mt-10 max-w-4xl list-decimal space-y-3 md:pl-16 pl-4 text-left sm:text-base/relaxed text-sm marker:[FCFAFA] mb-11 tracking-wide">
+        <ol className="mx-auto mt-10 max-w-4xl list-decimal space-y-3 md:pl-16 pl-4 text-left sm:text-base/relaxed text-[12px] marker:[FCFAFA] mb-11 tracking-wide">
           <li className="pl-1">
             Register in the Postman Student Program via the link below.
           </li>
