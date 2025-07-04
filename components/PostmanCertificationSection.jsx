@@ -29,14 +29,21 @@ export default function PostmanCertificationSection() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.3 }}
-      className="relative isolate w-full overflow-hidden bg-cover bg-center py-28 md:py-36"
+      className="relative isolate w-full overflow-hidden bg-cover bg-center py-28 md:py-36 pt-30 mt-20"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#000c1c]/70 via-[#020618]/60 to-[#00040a]/90 opacity-70" />
-      <Image
-        src={postmanRemovedBg}
-        alt="Background"
-        className="absolute top-[56%] left-[48%] -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 object-contain opacity-35 blur-[2px] transition-all duration-300"
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#000c1c]/20 via-[#020618]/60 to-[#00040a]/90 opacity-60" />
+      <motion.div
+        variants={itemVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <Image
+          src={postmanRemovedBg}
+          alt="Background"
+          className="absolute top-[56%] left-[48%] -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 object-contain opacity-35 blur-[2px] transition-all duration-300"
+        />
+      </motion.div>
 
       <Image
         src={sbg}
@@ -59,22 +66,21 @@ export default function PostmanCertificationSection() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.3 }}
-        className="relative z-10 mx-auto max-w-5xl px-6 text-center text-slate-50"
+        className="relative z-10 mx-auto max-w-5xl px-6 text-center"
       >
-        <h2 className="text-3xl font-bold tracking-wide leading-14 sm:text-4xl lg:text-5xl">
-          <div className="font-semibold">Earn Free</div>&nbsp;
+        <h2 className="text-2xl font-bold tracking-wide sm:leading-14 leading-8 sm:text-4xl lg:text-5xl">
+          <div className="font-semibold">Earn Free</div>
           <span className="text-[#FF6C37] font-extrabold">
             Postman API Fundamentals
           </span>
           <div className="font-semibold">Student Expert Certification</div>
         </h2>
 
-        <p className="mx-auto mt-6 w-2/3 text-lg/relaxed text-[#F8F8FF]">
-          Complete the Postman Student Expert Program with GirlScript and stand
+        <p className="mx-auto mt-6 sm:w-2/3 w-full sm:text-lg/relaxed text-sm text-[#F8F8FF]">
+          Complete the Postman Student Expert Program with GirlScript and stand
           a chance to win exciting Postman swag.
         </p>
 
-        {/* Steps */}
         <div className="flex flex-row items-center justify-center w-full mt-10">
           <div className="w-1/4 bg-gradient-to-r from-transparent to-[#171D45] h-[2px]" />
           <span className="text-[#C4C8D4] mx-4 text-center text-[12px] md:text-[16px]">
@@ -83,7 +89,7 @@ export default function PostmanCertificationSection() {
           <div className="w-1/4 bg-gradient-to-l from-transparent to-[#171D45] h-[2px]" />
         </div>
 
-        <ol className="mx-auto mt-10 max-w-4xl list-decimal space-y-3 pl-16 text-left text-base/relaxed marker:[FCFAFA] mb-11 tracking-wide">
+        <ol className="mx-auto mt-10 max-w-4xl list-decimal space-y-3 md:pl-16 pl-4 text-left sm:text-base/relaxed text-sm marker:[FCFAFA] mb-11 tracking-wide">
           <li className="pl-1">
             Register in the Postman Student Program via the link below.
           </li>
@@ -109,7 +115,7 @@ export default function PostmanCertificationSection() {
           </li>
         </ol>
         <a
-          href="https://swi.y.co/postman"
+          href="https://www.postman.com/student-program/student-expert/?utm_campaign=PTS&utm_medium=referral&utm_source=external&utm_term=girlscript&utm_content=gssoc"
           target="_blank"
           className="text-white px-5 py-3 rounded-full bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] font-normal cursor-pointer text-[12px] md:text-[14px] mt-10"
         >
@@ -120,7 +126,7 @@ export default function PostmanCertificationSection() {
           <p className="flex justify-center gap-1">
             <span>Join the</span>
             <a
-              href="https://discord.com/invite/kXqjE86gn9"
+              href="https://discord.com/invite/kXqjE86qn9"
               className="underline decoration-dotted underline-offset-2 hover:text-indigo-300"
               target="_blank"
             >
@@ -129,8 +135,8 @@ export default function PostmanCertificationSection() {
             &nbsp;for support.
           </p>
           <p>
-            Attend the lectures daily and participate in social‑media challenges
-            for a chance to win exclusive Postman swag kits.
+            Attend the lectures daily and participate in social-media challenges
+            for a chance to win exclusive Postman swag kits.
           </p>
         </div>
       </motion.div>
