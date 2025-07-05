@@ -50,6 +50,7 @@ import {
   PieChartComponent,
 } from "@/components/Charts";
 import CountUp from "@/components/CountUp";
+import PostmanCertificationSection from "@/components/PostmanCertificationSection";
 
 const containerVariants = {
   hidden: {},
@@ -551,6 +552,8 @@ export default function Home() {
           />
         </motion.div>
       </motion.section>
+
+      <PostmanCertificationSection />
 
       <motion.section
         id="timeline"
