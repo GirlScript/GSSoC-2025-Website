@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Rodriguez",
+    "points": 2850,
+    "avatar": "https://ui-avatars.com/api/?name=Alex+Rodriguez&background=0ea5e9&color=fff&size=150",
+    "projects": ["react-components", "api-gateway", "mobile-app"],
+    "rank": 1
+  },
+  {
+    "id": 2,
+    "name": "Sarah Chen",
+    "points": 2640,
+    "avatar": "https://ui-avatars.com/api/?name=Sarah+Chen&background=8b5cf6&color=fff&size=150",
+    "projects": ["data-analytics", "frontend-lib", "documentation"],
+    "rank": 2
+  },
+  {
+    "id": 3,
+    "name": "Marcus Johnson",
+    "points": 2420,
+    "avatar": "https://ui-avatars.com/api/?name=Marcus+Johnson&background=f59e0b&color=fff&size=150",
+    "projects": ["backend-service", "devops-tools", "testing-framework"],
+    "rank": 3
+  },
+  {
+    "id": 4,
+    "name": "Emily Zhang",
+    "points": 2180,
+    "avatar": "https://ui-avatars.com/api/?name=Emily+Zhang&background=ef4444&color=fff&size=150",
+    "projects": ["ui-design", "accessibility", "performance"],
+    "rank": 4
+  },
+  {
+    "id": 5,
+    "name": "David Kumar",
+    "points": 1950,
+    "avatar": "https://ui-avatars.com/api/?name=David+Kumar&background=10b981&color=fff&size=150",
+    "projects": ["machine-learning", "data-pipeline", "algorithms"],
+    "rank": 5
+  },
+  {
+    "id": 6,
+    "name": "Lisa Thompson",
+    "points": 1820,
+    "avatar": "https://ui-avatars.com/api/?name=Lisa+Thompson&background=f97316&color=fff&size=150",
+    "projects": ["security", "authentication", "deployment"],
+    "rank": 6
+  },
+  {
+    "id": 7,
+    "name": "James Wilson",
+    "points": 1690,
+    "avatar": "https://ui-avatars.com/api/?name=James+Wilson&background=6366f1&color=fff&size=150",
+    "projects": ["database-optimization", "caching", "monitoring"],
+    "rank": 7
+  },
+  {
+    "id": 8,
+    "name": "Priya Patel",
+    "points": 1540,
+    "avatar": "https://ui-avatars.com/api/?name=Priya+Patel&background=ec4899&color=fff&size=150",
+    "projects": ["mobile-responsive", "animation", "user-experience"],
+    "rank": 8
+  },
+  {
+    "id": 9,
+    "name": "Robert Lee",
+    "points": 1380,
+    "avatar": "https://ui-avatars.com/api/?name=Robert+Lee&background=14b8a6&color=fff&size=150",
+    "projects": ["api-integration", "webhooks", "third-party-services"],
+    "rank": 9
+  },
+  {
+    "id": 10,
+    "name": "Maria Garcia",
+    "points": 1220,
+    "avatar": "https://ui-avatars.com/api/?name=Maria+Garcia&background=a855f7&color=fff&size=150",
+    "projects": ["internationalization", "localization", "content-management"],
+    "rank": 10
+  }
+]
