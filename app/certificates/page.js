@@ -442,9 +442,9 @@ function UserWithCertificateSearchComponent() {
             Search for Certificates
           </h3>
           <p className="text-[#A7ADBE] max-w-md mx-auto">
-            Enter a user's name to find and download their GSSoC 2025
-            certificate. You can also filter by role using the tags above. You
-            need at least 2 characters to start searching.
+            {"Enter a user's name to find and download their GSSoC 2025"}
+            {"certificate. You can also filter by role using the tags above. You"}
+            {"need at least 2 characters to start searching."}
           </p>
         </div>
       )}
