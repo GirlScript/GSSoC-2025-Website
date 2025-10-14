@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useTransition } from "react";
+import React, { useState, useCallback, useTransition, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,6 +36,155 @@ const itemVariants = {
 };
 
 export default function CertificatesPage() {
+  const [selectedContributor, setSelectedContributor] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const canvasRef = useRef(null);
+
+  const openCertificateModal = (contributor) => {
+    setSelectedContributor(contributor);
+    setIsModalOpen(true);
+  };
+
+  const closeCertificateModal = () => {
+    setSelectedContributor(null);
+    setIsModalOpen(false);
+  };
+
+  const renderCertificate = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !selectedContributor) return;
+
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size
+    canvas.width = 1200;
+    canvas.height = 900;
+
+    // Load certificate background image using document.createElement
+    const certificateImg = document.createElement("img");
+    certificateImg.crossOrigin = "anonymous";
+
+    certificateImg.onload = () => {
+      // Draw certificate background
+      ctx.drawImage(certificateImg, 0, 0, canvas.width, canvas.height);
+
+      // Set text styles for contributor name
+      ctx.font = "bold 48px Arial";
+      ctx.fillStyle = "#2c3e50";
+      ctx.textAlign = "center";
+
+      // Draw contributor name
+      ctx.fillText(
+        selectedContributor.full_name,
+        canvas.width / 2,
+        canvas.height / 2 + (selectedContributor.role === "Campus Ambassador" || selectedContributor.role === "Contributor" ? 50 : 14)
+      );
+
+      // Set text styles for points
+      ctx.font = "32px Arial";
+      ctx.fillStyle = "#34495e";
+    };
+
+    certificateImg.onerror = () => {
+      console.error("Failed to load certificate background image");
+      // Draw a fallback background
+      ctx.fillStyle = "#f0f0f0";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Add fallback text
+      ctx.fillStyle = "#333";
+      ctx.font = "bold 48px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(
+        "Certificate of Achievement",
+        canvas.width / 2,
+        canvas.height / 2 - 100
+      );
+
+      // Draw fallback avatar with initials
+      const avatarSize = 120;
+      const avatarX = canvas.width / 2 - avatarSize / 2;
+      const avatarY = canvas.height / 2 - 150;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(
+        avatarX + avatarSize / 2,
+        avatarY + avatarSize / 2,
+        avatarSize / 2,
+        0,
+        Math.PI * 2
+      );
+      ctx.fillStyle = "#4C75FF";
+      ctx.fill();
+
+      const initials = selectedContributor.full_name
+        .split(" ")
+        .map((word) => word.charAt(0))
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
+
+      ctx.fillStyle = "white";
+      ctx.font = "bold 36px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(
+        initials,
+        avatarX + avatarSize / 2,
+        avatarY + avatarSize / 2
+      );
+      ctx.restore();
+    };
+
+    switch (selectedContributor.role) {
+      case "Mentor":
+        certificateImg.src = "/certificates/mentor.png";
+        break;
+      case "Project Admin":
+        certificateImg.src = "/certificates/pa.png";
+        break;
+      case "Campus Ambassador":
+        certificateImg.src = "/certificates/ca.png";
+        break;
+      default: // contributor
+        certificateImg.src = "/certificates/ca.png";
+        break;
+    }
+  }, [selectedContributor]);
+
+  useEffect(() => {
+    if (isModalOpen && selectedContributor && canvasRef.current) {
+      // Add a small delay to ensure the canvas is fully rendered
+      const timer = setTimeout(() => {
+        renderCertificate();
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isModalOpen, selectedContributor, renderCertificate]);
+
+  const downloadCertificate = () => {
+    const canvas = canvasRef.current;
+    if (!canvas || !selectedContributor) {
+      console.error("Canvas or contributor data not available");
+      return;
+    }
+
+    try {
+      const link = document.createElement("a");
+      link.download = `${selectedContributor.full_name.replace(
+        /\s+/g,
+        "_"
+      )}_certificate.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Error downloading certificate:", error);
+      alert("Failed to download certificate. Please try again.");
+    }
+  };
+
   return (
     <div className="relative w-full min-h-screen font-sans overflow-hidden">
       {/* Background effects matching the main theme */}
@@ -101,7 +250,7 @@ export default function CertificatesPage() {
         </motion.div>
 
         {/* Downlaod certificates search box */}
-        <UserWithCertificateSearchComponent />
+        <UserWithCertificateSearchComponent openCertificateModal={openCertificateModal} />
       </motion.section>
 
       {/* Footer section matching the main site */}
@@ -183,11 +332,93 @@ export default function CertificatesPage() {
           </a>
         </div>
       </motion.section>
+
+      {isModalOpen && selectedContributor && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 cursor-pointer"
+          onClick={(e) =>
+            e.target === e.currentTarget && closeCertificateModal()
+          }
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="relative bg-gradient-to-b from-[#00041f] to-[#00041f00] border border-[#131839] rounded-3xl shadow-2xl shadow-blue-500/40 max-w-5xl w-full max-h-[95vh] overflow-hidden cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Background pattern */}
+            <Image
+              src={cardbg1}
+              alt="Background"
+              className="absolute right-0 top-0 w-full h-full object-cover z-0 rounded-3xl opacity-20"
+            />
+
+            <div className="relative z-10 flex flex-col h-full items-center justify-center">
+              {/* Header */}
+              <div className="flex justify-center items-center border-b border-[#131839]/50 p-6 pb-0">
+                <div className="flex-1 flex flex-col items-center justify-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                    Certificate of Achievement
+                  </h2>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                    <p className="text-[#A7ADBE] text-md font-bold">
+                      {selectedContributor.full_name}
+                    </p>
+                    <div className="flex items-center gap-3 text-xs text-[#A7ADBE]">
+                      <span className="px-2 py-1 bg-[#131839] rounded-full border border-[#232D6B]">
+                        Rank #{selectedContributor.rank}
+                      </span>
+                      <span className="px-2 py-1 bg-[#131839] rounded-full border border-[#232D6B]">
+                        {selectedContributor.points} Points
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Certificate Display */}
+              <div className="flex-1 flex items-center justify-center p-6 md:p-8">
+                <div className="w-full max-w-4xl">
+                  <canvas
+                    ref={canvasRef}
+                    className="w-full h-auto border border-[#131839] rounded-2xl shadow-2xl shadow-blue-500/30 transition-all duration-200 hover:shadow-blue-500/50"
+                    style={{ maxHeight: "60vh", aspectRatio: "4/3" }}
+                  />
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-6 border-t border-[#131839]/50 pt-1">
+                <button
+                  onClick={() => downloadCertificate()}
+                  className="w-full sm:w-auto bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white py-4 px-8 rounded-full font-semibold hover:from-[#5a81ff] hover:to-[#2459ff] transition-all duration-200 border border-[#131839] hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] min-w-[200px]"
+                  title="Download certificate as PNG"
+                >
+                  <span className="text-sm md:text-base">
+                    Download Certificate
+                  </span>
+                </button>
+                <button
+                  onClick={closeCertificateModal}
+                  className="w-full sm:w-auto bg-transparent bg-[radial-gradient(100%_100%_at_50%_100%,_rgb(16,_22,_54)_14.38%,_rgb(12,_16,_39)_100%)] border border-[#131839] text-white py-4 px-8 rounded-full font-medium hover:bg-[#131839] hover:border-[#232D6B] transition-all duration-200 cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] min-w-[140px]"
+                  title="Close modal"
+                >
+                  <span className="text-sm md:text-base">Close</span>
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 }
 
-function UserWithCertificateSearchComponent() {
+function UserWithCertificateSearchComponent({ openCertificateModal }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -238,6 +469,7 @@ function UserWithCertificateSearchComponent() {
         try {
           const mappedRoles = roles.map((roleId) => roleMapping[roleId]);
           const results = await searchUsers(query, mappedRoles);
+          console.log( "results", results);
           setSearchResults(results);
         } catch (error) {
           console.error("Search error:", error);
@@ -279,7 +511,7 @@ function UserWithCertificateSearchComponent() {
     >
       {/* Role Filter Tags */}
       <div className="mb-6">
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           {availableRoles.map((role) => (
             <button
               key={role.id}
@@ -332,9 +564,9 @@ function UserWithCertificateSearchComponent() {
       {/* Search Results */}
       {searchResults.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {searchResults.map((user) => (
+          {searchResults.map((user, index) => (
             <motion.div
-              key={user.id}
+              key={user.id ?? index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
@@ -344,14 +576,14 @@ function UserWithCertificateSearchComponent() {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-[#4C75FF] to-[#1A4FFF] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {user.user
+                    {user.full_name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </div>
                   <div className="ml-3">
                     <h3 className="text-white font-semibold text-lg">
-                      {user.user}
+                      {user.full_name}
                     </h3>
                     <div className="flex items-center space-x-1">
                       <span className="text-[#4C75FF] font-bold text-lg">
@@ -381,7 +613,7 @@ function UserWithCertificateSearchComponent() {
               </div>
 
               {/* Projects */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <p className="text-[#A7ADBE] text-sm mb-2">Projects:</p>
                 <div className="flex flex-wrap gap-2">
                   {user.projects.slice(0, 2).map((project, index) => (
@@ -398,7 +630,7 @@ function UserWithCertificateSearchComponent() {
                     </span>
                   )}
                 </div>
-              </div>
+              </div> */}
 
               {/* Issue Date */}
               <p className="text-[#A7ADBE] text-xs mb-4">
@@ -408,10 +640,9 @@ function UserWithCertificateSearchComponent() {
               {/* Download Button */}
               <button
                 onClick={() => {
-                  // In a real app, this would download the certificate
-                  alert(`Downloading certificate for ${user.user}`);
+                  openCertificateModal(user);
                 }}
-                className="w-full bg-gradient-to-r from-[#4C75FF] to-[#1A4FFF] text-white px-4 py-2 rounded-lg font-medium hover:from-[#5A84FF] hover:to-[#2A5AFF] transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#4C75FF]/25"
+                className="w-full bg-gradient-to-r from-[#4C75FF] to-[#1A4FFF] text-white px-4 py-2 rounded-lg font-medium hover:from-[#5A84FF] hover:to-[#2A5AFF] transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#4C75FF]/25 hover:cursor-pointer"
               >
                 Download Certificate
               </button>
@@ -443,7 +674,9 @@ function UserWithCertificateSearchComponent() {
           </h3>
           <p className="text-[#A7ADBE] max-w-md mx-auto">
             {"Enter a user's name to find and download their GSSoC 2025"}
-            {"certificate. You can also filter by role using the tags above. You"}
+            {
+              "certificate. You can also filter by role using the tags above. You"
+            }
             {"need at least 2 characters to start searching."}
           </p>
         </div>
