@@ -64,6 +64,8 @@ export default function CertificatesPage() {
     const certificateImg = document.createElement("img");
     certificateImg.crossOrigin = "anonymous";
 
+    const role = selectedContributor.role ? selectedContributor.role.trim().toLowerCase() : "contributor";
+
     certificateImg.onload = () => {
       // Draw certificate background
       ctx.drawImage(certificateImg, 0, 0, canvas.width, canvas.height);
@@ -73,11 +75,13 @@ export default function CertificatesPage() {
       ctx.fillStyle = "#2c3e50";
       ctx.textAlign = "center";
 
+      // roles could be campus_ambassador, contributor, mentor, project_admin
+
       // Draw contributor name
       ctx.fillText(
         selectedContributor.full_name,
         canvas.width / 2,
-        canvas.height / 2 + (selectedContributor.role === "Campus Ambassador" || selectedContributor.role === "Contributor" ? 50 : 14)
+        canvas.height / 2 + (role === "campus_ambassador" || role === "contributor" ? 50 : 14)
       );
 
       // Set text styles for points
@@ -118,6 +122,8 @@ export default function CertificatesPage() {
       ctx.fillStyle = "#4C75FF";
       ctx.fill();
 
+      console.log("selectedContributor", selectedContributor);
+
       const initials = selectedContributor.full_name
         .split(" ")
         .map((word) => word.charAt(0))
@@ -138,17 +144,17 @@ export default function CertificatesPage() {
     };
 
     switch (selectedContributor.role) {
-      case "Mentor":
+      case "mentor":
         certificateImg.src = "/certificates/mentor.png";
         break;
-      case "Project Admin":
+      case "project_admin":
         certificateImg.src = "/certificates/pa.png";
         break;
-      case "Campus Ambassador":
+      case "campus_ambassador":
         certificateImg.src = "/certificates/ca.png";
         break;
       default: // contributor
-        certificateImg.src = "/certificates/ca.png";
+        certificateImg.src = "/certificates/contributor.jpeg";
         break;
     }
   }, [selectedContributor]);
@@ -365,17 +371,9 @@ export default function CertificatesPage() {
                     Certificate of Achievement
                   </h2>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                    <p className="text-[#A7ADBE] text-md font-bold">
+                    <p className="text-[#A7ADBE] text-lg font-semibold">
                       {selectedContributor.full_name}
                     </p>
-                    <div className="flex items-center gap-3 text-xs text-[#A7ADBE]">
-                      <span className="px-2 py-1 bg-[#131839] rounded-full border border-[#232D6B]">
-                        Rank #{selectedContributor.rank}
-                      </span>
-                      <span className="px-2 py-1 bg-[#131839] rounded-full border border-[#232D6B]">
-                        {selectedContributor.points} Points
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -549,11 +547,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
         {searchQuery && (
           <p className="text-[#A7ADBE] text-sm mt-2">
             {searchResults.length > 0
-              ? `Found ${searchResults.length} user${
-                  searchResults.length !== 1 ? "s" : ""
-                }${
-                  selectedRoles.length > 0 ? " matching selected filters" : ""
-                }`
+              ? ""
               : searchQuery.length >= 2 && !isSearching && !isPending
               ? "No users found"
               : ""}
@@ -588,64 +582,16 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
                     <p className="text-[#A7ADBE] text-sm">
                       {user.email}
                     </p>
-                    <div className="flex items-center space-x-1">
-                      <span className="text-[#4C75FF] font-bold text-lg">
-                        {user.points}
-                      </span>
-                      <span className="text-[#A7ADBE] text-sm">pts</span>
-                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Role Badge */}
-              <div className="mb-4">
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    user.role === "Project Admin"
-                      ? "bg-[#FF6B6B]/20 text-[#FF6B6B]"
-                      : user.role === "Mentor"
-                      ? "bg-[#4ECDC4]/20 text-[#4ECDC4]"
-                      : user.role === "Campus Ambassador"
-                      ? "bg-[#FFD93D]/20 text-[#FFD93D]"
-                      : "bg-[#45B7D1]/20 text-[#45B7D1]"
-                  }`}
-                >
-                  {user.role}
-                </span>
-              </div>
-
-              {/* Projects */}
-              {/* <div className="mb-4">
-                <p className="text-[#A7ADBE] text-sm mb-2">Projects:</p>
-                <div className="flex flex-wrap gap-2">
-                  {user.projects.slice(0, 2).map((project, index) => (
-                    <span
-                      key={index}
-                      className="text-xs bg-[#FFFFFF10] text-[#A7ADBE] px-2 py-1 rounded-md"
-                    >
-                      {project}
-                    </span>
-                  ))}
-                  {user.projects.length > 2 && (
-                    <span className="text-xs text-[#4C75FF]">
-                      +{user.projects.length - 2} more
-                    </span>
-                  )}
-                </div>
-              </div> */}
-
-              {/* Issue Date */}
-              <p className="text-[#A7ADBE] text-xs mb-4">
-                Issued: {new Date(user.issueDate).toLocaleDateString()}
-              </p>
 
               {/* Download Button */}
               <button
                 onClick={() => {
                   openCertificateModal(user);
                 }}
-                className="w-full bg-gradient-to-r from-[#4C75FF] to-[#1A4FFF] text-white px-4 py-2 rounded-lg font-medium hover:from-[#5A84FF] hover:to-[#2A5AFF] transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#4C75FF]/25 hover:cursor-pointer"
+                className="w-full mt-1 bg-gradient-to-r from-[#4C75FF] to-[#1A4FFF] text-white px-4 py-2 rounded-lg font-medium hover:from-[#5A84FF] hover:to-[#2A5AFF] transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#4C75FF]/25 hover:cursor-pointer"
               >
                 Download Certificate
               </button>

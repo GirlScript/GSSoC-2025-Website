@@ -1,5 +1,10 @@
 "use server";
 
+const campusAmbassadors = require("./ca.json");
+const contributors = require("./contributors.json");
+const mentors = require("./mentors.json");
+const projectAdmins = require("./pa.json");
+
 const certificatesData = [
   {
     full_name: "Alice Johnson",
@@ -46,7 +51,7 @@ export async function searchUsers(searchQuery, selectedRoles = []) {
   const query = searchQuery.toLowerCase().trim();
 
   // Search in user names and filter by roles
-  let results = certificatesData.filter((user) =>
+  let results = [...campusAmbassadors, ...contributors, ...mentors, ...projectAdmins].filter((user) =>
     user.email.toLowerCase() === query
   );
 
