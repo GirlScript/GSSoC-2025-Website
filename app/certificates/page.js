@@ -449,11 +449,11 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
       label: "Project Admins",
       color: "bg-[#FF6B6B]/20 text-[#FF6B6B] border-[#FF6B6B]/30",
     },
-    {
-      id: "campus-ambassador",
-      label: "Campus Ambassadors",
-      color: "bg-[#FFD93D]/20 text-[#FFD93D] border-[#FFD93D]/30",
-    },
+    // {
+    //   id: "campus-ambassador",
+    //   label: "Campus Ambassadors",
+    //   color: "bg-[#FFD93D]/20 text-[#FFD93D] border-[#FFD93D]/30",
+    // },
   ];
 
   const roleMapping = {
