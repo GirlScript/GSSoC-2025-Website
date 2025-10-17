@@ -1,5 +1,11 @@
 "use client";
-import React, { useState, useCallback, useTransition, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useCallback,
+  useTransition,
+  useRef,
+  useEffect,
+} from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,7 +70,9 @@ export default function CertificatesPage() {
     const certificateImg = document.createElement("img");
     certificateImg.crossOrigin = "anonymous";
 
-    const role = selectedContributor.role ? selectedContributor.role.trim().toLowerCase() : "contributor";
+    const role = selectedContributor.role
+      ? selectedContributor.role.trim().toLowerCase()
+      : "contributor";
 
     certificateImg.onload = () => {
       // Draw certificate background
@@ -81,7 +89,7 @@ export default function CertificatesPage() {
       ctx.fillText(
         selectedContributor.full_name,
         canvas.width / 2,
-        canvas.height / 2 + (role === "campus_ambassador" || role === "contributor" ? 50 : 14)
+        canvas.height / 2 + (role === "campus_ambassador" ? 50 : 14)
       );
 
       // Set text styles for points
@@ -256,7 +264,9 @@ export default function CertificatesPage() {
         </motion.div>
 
         {/* Downlaod certificates search box */}
-        <UserWithCertificateSearchComponent openCertificateModal={openCertificateModal} />
+        <UserWithCertificateSearchComponent
+          openCertificateModal={openCertificateModal}
+        />
       </motion.section>
 
       {/* Footer section matching the main site */}
@@ -449,8 +459,8 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
   const roleMapping = {
     contributor: "Contributor",
     mentor: "Mentor",
-    "project-admin": "Project Admin",
-    "campus-ambassador": "Campus Ambassador",
+    project_admin: "Project Admin",
+    campus_ambassador: "Campus Ambassador",
   };
 
   // Debounced search function
@@ -467,7 +477,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
         try {
           const mappedRoles = roles.map((roleId) => roleMapping[roleId]);
           const results = await searchUsers(query, mappedRoles);
-          console.log( "results", results);
+          console.log("results", results);
           setSearchResults(results);
         } catch (error) {
           console.error("Search error:", error);
@@ -579,11 +589,26 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
                     <h3 className="text-white font-semibold text-lg">
                       {user.full_name}
                     </h3>
-                    <p className="text-[#A7ADBE] text-sm">
-                      {user.email}
-                    </p>
+                    <p className="text-[#A7ADBE] text-sm">{user.email}</p>
                   </div>
                 </div>
+              </div>
+
+              {/* Role Badge */}
+              <div className="mb-4">
+                <span
+                  className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    user.role === "project_admin"
+                      ? "bg-[#FF6B6B]/20 text-[#FF6B6B]"
+                      : user.role === "mentor"
+                      ? "bg-[#4ECDC4]/20 text-[#4ECDC4]"
+                      : user.role === "campus_ambassador"
+                      ? "bg-[#FFD93D]/20 text-[#FFD93D]"
+                      : "bg-[#45B7D1]/20 text-[#45B7D1]"
+                  }`}
+                >
+                  {roleMapping[user.role]}
+                </span>
               </div>
 
               {/* Download Button */}
@@ -622,7 +647,9 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
             Search for Certificates
           </h3>
           <p className="text-[#A7ADBE] max-w-md mx-auto">
-            {"Enter a user's email to find and download their GSSoC 2025 certificate. You can also filter by role using the tags above. You need at least 2 characters to start searching."}
+            {
+              "Enter a user's email to find and download their GSSoC 2025 certificate. You can also filter by role using the tags above. You need at least 2 characters to start searching."
+            }
           </p>
         </div>
       )}
