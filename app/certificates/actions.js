@@ -47,7 +47,7 @@ export async function searchUsers(searchQuery, selectedRoles = []) {
 
   // Search in user names and filter by roles
   let results = certificatesData.filter((user) =>
-    user.full_name.toLowerCase().includes(query)
+    user.email.toLowerCase() === query
   );
 
   // Apply role filtering if any roles are selected

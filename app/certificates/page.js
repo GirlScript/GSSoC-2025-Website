@@ -507,7 +507,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: false, amount: 0.3 }}
-      className="w-full max-w-4xl mx-auto px-4"
+      className="w-full max-w-5xl mx-auto px-4"
     >
       {/* Role Filter Tags */}
       <div className="mb-6">
@@ -535,7 +535,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search for users by name..."
+            placeholder="Search for users by email..."
             className="w-full px-6 py-4 bg-[#FFFFFF15] border border-[#4C75FF]/30 rounded-xl text-white placeholder-[#A7ADBE] focus:outline-none focus:border-[#4C75FF] focus:ring-2 focus:ring-[#4C75FF]/20 transition-all duration-300"
           />
           {(isSearching || isPending) && (
@@ -585,6 +585,9 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
                     <h3 className="text-white font-semibold text-lg">
                       {user.full_name}
                     </h3>
+                    <p className="text-[#A7ADBE] text-sm">
+                      {user.email}
+                    </p>
                     <div className="flex items-center space-x-1">
                       <span className="text-[#4C75FF] font-bold text-lg">
                         {user.points}
@@ -673,11 +676,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
             Search for Certificates
           </h3>
           <p className="text-[#A7ADBE] max-w-md mx-auto">
-            {"Enter a user's name to find and download their GSSoC 2025"}
-            {
-              "certificate. You can also filter by role using the tags above. You"
-            }
-            {"need at least 2 characters to start searching."}
+            {"Enter a user's email to find and download their GSSoC 2025 certificate. You can also filter by role using the tags above. You need at least 2 characters to start searching."}
           </p>
         </div>
       )}
