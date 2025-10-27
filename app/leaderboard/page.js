@@ -1,9 +1,9 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import contributorsData from './contributors-data.json';
+import contributorsData from "./contributors-data.json";
 
 // Import background assets to match the theme
 import cardbg1 from "@/assets/box-bg.svg";
@@ -35,8 +35,33 @@ const itemVariants = {
   },
 };
 
-export default function LeaderboardPage() {
+const ITEMS_PER_PAGE = 30;
 
+export default function LeaderboardPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate pagination data
+  const totalPages = Math.ceil(contributorsData.length / ITEMS_PER_PAGE);
+
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return contributorsData.slice(startIndex, endIndex);
+  }, [currentPage]);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const getGlobalRank = (localIndex) => {
+    return (currentPage - 1) * ITEMS_PER_PAGE + localIndex + 1;
+  };
 
   return (
     <div className="relative w-full min-h-screen font-sans overflow-hidden">
@@ -97,22 +122,60 @@ export default function LeaderboardPage() {
               Leaderboard <br />
             </h1>
             <p className="w-11/12 max-w-2xl text-lg mb-8 text-[10px] md:text-[14px] text-[#A7ADBE] text-balance">
-              Celebrating our amazing contributors and their outstanding contributions to open source projects across various domains.
+              Celebrating our amazing contributors and their outstanding
+              contributions to open source projects across various domains.
             </p>
           </div>
         </motion.div>
 
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="w-11/12 max-w-4xl flex items-center justify-between mb-16 px-4">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-6 py-3 rounded-full font-normal text-[12px] md:text-[14px] transition-all duration-300 ${
+                currentPage === 1
+                  ? "bg-[#131839] text-[#A7ADBE] cursor-not-allowed opacity-50"
+                  : "bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer"
+              }`}
+            >
+              Previous
+            </button>
+
+            <div className="flex items-center gap-2">
+              <span className="text-white text-sm md:text-base">
+                Page{" "}
+                <span className="font-bold text-[#4C75FF]">{currentPage}</span>{" "}
+                of <span className="font-bold">{totalPages}</span>
+              </span>
+            </div>
+
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-6 py-3 rounded-full font-normal text-[12px] md:text-[14px] transition-all duration-300 ${
+                currentPage === totalPages
+                  ? "bg-[#131839] text-[#A7ADBE] cursor-not-allowed opacity-50"
+                  : "bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
+
         {/* Contributors list */}
         <motion.div
-          className="w-11/12 max-w-4xl flex flex-col gap-4 mb-16"
+          className="w-11/12 max-w-4xl flex flex-col gap-4 mb-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.3 }}
         >
-          {contributorsData.map((contributor, index) => (
+          {paginatedData.map((contributor, index) => (
             <motion.div
-              key={contributor.id}
+              key={index}
               className="group relative w-full bg-transparent bg-gradient-to-r from-[#00041f] to-[#00041f00] rounded-2xl border border-[#131839] flex items-center p-4 md:p-6 shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 hover:border-[#232D6B]"
               variants={itemVariants}
               initial="hidden"
@@ -125,27 +188,40 @@ export default function LeaderboardPage() {
                 alt="Background"
                 className="absolute right-0 top-0 w-full h-full object-cover z-0 rounded-2xl opacity-30"
               />
-              
+
               {/* Rank Number */}
               <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] rounded-full flex items-center justify-center mr-4 md:mr-6">
-                <span className="text-white font-bold text-lg md:text-xl">#{index + 1}</span>
+                <span className="text-white font-bold text-lg md:text-xl">
+                  #{getGlobalRank(index)}
+                </span>
               </div>
-              
+
               {/* Profile section */}
               <div className="relative z-10 flex items-center flex-grow">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-3 border-[#232D6B] mr-4">
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-3 border-[#232D6B] mr-4 bg-gradient-to-br from-[#4C75FF] to-[#1A4FFF] flex items-center justify-center">
                   <img
-                    src={contributor.avatar}
+                    src={`https://github.com/${contributor.github_name}.png`}
                     alt={contributor.name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.nextSibling.style.display = "flex";
+                    }}
                   />
+                  <div className="hidden w-full h-full items-center justify-center text-white text-xl md:text-2xl font-bold">
+                    {contributor.name?.charAt(0)?.toUpperCase() ?? "G"}
+                  </div>
                 </div>
-                
+
                 <div className="flex-grow min-w-0">
-                  <h3 className="text-lg md:text-xl font-semibold text-white truncate">{contributor.name}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold text-white truncate">
+                    {contributor.name}
+                  </h3>
                   <div className="flex flex-wrap items-center gap-2 mt-1">
-                    <p className="text-xl md:text-2xl font-bold text-[#4C75FF]">{contributor.points} pts</p>
-                    <div className="hidden sm:flex flex-wrap gap-1">
+                    <p className="text-xl md:text-2xl font-bold text-[#4C75FF]">
+                      {contributor.totalPoints} pts
+                    </p>
+                    {/* <div className="hidden sm:flex flex-wrap gap-1">
                       {contributor.projects.slice(0, 2).map((project, projectIndex) => (
                         <span
                           key={projectIndex}
@@ -159,11 +235,11 @@ export default function LeaderboardPage() {
                           +{contributor.projects.length - 2} more
                         </span>
                       )}
-                    </div>
+                    </div> */}
                   </div>
-                  
+
                   {/* Projects section for mobile */}
-                  <div className="sm:hidden mt-2">
+                  {/* <div className="sm:hidden mt-2">
                     <div className="flex flex-wrap gap-1">
                       {contributor.projects.slice(0, 2).map((project, projectIndex) => (
                         <span
@@ -179,20 +255,58 @@ export default function LeaderboardPage() {
                         </span>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              
+
               {/* Points highlight for larger screens */}
               <div className="hidden lg:flex relative z-10 flex-col items-end ml-4">
-                <div className="text-3xl font-bold text-[#4C75FF]">{contributor.points}</div>
+                <div className="text-3xl font-bold text-[#4C75FF]">
+                  {contributor.totalPoints}
+                </div>
                 <div className="text-sm text-[#A7ADBE]">points</div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </motion.section>
 
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="w-11/12 max-w-4xl flex items-center justify-between mb-16 px-4">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-6 py-3 rounded-full font-normal text-[12px] md:text-[14px] transition-all duration-300 ${
+                currentPage === 1
+                  ? "bg-[#131839] text-[#A7ADBE] cursor-not-allowed opacity-50"
+                  : "bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer"
+              }`}
+            >
+              Previous
+            </button>
+
+            <div className="flex items-center gap-2">
+              <span className="text-white text-sm md:text-base">
+                Page{" "}
+                <span className="font-bold text-[#4C75FF]">{currentPage}</span>{" "}
+                of <span className="font-bold">{totalPages}</span>
+              </span>
+            </div>
+
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-6 py-3 rounded-full font-normal text-[12px] md:text-[14px] transition-all duration-300 ${
+                currentPage === totalPages
+                  ? "bg-[#131839] text-[#A7ADBE] cursor-not-allowed opacity-50"
+                  : "bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] text-white hover:shadow-lg hover:shadow-blue-500/40 cursor-pointer"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
+      </motion.section>
 
       {/* Footer section matching the main site */}
       <motion.section
