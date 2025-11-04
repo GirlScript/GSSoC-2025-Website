@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,17 +37,53 @@ const itemVariants = {
 
 const ITEMS_PER_PAGE = 30;
 
+// Custom hook for debouncing
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 export default function LeaderboardPage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  // Filter contributors based on search term
+  const filteredContributors = useMemo(() => {
+    if (!debouncedSearchTerm.trim()) {
+      return contributorsData;
+    }
+    return contributorsData.filter((contributor) =>
+      contributor.github_username
+        ?.toLowerCase()
+        .includes(debouncedSearchTerm.toLowerCase())
+    );
+  }, [debouncedSearchTerm]);
+
+  // Reset to page 1 when search term changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearchTerm]);
 
   // Calculate pagination data
-  const totalPages = Math.ceil(contributorsData.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredContributors.length / ITEMS_PER_PAGE);
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    return contributorsData.slice(startIndex, endIndex);
-  }, [currentPage]);
+    return filteredContributors.slice(startIndex, endIndex);
+  }, [currentPage, filteredContributors]);
 
   const handlePrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -126,6 +162,51 @@ export default function LeaderboardPage() {
               contributions to open source projects across various domains.
             </p>
           </div>
+        </motion.div>
+
+        {/* Search Bar */}
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="w-11/12 max-w-4xl mb-8 px-4"
+        >
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search by GitHub username..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-6 py-4 bg-gradient-to-r from-[#00041f] to-[#00041f] rounded-full border border-[#131839] text-white placeholder-[#A7ADBE] focus:outline-none focus:border-[#4C75FF] focus:shadow-lg focus:shadow-blue-500/20 transition-all duration-300 text-sm md:text-base"
+            />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A7ADBE] hover:text-white transition-colors duration-200"
+                aria-label="Clear search"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
+          {debouncedSearchTerm && (
+            <p className="text-[#A7ADBE] text-xs md:text-sm mt-2 px-2">
+              Found {filteredContributors.length} contributor
+              {filteredContributors.length !== 1 ? "s" : ""}
+            </p>
+          )}
         </motion.div>
 
         {/* Pagination Controls */}
