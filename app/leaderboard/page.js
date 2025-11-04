@@ -130,7 +130,7 @@ export default function LeaderboardPage() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="w-11/12 max-w-4xl flex items-center justify-between mb-16 px-4">
+          <div className="w-11/12 max-w-4xl flex items-center justify-between mb-10 px-4">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
@@ -191,8 +191,8 @@ export default function LeaderboardPage() {
 
               {/* Rank Number */}
               <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-b from-[#4C75FF] to-[#1A4FFF] rounded-full flex items-center justify-center mr-4 md:mr-6">
-                <span className="text-white font-bold text-lg md:text-xl">
-                  #{getGlobalRank(index)}
+                <span className="text-white font-bold text-base md:text-xl">
+                  #{contributor.rank}
                 </span>
               </div>
 
@@ -200,8 +200,9 @@ export default function LeaderboardPage() {
               <div className="relative z-10 flex items-center flex-grow">
                 <div className="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-3 border-[#232D6B] mr-4 bg-gradient-to-br from-[#4C75FF] to-[#1A4FFF] flex items-center justify-center">
                   <img
-                    src={`https://github.com/${contributor.github_name}.png`}
-                    alt={contributor.name}
+                    // src={`https://github.com/${contributor.github_username}.png`}
+                    src={contributor.avatar}
+                    alt={contributor.full_name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.target.style.display = "none";
@@ -209,17 +210,21 @@ export default function LeaderboardPage() {
                     }}
                   />
                   <div className="hidden w-full h-full items-center justify-center text-white text-xl md:text-2xl font-bold">
-                    {contributor.name?.charAt(0)?.toUpperCase() ?? "G"}
+                    {contributor.full_name?.charAt(0)?.toUpperCase() ?? "G"}
                   </div>
                 </div>
 
                 <div className="flex-grow min-w-0">
+                  {/* TODO: Put this back when all user's full name is there */}
+                  {/* <h3 className="text-lg md:text-xl font-semibold text-white truncate">
+                    {contributor.full_name}
+                  </h3> */}
                   <h3 className="text-lg md:text-xl font-semibold text-white truncate">
-                    {contributor.name}
+                    @{contributor.github_username}
                   </h3>
                   <div className="flex flex-wrap items-center gap-2 mt-1">
                     <p className="text-xl md:text-2xl font-bold text-[#4C75FF]">
-                      {contributor.totalPoints} pts
+                      {contributor.points} pts
                     </p>
                     {/* <div className="hidden sm:flex flex-wrap gap-1">
                       {contributor.projects.slice(0, 2).map((project, projectIndex) => (
@@ -262,7 +267,7 @@ export default function LeaderboardPage() {
               {/* Points highlight for larger screens */}
               <div className="hidden lg:flex relative z-10 flex-col items-end ml-4">
                 <div className="text-3xl font-bold text-[#4C75FF]">
-                  {contributor.totalPoints}
+                  {contributor.points}
                 </div>
                 <div className="text-sm text-[#A7ADBE]">points</div>
               </div>
