@@ -445,12 +445,12 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
       color: "bg-[#4ECDC4]/20 text-[#4ECDC4] border-[#4ECDC4]/30",
     },
     {
-      id: "project-admin",
+      id: "project_admin",
       label: "Project Admins",
       color: "bg-[#FF6B6B]/20 text-[#FF6B6B] border-[#FF6B6B]/30",
     },
     // {
-    //   id: "campus-ambassador",
+    //   id: "campus_ambassador",
     //   label: "Campus Ambassadors",
     //   color: "bg-[#FFD93D]/20 text-[#FFD93D] border-[#FFD93D]/30",
     // },
@@ -475,8 +475,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
       setIsSearching(true);
       startTransition(async () => {
         try {
-          const mappedRoles = roles.map((roleId) => roleMapping[roleId]);
-          const results = await searchUsers(query, mappedRoles);
+          const results = await searchUsers(query, roles);
           console.log("results", results);
           setSearchResults(results);
         } catch (error) {
