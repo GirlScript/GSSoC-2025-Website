@@ -87,7 +87,7 @@ export default function CertificatesPage() {
 
       // Draw contributor name
       ctx.fillText(
-        selectedContributor.full_name,
+        selectedContributor.full_name !== "NONE" ? selectedContributor.full_name : selectedContributor.github_username,
         canvas.width / 2,
         canvas.height / 2 + (role === "campus_ambassador" ? 50 : 14)
       );
@@ -132,12 +132,18 @@ export default function CertificatesPage() {
 
       console.log("selectedContributor", selectedContributor);
 
-      const initials = selectedContributor.full_name
-        .split(" ")
-        .map((word) => word.charAt(0))
-        .join("")
-        .toUpperCase()
-        .slice(0, 2);
+      const initials =
+        selectedContributor.full_name !== "NONE"
+          ? selectedContributor.full_name
+              .split(" ")
+              .map((word) => word.charAt(0))
+              .join("")
+              .toUpperCase()
+              .slice(0, 2)
+          : selectedContributor.github_username.charAt(0).toUpperCase();
+
+          console.log("initials", initials);
+          console.log("selectedContributor", selectedContributor);
 
       ctx.fillStyle = "white";
       ctx.font = "bold 36px Arial";
@@ -187,10 +193,11 @@ export default function CertificatesPage() {
 
     try {
       const link = document.createElement("a");
-      link.download = `${selectedContributor.full_name.replace(
-        /\s+/g,
-        "_"
-      )}_certificate.png`;
+      link.download = `${
+        selectedContributor.full_name !== "NONE"
+          ? selectedContributor.full_name.replace(/\s+/g, "_")
+          : selectedContributor.github_username.replace(/\s+/g, "_")
+      }_certificate.png`;
       link.href = canvas.toDataURL("image/png");
       link.click();
     } catch (error) {
@@ -382,7 +389,7 @@ export default function CertificatesPage() {
                   </h2>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <p className="text-[#A7ADBE] text-lg font-semibold">
-                      {selectedContributor.full_name}
+                      {selectedContributor.full_name !== "NONE" ? selectedContributor.full_name : selectedContributor.github_username}
                     </p>
                   </div>
                 </div>
@@ -542,7 +549,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search for users by email..."
+            placeholder="Search for users by email or github username..."
             className="w-full px-6 py-4 bg-[#FFFFFF15] border border-[#4C75FF]/30 rounded-xl text-white placeholder-[#A7ADBE] focus:outline-none focus:border-[#4C75FF] focus:ring-2 focus:ring-[#4C75FF]/20 transition-all duration-300"
           />
           {(isSearching || isPending) && (
@@ -578,17 +585,34 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
               {/* User Avatar */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#4C75FF] to-[#1A4FFF] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                    {user.full_name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
+                  {user.role === "contributor" && (
+                    <Image
+                      width={48}
+                      height={48}
+                      src={user.avatar}
+                      alt={user.full_name ?? "user avatar"}
+                      className="w-12 h-12 rounded-full"
+                    />
+                  )}
+                  {user.role !== "contributor" && (
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#4C75FF] to-[#1A4FFF] rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      {user.full_name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                  )}
                   <div className="ml-3">
                     <h3 className="text-white font-semibold text-lg">
-                      {user.full_name}
+                      {user.full_name === "NONE"
+                        ? user.github_username
+                        : user.full_name}
                     </h3>
-                    <p className="text-[#A7ADBE] text-sm">{user.email}</p>
+                    <p className="text-[#A7ADBE] text-sm">
+                      {user.email === "NONE"
+                        ? "github.com/" + user.github_username
+                        : user.email}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -647,7 +671,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
           </h3>
           <p className="text-[#A7ADBE] max-w-md mx-auto">
             {
-              "Enter a user's email to find and download their GSSoC 2025 certificate. You can also filter by role using the tags above. You need at least 2 characters to start searching."
+              "Enter a user's email or github username to find and download their GSSoC 2025 certificate. You can also filter by role using the tags above. You need at least 2 characters to start searching."
             }
           </p>
         </div>
