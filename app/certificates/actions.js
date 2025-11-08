@@ -37,22 +37,6 @@ export async function searchUsers(searchQuery, selectedRoles = []) {
     return emailMatch || githubMatch || nameMatch;
   });
 
-  // Deduplicate by primary unique keys (github_username or email)
-  const seen = new Set();
-  results = results.filter(user => {
-    // prefer github_username as primary key if present, else use email
-    const key = user.github_username
-      ? `gh:${user.github_username.toLowerCase()}`
-      : user.email
-      ? `em:${user.email.toLowerCase()}`
-      : "";
-    if (!key || seen.has(key)) {
-      return false;
-    }
-    seen.add(key);
-    return true;
-  });
-
   // Apply role filtering if any roles are selected
   console.log("selectedRoles", selectedRoles);
   if (selectedRoles.length > 0) {
