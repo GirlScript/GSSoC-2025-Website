@@ -95,6 +95,18 @@ export default function Home() {
             About
           </a>
           <a
+            href="/leaderboard"
+            className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
+          >
+            Leaderboard
+          </a>
+          <a
+            href="/certificates"
+            className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
+          >
+            Certificates
+          </a>
+          <a
             href="#timeline"
             className="text-white bg-transparent hover:bg-[#161C44] border border-transparent hover:border-[#232D6B] cursor-pointer px-4 py-2 rounded-full"
           >
