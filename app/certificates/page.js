@@ -580,7 +580,7 @@ function UserWithCertificateSearchComponent({ openCertificateModal }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-[#FFFFFF10] backdrop-blur-sm border border-[#4C75FF]/20 rounded-xl p-6 hover:border-[#4C75FF]/50 hover:bg-[#FFFFFF15] transition-all duration-300 group"
+              className="bg-[#FFFFFF10] backdrop-blur-sm border border-[#4C75FF]/20 rounded-xl p-6 text-wrap text-ellipsis overflow-hidden hover:border-[#4C75FF]/50 hover:bg-[#FFFFFF15] transition-all duration-300 group"
             >
               {/* User Avatar */}
               <div className="flex items-start justify-between mb-4">
