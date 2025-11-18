@@ -692,7 +692,7 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              To Be Announced
+              21st July 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
@@ -744,7 +744,7 @@ export default function Home() {
             />
 
             <div className="mb-4 text-[#A7ADBE] text-[12px] py-2 rounded-xl">
-              To Be Announced
+            20th october 2025
             </div>
 
             <div className="text-[14px] md:text-[18px] my-2">
