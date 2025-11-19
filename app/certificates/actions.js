@@ -51,5 +51,11 @@ export async function searchUsers(searchQuery, selectedRoles = []) {
     return a.full_name.localeCompare(b.full_name);
   });
 
-  return results;
+  return results.map(user => ({
+    id: user.id,
+    role: user.role,
+    full_name: user.full_name,
+    github_username: user.github_username,
+    avatar: user.avatar
+  }));
 }
